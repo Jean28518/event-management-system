@@ -1,8 +1,12 @@
-from django.http import HttpResponse
+from http.client import HTTPResponse
+from django.http import HttpResponse, HttpResponseServerError, HttpResponseForbidden
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from .models import User
+from .models import Profile
 from django.core import serializers
+from django.contrib.auth.models import User, make_password, Group
+from django.contrib.auth import authenticate, login
+
 
 
 
@@ -15,71 +19,139 @@ def index(request):
 def create(request):
     if request.method == 'POST':
         user = User()
+        user.username = request.POST['email']
         user.email = request.POST['email']
-        user.surname = request.POST['surname']
-        user.name = request.POST['name']
-        user.website = request.POST['website']
-        user.company = request.POST['company']
-        user.over_18 = request.POST['over_18'] == "true"
-        user.password = request.POST['password']
-        user.private_pin = request.POST['private_pin']
-        
-        user.user_role = User.getUserRoleOfString(request.POST['user_role'])
-
+        user.last_name = request.POST['surname']
+        user.first_name = request.POST['name']
+        user.password = make_password(request.POST['password'])
         user.save()
+
+        profile = user.profile
+        profile.website = request.POST['website']
+        profile.company = request.POST['company']
+        profile.over_18 = request.POST['over_18'] == "true"
+        profile.private_pin = request.POST['private_pin']
+
+        # TODO: This should only be possible by admins
+        if request.POST['user_role'] == 'CO':
+            group = Group.objects.get_or_create(name='Contact')[0]
+            group.user_set.add(user)
+        elif request.POST['user_role'] == 'AT':
+            group = Group.objects.get_or_create(name='Attendant')[0]
+            group.user_set.add(user)
+        elif request.POST['user_role'] == 'OR':
+            group = Group.objects.get_or_create(name='Organisator')[0]
+            group.user_set.add(user)
+        elif request.POST['user_role'] == 'AD':
+            group = Group.objects.get_or_create(name='Administrator')[0]
+            group.user_set.add(user)
+        
+        profile.save()
     return HttpResponse("success.")
 
 # TODO: remove csrf exempt
 @csrf_exempt 
 def update(request):
     if request.method == 'POST':
-        if not User.objects.filter(email=request.POST['email']).exists():
+        if not User.objects.filter(username=request.POST['email']).exists():
             return HttpResponse("user not found.")
-        user = User.objects.get(email=request.POST['email'])
+        user = User.objects.get(username=request.POST['email'])
+        user.username = request.POST['email']
+        user.email = request.POST['email']
+        user.last_name = request.POST['surname']
+        user.first_name = request.POST['name']
+        user.save()
 
-        if request.POST.__contains__('new_email'):
-            user.email = request.POST['new_email']
-        user.surname = request.POST['surname']
-        user.name = request.POST['name']
-        user.website = request.POST['website']
-        user.company = request.POST['company']
-        user.over_18 = request.POST['over_18'] == "true"
-        user.password = request.POST['password']
-        user.private_pin = request.POST['private_pin']
+        profile = user.profile
+        profile.website = request.POST['website']
+        profile.company = request.POST['company']
+        profile.over_18 = request.POST['over_18'] == "true"
+        profile.private_pin = request.POST['private_pin']
+
+
+        if Group.objects.get_or_create(name='Contact')[0].user_set.filter(username=request.POST['email']).exists():
+            Group.objects.get(name='Contact').user_set.remove(user)
+        if Group.objects.get_or_create(name='Attendant')[0].user_set.filter(username=request.POST['email']).exists():
+            Group.objects.get(name='Attendant').user_set.remove(user)
+        if Group.objects.get_or_create(name='Organisator')[0].user_set.filter(username=request.POST['email']).exists():
+            Group.objects.get(name='Organisator').user_set.remove(user)
+        if Group.objects.get_or_create(name='Administrator')[0].user_set.filter(username=request.POST['email']).exists():
+            Group.objects.get(name='Administrator').user_set.remove(user)
+
+        
 
         # TODO: This should only be possible by admins
-        user.user_role = User.getUserRoleOfString(request.POST['user_role'])
+        if request.POST['user_role'] == 'CO':
+            group = Group.objects.get(name='Contact')
+            group.user_set.add(user)
+        elif request.POST['user_role'] == 'AT':
+            group = Group.objects.get(name='Attendant')
+            group.user_set.add(user)
+        elif request.POST['user_role'] == 'OR':
+            group = Group.objects.get(name='Organisator')
+            group.user_set.add(user)
+        elif request.POST['user_role'] == 'AD':
+            group = Group.objects.get(name='Administrator')
+            group.user_set.add(user)
         
+        profile.save()
+        return HttpResponse("success.")
+    return HttpResponse("wrong http method.")
+
+# TODO: remove csrf exempt
+@csrf_exempt 
+def change_password(request):
+    if request.method == 'POST':
+        if not User.objects.filter(username=request.POST['email']).exists():
+            return HttpResponse("user not found.")
+        user = User.objects.get(username=request.POST['email'])
+        user.password = make_password(request.POST['password'])
         user.save()
-    return HttpResponse("success.")
+        return HttpResponse("success.")
+    return HttpResponse("wrong http method.")
+
 
 # TODO: remove csrf exempt
 @csrf_exempt 
 def delete(request):
     if request.method == 'POST':
-        if User.objects.filter(email=request.POST['email']).exists(): 
-            User.objects.filter(email=request.POST['email']).delete() 
+        if Profile.objects.filter(email=request.POST['email']).exists(): 
+            Profile.objects.filter(email=request.POST['email']).delete() 
             return HttpResponse("success.")
         else:
             return HttpResponse("Email not found.")
         
     return HttpResponse("wrong http method.")
 
-# TODO: remove csrf exempt
-@csrf_exempt 
+# TODO: remove csrf exempt 
 def get(request):
-    if request.method == 'GET':
-        data = serializers.serialize("json", User.objects.all())
-        return HttpResponse(data)
-    return HttpResponse("wrong http method.")
+    user = authenticate(username='john', password='secret')
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            data = serializers.serialize("json", User.objects.all().select_related('profile'))
+            return HttpResponse(data)
+        return HttpResponse("wrong http method.")
+    else:
+        return HttpResponseForbidden()
 
 @csrf_exempt 
 def reset_password(request):
     if request.method == "POST":
-        if not User.objects.filter(email=request.POST['email']).exists():
+        if not Profile.objects.filter(email=request.POST['email']).exists():
             return HttpResponse("user not found.")
-        user = User.objects.get(email=request.POST['email'])
+        user = Profile.objects.get(email=request.POST['email'])
         user.reset_password()
         return HttpResponse("success.")
 
     return HttpResponse("wrong http method.")
+
+def login(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return HTTPResponse("Success")
+        ...
+    else:
+        return HttpResponseForbidden()

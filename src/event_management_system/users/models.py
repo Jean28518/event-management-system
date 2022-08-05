@@ -1,33 +1,48 @@
 from unicodedata import name
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 import string
 import random
 
 
-class User(models.Model):
-    email = models.EmailField(unique=True)
-    surname = models.CharField(max_length=100) # Nachname
-    name = models.CharField(max_length=100)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # surname = models.CharField(max_length=100) # Nachname
+    # name = models.CharField(max_length=100)
     website = models.URLField()
     company = models.CharField(max_length=100)
     over_18 = models.BooleanField()
-    password = models.CharField(max_length=256)
+    # password = models.CharField(max_length=256)
     private_pin = models.CharField(max_length=100) # Second password/pin for e.g. doors or jitsi
 
-    class UserRole(models.TextChoices):
-        CONTACT = 'CO', ('Contact')
-        ATTENDANT = 'AT', ('Attendant')
-        ORGANISATOR = 'OR', ('Organisatior')
-        ADMIN = 'AD', ('Admin')
+    # class UserRole(models.TextChoices):
+    #     CONTACT = 'CO', ('Contact')
+    #     ATTENDANT = 'AT', ('Attendant')
+    #     ORGANISATOR = 'OR', ('Organisatior')
+    #     ADMIN = 'AD', ('Admin')
 
-    user_role = models.CharField(
-        max_length=2,
-        choices=UserRole.choices,
-        default=UserRole.CONTACT,
-    )
+    # user_role = models.CharField(
+    #     max_length=2,
+    #     choices=UserRole.choices,
+    #     default=UserRole.CONTACT,
+    # )
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            profile = Profile(user=instance)
+            profile.over_18 = True
+            profile.save()
+
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
     def __str__(self):
-        return f"{self.email} - {self.surname} - {self.company}"
+        return f"{self.user.email} - {self.user.last_name} - {self.company}"
 
     def get_private_jitsi_url(self):
         return(f"https://jitsi.tux-tage.de/p_{self.surname}")
@@ -37,13 +52,13 @@ class User(models.Model):
 
     def getUserRoleOfString(user_role_string):
         if user_role_string == 'CO':
-            return User.UserRole.CONTACT
+            return Profile.UserRole.CONTACT
         elif user_role_string == 'AT':
-            return User.UserRole.ATTENDANT
+            return Profile.UserRole.ATTENDANT
         elif user_role_string == 'OR':
-            return User.UserRole.ORGANISATOR
+            return Profile.UserRole.ORGANISATOR
         elif user_role_string == 'AD':
-            return User.UserRole.ADMIN
+            return Profile.UserRole.ADMIN
         else:
             print(f"ERROR: getUserRoleOfString: no defined UserRole for {user_role_string}")
             return "Unknown!"
