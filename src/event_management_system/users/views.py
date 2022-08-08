@@ -2,6 +2,7 @@ from http.client import HTTPResponse
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseForbidden
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from .authentication import get_response_request_authentication, get_user
 from .models import Profile
 from django.core import serializers
 from django.contrib.auth.models import User, make_password, Group
@@ -111,9 +112,11 @@ def change_password(request):
     return HttpResponse("wrong http method.")
 
 
-# TODO: remove csrf exempt
-@csrf_exempt 
 def delete(request):
+    user = get_user(request)
+    if user is None:
+        return get_response_request_authentication()
+
     if request.method == 'POST':
         if Profile.objects.filter(email=request.POST['email']).exists(): 
             Profile.objects.filter(email=request.POST['email']).delete() 
@@ -125,14 +128,14 @@ def delete(request):
 
 # TODO: remove csrf exempt 
 def get(request):
-    user = authenticate(username='john', password='secret')
-    if request.user.is_authenticated:
-        if request.method == 'GET':
-            data = serializers.serialize("json", User.objects.all().select_related('profile'))
-            return HttpResponse(data)
-        return HttpResponse("wrong http method.")
-    else:
-        return HttpResponseForbidden()
+    user = get_user(request)
+    if user is None:
+        return get_response_request_authentication()
+
+    if request.method == 'GET':
+        data = serializers.serialize("json", User.objects.all().select_related('profile'))
+        return HttpResponse(data)
+    return HttpResponse("wrong http method.")
 
 @csrf_exempt 
 def reset_password(request):
@@ -144,14 +147,3 @@ def reset_password(request):
         return HttpResponse("success.")
 
     return HttpResponse("wrong http method.")
-
-def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return HTTPResponse("Success")
-        ...
-    else:
-        return HttpResponseForbidden()
