@@ -1,0 +1,15 @@
+{% extends "global/base.html" %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>Login</h1>
+    <br/>
+    {{ form }}
+    <br/>
+    <input type="submit" value="Login" class="btn btn-primary">
+</form>
+{% if login_failed %}
+<br/>
+Login failed! Try again.
+{% endif %}
+{% endblock %}

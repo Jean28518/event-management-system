@@ -1,0 +1,18 @@
+{% extends "global/base.html" %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>Edit {{user.email}}</h1>
+    <br/>
+    {{ form }}
+    <br/>
+    <a href="{% url 'user_overview' %}"><button type="button" class="btn btn-secondary">Cancel</button></a>
+    {% if pwreset != "success" %}
+    <a href="{% url 'user_reset_password' user.id %}"><button type="button" class="btn btn-warning">Reset Password</button></a>
+    {% endif %}
+    <input type="submit" value="Save" class="btn btn-primary">
+</form>
+{% if pwreset == "success" %}
+Password reset successfully done!
+{% endif %}
+{% endblock %}
