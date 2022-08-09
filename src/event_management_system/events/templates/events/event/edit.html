@@ -1,0 +1,12 @@
+{% extends "global/base.html" %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>Edit {{event.name}}</h1>
+    <br/>
+    {{ form }}
+    <br/>
+    <a href="{% url 'event_overview' %}"><button type="button" class="btn btn-secondary">Cancel</button></a>
+    <input type="submit" value="Save" class="btn btn-primary">
+</form>
+{% endblock %}

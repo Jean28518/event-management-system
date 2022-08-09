@@ -9,25 +9,10 @@ import random
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # surname = models.CharField(max_length=100) # Nachname
-    # name = models.CharField(max_length=100)
     website = models.URLField()
     company = models.CharField(max_length=100)
     over_18 = models.BooleanField()
-    # password = models.CharField(max_length=256)
     private_pin = models.CharField(max_length=100) # Second password/pin for e.g. doors or jitsi
-
-    # class UserRole(models.TextChoices):
-    #     CONTACT = 'CO', ('Contact')
-    #     ATTENDANT = 'AT', ('Attendant')
-    #     ORGANISATOR = 'OR', ('Organisatior')
-    #     ADMIN = 'AD', ('Admin')
-
-    # user_role = models.CharField(
-    #     max_length=2,
-    #     choices=UserRole.choices,
-    #     default=UserRole.CONTACT,
-    # )
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -71,6 +56,7 @@ class Profile(models.Model):
             password.append(random.choice(characters))
 
         random.shuffle(password)
-        self.password = "".join(password)
-        self.save()
+        password_string = "".join(password)
+        self.user.set_password(password_string)
+        self.user.save()
         print(f"new password = {self.password}")

@@ -1,0 +1,38 @@
+{% extends "global/base.html" %}
+{% block content %}
+<h1>Events</h1>
+<br>
+
+<a href="{% url 'event_create' %}"><button type="button" class="btn btn-success">Create</button></a>
+
+
+<br>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="width:10%">#</th>
+        <th scope="col" style="width:40%">Event</th>
+        <th scope="col" style="width:30%">Year</th>
+        <th scope="col" style="width:10%"></th>
+        <th scope="col" style="width:10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for event in events%}
+            <tr>
+                <th scope="row">{{event.id}}</th>
+                <td>{{event.name}}</td>
+                <td>{{event.year}}</td>
+                <td><a href="{% url 'event_edit' event.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href="{% url 'event_delete' event.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+            </tr>
+            <br/> 
+        {% endfor %}
+   
+    </tbody>
+  </table>
+
+
+
+{% endblock %}

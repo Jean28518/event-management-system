@@ -1,0 +1,11 @@
+{% extends "global/base.html" %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>Create event</h1>
+    <br/>
+    {{ form }}
+    <br/>
+    <input type="submit" value="Create" class="btn btn-primary">
+</form>
+{% endblock %}
