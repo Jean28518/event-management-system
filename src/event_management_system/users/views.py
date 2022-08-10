@@ -7,7 +7,7 @@ from .models import Profile
 from django.core import serializers
 from django.contrib.auth.models import User, make_password, Group
 from django.contrib.auth import authenticate, login, logout
-from .forms import CreateForm, EditForm, LoginForm
+from .forms import CreateForm, EditForm, LoginForm, RegisterForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -69,6 +69,32 @@ def user_create(request):
     else:
         form = CreateForm()
         return render(request, 'users/create.html', {'form': form})
+
+def user_register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = User()
+            user.username = request.POST['email']
+            user.email = request.POST['email']
+            user.last_name = request.POST['last_name']
+            user.first_name = request.POST['first_name']
+            user.password = make_password(request.POST['password'])
+            user.save()
+
+            # Add user to group Contact
+            group = Group.objects.get(name='Contact')
+            group.user_set.add(user)
+          
+            profile = user.profile
+            profile.website = request.POST['website']
+            profile.company = request.POST['company']
+            profile.over_18 = (request.POST.get('over_18', "off") == "on")
+            profile.save()
+            return HttpResponseRedirect('/lectures/public/create/')
+    else:
+        form = RegisterForm()
+        return render(request, 'users/create_public.html', {'form': form})
 
 def user_edit(request, user_id):
     if request.method == 'POST':

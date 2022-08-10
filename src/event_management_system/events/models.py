@@ -1,3 +1,4 @@
+from datetime import datetime
 from turtle import title
 from zoneinfo import available_timezones
 from django.db import models
@@ -33,8 +34,8 @@ class Room(models.Model):
 
 class Lecture(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    presentators = models.ManyToManyField(User, related_name="presentating")
-    attendant = models.ForeignKey(User, on_delete=models.CASCADE, related_name="attending")
+    presentator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="presenting")
+    attendant = models.ForeignKey(User, on_delete=models.CASCADE, related_name="attending", blank=True, null=True)
     title = models.CharField(max_length=100)   
     description = models.CharField(max_length=2048)   
     target_group = models.CharField(max_length=2, choices=TARGET_GROUP)
@@ -47,8 +48,8 @@ class Lecture(models.Model):
     questions_after_lecture = models.BooleanField()
     additional_information_by_presentator = models.CharField(max_length=2048) 
     scheduled_in_rooms = models.ManyToManyField(Room)
-    scheduled_presentation_time = models.DateTimeField()
-    scheduled_presentation_length = models.IntegerField() # (Minutes)
+    scheduled_presentation_time = models.DateTimeField(blank=True, null=True)
+    scheduled_presentation_length = models.IntegerField(default=0) # (Minutes)
     scheduled_presentation_style = models.CharField(max_length=2, choices=PRESENTATION_STYLE)
     further_information = models.CharField(max_length=2048) 
     related_website = models.URLField()
