@@ -20,8 +20,9 @@ class Event(models.Model):
     name = models.CharField(max_length=100)   
     year = models.IntegerField()
     website = models.URLField()
+    available_timeslots = models.CharField(max_length=2048, default="")
 
-    # TODO TimeSlots (Datefield, vielleicht nur Strings :)) 
+    # TODO TimeSlots (nur Strings :)) 
     # TODO Tracks / Rooms
 
 class Room(models.Model):
@@ -37,7 +38,7 @@ class Lecture(models.Model):
     title = models.CharField(max_length=100)   
     description = models.CharField(max_length=2048)   
     target_group = models.CharField(max_length=2, choices=TARGET_GROUP)
-    available_timeslots = models.DateField()
+    available_timeslots = models.CharField(max_length=2048) # Encoded in JSON
     minimal_lecture_length = models.IntegerField() # (Minutes)
     maximal_lecture_length = models.IntegerField() # (Minutes)
     preferred_presentation_style = models.CharField(max_length=2, choices=PRESENTATION_STYLE)

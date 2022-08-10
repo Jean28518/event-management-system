@@ -1,0 +1,36 @@
+{% extends "global/base.html" %}
+{% block content %}
+<h1>Rooms</h1>
+<br>
+
+<a href="{% url 'room_create' %}"><button type="button" class="btn btn-success">Create</button></a>
+
+
+<br>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="width:10%">#</th>
+        <th scope="col" style="width:70%">Room</th>
+        <th scope="col" style="width:10%"></th>
+        <th scope="col" style="width:10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for room in rooms%}
+            <tr>
+                <th scope="row">{{room.id}}</th>
+                <td>{{room.name}}</td>
+                <td><a href="{% url 'room_edit' room.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href="{% url 'room_delete' room.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+            </tr>
+            <br/> 
+        {% endfor %}
+   
+    </tbody>
+  </table>
+
+
+
+{% endblock %}
