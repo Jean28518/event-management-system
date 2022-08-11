@@ -22,7 +22,7 @@ class Event(models.Model):
     year = models.IntegerField()
     website = models.URLField()
     available_timeslots = models.CharField(max_length=2048, default="")
-    call_for_papers = models.BooleanField()
+    call_for_papers = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.name

@@ -8,6 +8,8 @@ urlpatterns = [
     path('event/create/', views.event_create, name='event_create'),
     path('event/edit/<int:event_id>/', views.event_edit, name='event_edit'),
     path('event/delete/<int:event_id>/', views.event_delete, name='event_delete'),
+    path('event/enable_call_for_papers/<int:event_id>/', views.enable_call_for_papers, name='enable_call_for_papers'),
+    path('event/disable_call_for_papers/<int:event_id>/', views.disable_call_for_papers, name='disable_call_for_papers'),
 
     # Timeslots
     path('event/<int:event_id>/timeslot/', views.event_timeslot, name='event_timeslot'),
@@ -27,6 +29,7 @@ urlpatterns = [
     path('<int:event_id>/lecture/create/', views.lecture_create, name = 'lecture_create'),
     path('lecture/edit/<int:lecture_id>/', views.lecture_edit, name = 'lecture_edit'),
     path('lecture/delete/<int:lecture_id>/', views.lecture_delete, name = 'lecture_delete'),
+
 
 
 ]

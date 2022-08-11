@@ -5,10 +5,11 @@
 
 <a href="{% url 'lecture_create' event.id %}"><button type="button" class="btn btn-success">Create</button></a>
 
-{% if !event.call_for_papers %}
-  <a href="{% url 'enable_call_for_papers' event.id %}"><button type="button" class="btn btn-light">Call For Papers: Disabled</button></a>
+{% if event.call_for_papers == False %}
+  <a href="{% url 'enable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">Call For Papers: Disabled</button></a>
   {% else %}
-  <a href="{% url 'disable_call_for_papers' event.id %}"><button type="button" class="btn btn-light">Call For Papers: Enabled</button></a>
+  <a href="{% url 'disable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">Call For Papers: Enabled</button></a>
+    <a href="{% url 'lecture_public_create_entry' event.id %}">Call For Paper Link</a>
 {% endif %}
 
 

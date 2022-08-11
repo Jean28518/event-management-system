@@ -291,3 +291,16 @@ def lecture_delete(request, lecture_id):
         event_id = lecture.event.id
         lecture.delete()
     return HttpResponseRedirect(f"/events/{event_id}/lecture/overview/")
+
+def enable_call_for_papers(request, event_id):
+    event = Event.objects.get(id=event_id)
+    event.call_for_papers = True
+    event.save()
+    return HttpResponseRedirect(f"/events/{event_id}/lecture/overview/")
+
+def disable_call_for_papers(request, event_id):
+    event = Event.objects.get(id=event_id)
+    event.call_for_papers = False
+    event.save()
+    return HttpResponseRedirect(f"/events/{event_id}/lecture/overview/")
+    
