@@ -1,9 +1,15 @@
 {% extends "global/base.html" %}
 {% block content %}
-<h1>Lectures</h1>
+<h1>Lectures from {{event.name}}</h1>
 <br>
 
-<a href="{% url 'lecture_create' %}"><button type="button" class="btn btn-success">Create</button></a>
+<a href="{% url 'lecture_create' event.id %}"><button type="button" class="btn btn-success">Create</button></a>
+
+{% if !event.call_for_papers %}
+  <a href="{% url 'enable_call_for_papers' event.id %}"><button type="button" class="btn btn-light">Call For Papers: Disabled</button></a>
+  {% else %}
+  <a href="{% url 'disable_call_for_papers' event.id %}"><button type="button" class="btn btn-light">Call For Papers: Enabled</button></a>
+{% endif %}
 
 
 <br>
@@ -23,7 +29,7 @@
             <tr>
                 <th scope="row">{{lecture.id}}</th>
                 <td>{{lecture.title}}</td>
-                <td>{{lecture.presentator.last_name}}</td>
+                <td>{{lecture.presentator}}</td>
                 <td><a href="{% url 'lecture_edit' lecture.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                 <td><a href="{% url 'lecture_delete' lecture.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
             </tr>
@@ -33,6 +39,7 @@
     </tbody>
   </table>
 
+  <a href="{% url 'event_overview' %}"><button type="button" class="btn btn-secondary">Back</button></a>
 
 
 {% endblock %}

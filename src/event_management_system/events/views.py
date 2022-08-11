@@ -3,7 +3,7 @@ from urllib.request import HTTPRedirectHandler
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect, Http404, HttpResponseBadRequest
 from .models import Event, Lecture, Room
-from .forms import CreateEventForm, CreateRoomForm, EditEventForm, EditRoomForm, LectureSubmitForm, LoginForm
+from .forms import CreateEventForm, CreateRoomForm, EditEventForm, EditRoomForm, LectureForm, LectureSubmitForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
@@ -84,6 +84,7 @@ def event_timeslot(reqeust, event_id):
 class Timeslot: 
     text = ""
     id = -1
+    checked = False
 
 def _get_timeslots_of_string(string):
     timeslot_strings = string.split(";")
@@ -195,4 +196,98 @@ def lecture_public_create(request, event_id):
         form = LectureSubmitForm()
         event = Event.objects.filter(id=event_id)[0]
         return render(request, 'events/lecture/public/create.html', {'form': form, 'event': event, 'timeslots': _get_timeslots_of_string(event.available_timeslots)})
-    pass
+
+def lecture_overview(request, event_id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect("/users/login/")
+    event = Event.objects.filter(id=event_id)[0]
+    lectures = Lecture.objects.filter(event=event).all()
+    
+    return render(request, "events/lecture/overview.html", {'lectures': lectures, 'event': event})
+
+def lecture_create(request, event_id):
+    if request.method == 'POST':
+        form = LectureForm(request.POST)
+        if form.is_valid():
+            lecture = Lecture()
+            _saveLectureFromFullEdit(request, lecture)
+            return HttpResponseRedirect(f'/events/{lecture.event.id}/lecture/overview/')
+    else:
+        form = LectureForm({'event': event_id})
+        return render(request, 'events/lecture/create.html', {'form': form, 'timeslots': _get_timeslots_of_string(Event.objects.get(id=event_id).available_timeslots), 'event_id': event_id})
+
+def lecture_edit(request, lecture_id):
+    lecture = Lecture.objects.filter(id=lecture_id).select_related('event').select_related('presentator').select_related('attendant').select_related('scheduled_in_room')[0]
+    if request.method == 'POST':
+        form = LectureForm(request.POST)
+        if form.is_valid():
+            _saveLectureFromFullEdit(request, lecture)
+            return HttpResponseRedirect(f'/events/{lecture.event.id}/lecture/overview/')
+    else:
+        data = lecture.__dict__
+        data['event'] = lecture.event.id
+        data['presentator'] = lecture.presentator.id
+        if lecture.attendant:
+            data['attendant'] = lecture.attendant.id
+        if lecture.scheduled_in_room:
+            data['scheduled_in_room'] = lecture.scheduled_in_room.id
+        form = LectureForm(data=data)
+        print(lecture.available_timeslots)
+        all_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
+        available_timeslots = _get_timeslots_of_string(lecture.available_timeslots)
+        for timeslot in available_timeslots: 
+            for all_timeslot in all_timeslots:
+                if all_timeslot.text == timeslot.text:     
+                    all_timeslot.checked = True
+        return render(request, 'events/lecture/edit.html', {'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
+
+
+def _saveLectureFromFullEdit(request, lecture):
+    print(request.POST)
+    if request.POST['presentator'] != "":
+        lecture.presentator = User.objects.filter(id=request.POST['presentator'])[0]
+    if request.POST['event'] != "":
+        lecture.event = Event.objects.filter(id=request.POST['event'])[0]
+    if request.POST['attendant'] != "":
+        lecture.attendant = User.objects.filter(id=request.POST['attendant'])[0]
+    else:
+        lecture.attendant = None
+    if request.POST['scheduled_in_room'] != "":
+        lecture.scheduled_in_room = Room.objects.filter(id=request.POST['scheduled_in_room'])[0]
+    else:
+        lecture.scheduled_in_room = None
+    lecture.title = request.POST['title']
+    lecture.description = request.POST['description']
+    lecture.target_group = request.POST['target_group']
+    lecture.qualification_for_lecture = request.POST['qualification_for_lecture']
+    lecture.preferred_presentation_style = request.POST['preferred_presentation_style']
+    lecture.questions_during_lecture = (request.POST.get('questions_during_lecture', "off") == "on")
+    lecture.questions_after_lecture = (request.POST.get('questions_after_lecture', "off") == "on")
+    lecture.minimal_lecture_length = int(request.POST['minimal_lecture_length'])
+    lecture.maximal_lecture_length = int(request.POST['maximal_lecture_length'])
+    lecture.additional_information_by_presentator = request.POST['additional_information_by_presentator']
+    lecture.related_website = request.POST['related_website']
+    if request.POST['scheduled_presentation_time'] != "":
+        lecture.scheduled_presentation_time = request.POST['scheduled_presentation_time']
+    lecture.scheduled_presentation_length = int(request.POST['scheduled_presentation_length'])
+    lecture.scheduled_presentation_style = request.POST['scheduled_presentation_style']
+    lecture.further_information = request.POST['further_information']
+    lecture.link_to_material = request.POST['link_to_material']
+    lecture.link_to_recording = request.POST['link_to_recording']
+    
+
+    event_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
+    available_timeslots = []
+    for event_timeslot in event_timeslots:
+        if (request.POST.get(f"timeslot_{event_timeslot.id}", "off") == ""):
+            available_timeslots.append(event_timeslot)
+    lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
+    lecture.save()
+
+def lecture_delete(request, lecture_id):
+    event_id = 0
+    if Lecture.objects.filter(id=lecture_id).exists(): 
+        lecture = Lecture.objects.get(id=lecture_id)
+        event_id = lecture.event.id
+        lecture.delete()
+    return HttpResponseRedirect(f"/events/{event_id}/lecture/overview/")

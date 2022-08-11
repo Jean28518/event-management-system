@@ -23,5 +23,10 @@ urlpatterns = [
     # Lectures
     path('<int:event_id>/lecture/public/create/entry/', views.lecture_public_create_entry, name = 'lecture_public_create_entry'),
     path('<int:event_id>/lecture/public/create/', views.lecture_public_create, name = 'lecture_public_create'),
+    path('<int:event_id>/lecture/overview/', views.lecture_overview, name = 'lecture_overview'),
+    path('<int:event_id>/lecture/create/', views.lecture_create, name = 'lecture_create'),
+    path('lecture/edit/<int:lecture_id>/', views.lecture_edit, name = 'lecture_edit'),
+    path('lecture/delete/<int:lecture_id>/', views.lecture_delete, name = 'lecture_delete'),
+
 
 ]

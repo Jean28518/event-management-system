@@ -162,7 +162,7 @@ def user_edit(request, user_id):
             pwreset = request.GET['pwreset']
 
         form = EditForm(initial=dict)
-        return render(request, 'users/edit.html', {'form': form, 'pwreset': pwreset})
+        return render(request, 'users/edit.html', {'form': form, 'pwreset': pwreset, 'user': user})
 
 def user_login(request):
     if request.method == 'POST':

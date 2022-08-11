@@ -22,6 +22,10 @@ class Event(models.Model):
     year = models.IntegerField()
     website = models.URLField()
     available_timeslots = models.CharField(max_length=2048, default="")
+    call_for_papers = models.BooleanField()
+
+    def __str__(self) -> str:
+        return self.name
 
     # TODO TimeSlots (nur Strings :)) 
     # TODO Tracks / Rooms
@@ -30,6 +34,9 @@ class Room(models.Model):
     name = models.CharField(max_length=100)
     website = models.URLField()
     coordinates = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class Lecture(models.Model):
@@ -47,7 +54,7 @@ class Lecture(models.Model):
     questions_during_lecture = models.BooleanField()
     questions_after_lecture = models.BooleanField()
     additional_information_by_presentator = models.CharField(max_length=2048) 
-    scheduled_in_rooms = models.ManyToManyField(Room)
+    scheduled_in_room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name="held_in", blank=True, null=True)
     scheduled_presentation_time = models.DateTimeField(blank=True, null=True)
     scheduled_presentation_length = models.IntegerField(default=0) # (Minutes)
     scheduled_presentation_style = models.CharField(max_length=2, choices=PRESENTATION_STYLE)
