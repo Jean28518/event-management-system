@@ -1,6 +1,5 @@
 from datetime import datetime
 from turtle import title
-from zoneinfo import available_timezones
 from django.db import models
 from django.contrib.auth.models import User
 
