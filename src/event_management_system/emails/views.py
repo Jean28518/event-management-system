@@ -3,6 +3,11 @@ from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedir
 from .forms import EmailForm
 from .models import Email
 
+
+from django.core.mail import send_mail
+
+
+
 def email_overview(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect("/users/login/")
@@ -50,3 +55,11 @@ def email_edit(request, email_id):
         email = Email.objects.get(id=email_id)
         form = EmailForm(initial=email.__dict__)
         return render(request, 'emails/edit.html', {'form': form, 'email': email})
+
+def email_send(request, user_id, lecture_id):
+    send_mail('Subject here',
+    'Here is the message.',
+    'kontakt@tux-tage.de',
+    ['help_ubuntu@gmx.de'],
+    fail_silently=False,)
+    return HttpResponse("Success.")
