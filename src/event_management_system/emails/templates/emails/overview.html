@@ -1,0 +1,31 @@
+{% extends "global/base.html" %}
+{% block content %}
+<h1>Emails</h1>
+<br>
+
+<a href="{% url 'email_create' %}"><button type="button" class="btn btn-success">Create</button></a>
+
+
+<br>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="width:10%">#</th>
+        <th scope="col" style="width:70%">Email</th>
+        <th scope="col" style="width:10%"></th>
+        <th scope="col" style="width:10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for email in emails%}
+            <tr>
+                <th scope="row">{{email.id}}</th>
+                <td>{{email.name}}</td>
+                <td><a href="{% url 'email_edit' email.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href="{% url 'email_delete' email.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+            </tr>
+        {% endfor %}
+   
+    </tbody>
+  </table>
+{% endblock %}
