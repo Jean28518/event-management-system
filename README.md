@@ -18,7 +18,7 @@ sudo pacman -S tk
 ```
 
 ## Setup
-Run this command if you want to build or change the database structure.
+This command will create the database with the given models.
 ```bash
 python3 src/event_management_system/manage.py migrate
 ```
@@ -40,3 +40,18 @@ Click [HERE](http://127.0.0.1:8000/users/) to open a new browser tab.
   - [event](http://127.0.0.1:8000/events/event/)
   - [room](http://127.0.0.1:8000/events/event/)
 - [Email](http://127.0.0.1:8000/emails/)
+
+
+### More Commands
+If you make any kind of changes to your database class models
+```bash
+python3 manage.py makemigrations
+```
+Creating a new django app
+```bash
+python3 manage.py startapp <app_name>
+```
+Change a user password
+```bash
+python manage.py changepassword <username>
+```
