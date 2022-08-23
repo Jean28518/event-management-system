@@ -7,6 +7,16 @@ First you have to install the requirements stored in the requirements.txt
 pip install -r requirements.txt
 ```
 
+### debain based
+```bash
+sudo apt install libpq-dev python3-tk
+```
+
+### arch based
+```bash
+sudo pacman -S tk
+```
+
 ## Setup
 Run this command if you want to build or change the database structure.
 ```bash
