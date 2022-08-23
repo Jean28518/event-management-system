@@ -28,10 +28,9 @@ python3 src/event_management_system/manage.py createsuperuser
 ```
 
 ### Email configuration
-This section is for email host configuration.
-For this you need to set some environment variables.
+This section is intended for the configuration of the email host.
 Please keep this access data confidential.
-Keep in mind that other apps can also see these variables.
+Keep in mind that other apps can also see these environment variables.
 #### Linux
 ```bash
 EMAIL_HOST="<EMAIL_HOST>"
