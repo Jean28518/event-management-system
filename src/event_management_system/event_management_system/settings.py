@@ -129,10 +129,25 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+"""
+This section is for email host configuration.
+
+>> Set environment variable:
+On Linux:
+EMAIL_HOST="<EMAIL_HOST>"
+EMAIL_PORT="<EMAIL_PORT>"
+EMAIL_HOST_USER="<EMAIL_HOST_USER>"
+EMAIL_HOST_PASSWORD="<EMAIL_HOST_PASSWORD>"
+On Windows:
+set EMAIL_HOST="<EMAIL_HOST>"
+set EMAIL_PORT="<EMAIL_PORT>"
+set EMAIL_HOST_USER="<EMAIL_HOST_USER>"
+set EMAIL_HOST_PASSWORD="<EMAIL_HOST_PASSWORD>"
+"""
 
 # Email Settings
-EMAIL_HOST = "smtp.gmail.com" # <-
-EMAIL_PORT = 587 # <-
-EMAIL_HOST_USER = "###" # <-
-EMAIL_HOST_PASSWORD = "###" # <
+EMAIL_HOST = os.environ("EMAIL_HOST")                   # <- host name [e.g. smtp.gmail.com for gmail]
+EMAIL_PORT = int(os.environ("EMAIL_PORT"))              # <- smtp port [e.g. 587]
+EMAIL_HOST_USER = os.environ("EMAIL_HOST_USER")         # <- username
+EMAIL_HOST_PASSWORD = os.environ("EMAIL_HOST_PASSWORD") # <- password
 EMAIL_USE_TLS = True
