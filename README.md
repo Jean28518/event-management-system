@@ -27,6 +27,26 @@ Run this command if you want to create the admin user of the local server.
 python3 src/event_management_system/manage.py createsuperuser
 ```
 
+### Email configuration
+This section is for email host configuration.
+For this you need to set some environment variables.
+Please keep this access data confidential.
+Keep in mind that other apps can also see these variables.
+#### Linux
+```bash
+EMAIL_HOST="<EMAIL_HOST>"
+EMAIL_PORT="<EMAIL_PORT>"
+EMAIL_HOST_USER="<EMAIL_HOST_USER>"
+EMAIL_HOST_PASSWORD="<EMAIL_HOST_PASSWORD>"
+```
+#### Windows
+```bash
+set EMAIL_HOST="<EMAIL_HOST>"
+set EMAIL_PORT="<EMAIL_PORT>"
+set EMAIL_HOST_USER="<EMAIL_HOST_USER>"
+set EMAIL_HOST_PASSWORD="<EMAIL_HOST_PASSWORD>"
+```
+
 ## Development
 Run this collection to start a local server instanz under linux
 ```bash
