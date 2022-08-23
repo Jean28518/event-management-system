@@ -146,8 +146,8 @@ set EMAIL_HOST_PASSWORD="<EMAIL_HOST_PASSWORD>"
 """
 
 # Email Settings
-EMAIL_HOST = os.environ("EMAIL_HOST")                   # <- host name [e.g. smtp.gmail.com for gmail]
-EMAIL_PORT = int(os.environ("EMAIL_PORT"))              # <- smtp port [e.g. 587]
-EMAIL_HOST_USER = os.environ("EMAIL_HOST_USER")         # <- username
-EMAIL_HOST_PASSWORD = os.environ("EMAIL_HOST_PASSWORD") # <- password
+EMAIL_HOST = os.environ["EMAIL_HOST"]                    # <- host name [e.g. smtp.gmail.com for gmail]
+EMAIL_PORT = int(os.environ["EMAIL_PORT"])               # <- smtp port [e.g. 587]
+EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]          # <- username
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]  # <- password
 EMAIL_USE_TLS = True
