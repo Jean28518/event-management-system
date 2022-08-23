@@ -32,3 +32,11 @@ Run this collection to start a local server instanz under linux
 ```bash
 python3 src/event_management_system/manage.py runserver
 ```
+Click [HERE](http://127.0.0.1:8000/users/) to open a new browser tab.
+
+### Links
+- [Users](http://127.0.0.1:8000/users/)
+- Events
+  - [event](http://127.0.0.1:8000/events/event/)
+  - [room](http://127.0.0.1:8000/events/event/)
+- [Email](http://127.0.0.1:8000/emails/)
