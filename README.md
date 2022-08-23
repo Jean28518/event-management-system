@@ -1,13 +1,34 @@
 # event-management-system
 Open Source Event Management System written in django
 
-## Run
-Ensure that django is installed. (https://www.djangoproject.com/download/)
+## Installation
+First you have to install the requirements stored in the requirements.txt
+```bash
+pip install -r requirements.txt
+```
+
+### debain based
 ```bash
 sudo apt install libpq-dev python3-tk
-pip3 install psycopg2
-cd src/event_management_system/
-python3 manage.py migrate
-python3 manage.py createsuperuser
-python3 manage.py runserver
+```
+
+### arch based
+```bash
+sudo pacman -S tk
+```
+
+## Setup
+Run this command if you want to build or change the database structure.
+```bash
+python3 src/event_management_system/manage.py migrate
+```
+Run this command if you want to create the admin user of the local server.
+```bash
+python3 src/event_management_system/manage.py createsuperuser
+```
+
+## Development
+Run this collection to start a local server instanz under linux
+```bash
+python3 src/event_management_system/manage.py runserver
 ```
