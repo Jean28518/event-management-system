@@ -1,5 +1,3 @@
-from datetime import datetime
-from turtle import title
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -7,13 +5,12 @@ TARGET_GROUP = [
     ('BE', 'Beginner'),
     ('IN', 'Intermediate'),
     ('PR', 'Professional'),
-    ]
+]
 
 PRESENTATION_STYLE = [
     ('RE', 'Recorded'),
     ('LI', 'Live'),
-    ]
-
+]
 
 
 class Event(models.Model):
@@ -24,10 +21,11 @@ class Event(models.Model):
     call_for_papers = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.name}"
 
     # TODO TimeSlots (nur Strings :)) 
     # TODO Tracks / Rooms
+
 
 class Room(models.Model):
     name = models.CharField(max_length=100)
@@ -35,7 +33,7 @@ class Room(models.Model):
     coordinates = models.CharField(max_length=100)
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.name}"
 
 
 class Lecture(models.Model):
