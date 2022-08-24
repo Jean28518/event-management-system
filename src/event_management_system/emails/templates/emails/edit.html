@@ -9,4 +9,12 @@
     <a href="{% url 'email_overview' %}"><button type="button" class="btn btn-secondary">Cancel</button></a>
     <input type="submit" value="Save" class="btn btn-primary">
 </form>
+<br>
+<br>
+<h2>Legend of variables:</h2>
+    <ul class="list-group list-group-flush">
+    {% for keyword in keywords%}
+        <li class="list-group-item">{{keyword}}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}

@@ -14,15 +14,6 @@ class EventForm(forms.Form):
         required=False
     )
 
-
-class CreateEventForm(EventForm):
-    pass
-
-
-class EditEventForm(EventForm):
-    pass
-
-
 class RoomFrom(forms.Form):
     name = forms.CharField(label='Name', max_length=100, widget=forms.TextInput(attrs={'class': "form-control"}))
     website = forms.CharField(
@@ -35,15 +26,6 @@ class RoomFrom(forms.Form):
         widget=forms.TextInput(attrs={'class': "form-control"}),
         required=False
     )
-
-
-class CreateRoomForm(RoomFrom):
-    pass
-
-
-class EditRoomForm(RoomFrom):
-    pass
-
 
 class LoginForm(forms.Form):
     email = forms.CharField(label='Email', max_length=100, widget=forms.EmailInput(attrs={'class': "form-control"}))
