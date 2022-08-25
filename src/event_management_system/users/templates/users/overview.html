@@ -2,10 +2,9 @@
 {% block content %}
 <h1>Users</h1>
 <br>
+<a href="{% url 'user_create' %}"><button type="button" class="btn btn-success">Create</button></a>
 <a href="{% url 'email_send_mass_user' %}"><button type="button" class="btn btn-warning">Mass Mail Users</button></a>
 <br>
-<br>
-<a href="{% url 'user_create' %}"><button type="button" class="btn btn-success">Create</button></a>
 <br>
 <table class="table table-hover">
     <thead>
@@ -13,8 +12,7 @@
         <th scope="col" style="width:10%">#</th>
         <th scope="col" style="width:20%">First</th>
         <th scope="col" style="width:20%">Last</th>
-        <th scope="col" style="width:35%">E-Mail</th>
-        <th scope="col" style="width:5%"></th>
+        <th scope="col" style="width:40%">E-Mail</th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
       </tr>
@@ -27,7 +25,7 @@
                 <td>{{user.last_name}}</td>
                 <td>{{user.username}}</td>
                 
-                <td><a href="{% url 'email_send' user.id 0%}"><button type="button" class="btn btn-warning">Mail</button></a></td>
+                {% comment %} <td><a href="{% url 'email_send' user.id 0%}"><button type="button" class="btn btn-warning">Mail</button></a></td> {% endcomment %}
                 <td><a href="{% url 'user_edit' user.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                 <td><a href="{% url 'user_delete' user.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
             </tr>

@@ -2,11 +2,8 @@
 {% block content %}
 <h1>Lectures from {{event.name}}</h1>
 <br>
-<a href="{% url 'email_send_mass_lecture' event.id%}"><button type="button" class="btn btn-warning">Mass Mail Lectures</button></a>
-<br>
-<br>
 <a href="{% url 'lecture_create' event.id %}"><button type="button" class="btn btn-success">Create</button></a>
-
+<a href="{% url 'email_send_mass_lecture' event.id%}"><button type="button" class="btn btn-warning">Mass Mail Lectures</button></a>
 {% if event.call_for_papers == False %}
   <a href="{% url 'enable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">Call For Papers: Disabled</button></a>
   {% else %}
@@ -14,14 +11,15 @@
     <a href="{% url 'lecture_public_create_entry' event.id %}">Call For Paper Link</a>
 {% endif %}
 <br>
+<br>
 <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col" style="width:10%">#</th>
-        <th scope="col" style="width:40%">Lecture</th>
-        <th scope="col" style="width:30%">Presentator</th>
-        <th scope="col" style="width:10%"></th>
-        <th scope="col" style="width:10%"></th>
+        <th scope="col" style="width:45%">Lecture</th>
+        <th scope="col" style="width:35%">Presentator</th>
+        <th scope="col" style="width:5%"></th>
+        <th scope="col" style="width:5%"></th>
       </tr>
     </thead>
     <tbody>

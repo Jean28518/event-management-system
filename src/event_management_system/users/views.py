@@ -9,6 +9,8 @@ from django.contrib.auth.models import User, make_password, Group
 from django.contrib.auth import authenticate, login, logout
 from .forms import CreateForm, EditForm, LoginForm, RegisterForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
+
 
 
 def user_reset_password(request, user_id):
@@ -20,18 +22,21 @@ def user_reset_password(request, user_id):
     return HttpResponse("User not found.")
 
 
+@permission_required('users.view_profile') 
 def user_overview(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect("/users/login/")
-    
-    return render(request, "users/overview.html", {'users':User.objects.all().select_related('profile')})
+    print(request.user._meta.fields)
+    return render(request, "users/overview.html", {'request_user': request.user, 'users':User.objects.all().select_related('profile')})
 
+@permission_required('users.delete_profile') 
 def user_delete(request, user_id):
     if User.objects.filter(id=user_id).exists(): 
         User.objects.filter(id=user_id).delete() 
         print("Deleted")
     return HttpResponseRedirect("/users/")
 
+@permission_required('users.add_profile') 
 def user_create(request):
     if request.method == 'POST':
         form = CreateForm(request.POST)
@@ -54,7 +59,7 @@ def user_create(request):
             elif request.POST['user_role'] == 'OR':
                 group = Group.objects.get(name='Organisator')
                 group.user_set.add(user)
-            elif request.POST['user_role'] == 'AD':
+            elif request.POST['user_role'] == 'AD' and request.user.groups.filter(name="Administrator").exists():
                 group = Group.objects.get(name='Administrator')
                 group.user_set.add(user)
 
@@ -68,7 +73,7 @@ def user_create(request):
             return HttpResponseRedirect('/users/')
     else:
         form = CreateForm()
-        return render(request, 'users/create.html', {'form': form})
+        return render(request, 'users/create.html', {'request_user': request.user, 'form': form})
 
 def user_register(request):
     if request.method == 'POST':
@@ -96,6 +101,7 @@ def user_register(request):
         form = RegisterForm()
         return render(request, 'users/create_public.html', {'form': form})
 
+@permission_required('users.change_profile') 
 def user_edit(request, user_id):
     if request.method == 'POST':
         form = EditForm(request.POST)
@@ -114,18 +120,23 @@ def user_edit(request, user_id):
             profile.private_pin = request.POST['private_pin']
 
 
-            user.groups.clear()
             # TODO: This should only be possible by admins
+            print(request.POST['user_role'])
             if request.POST['user_role'] == 'CO':
+                user.groups.clear()
                 group = Group.objects.get(name='Contact')
                 group.user_set.add(user)
+                print("DONE")
             elif request.POST['user_role'] == 'AT':
+                user.groups.clear()
                 group = Group.objects.get(name='Attendant')
                 group.user_set.add(user)
             elif request.POST['user_role'] == 'OR':
+                user.groups.clear()
                 group = Group.objects.get(name='Organisator')
                 group.user_set.add(user)
-            elif request.POST['user_role'] == 'AD':
+            elif request.POST['user_role'] == 'AD' and request.user.groups.filter(name="Administrator").exists():
+                user.groups.clear()
                 group = Group.objects.get(name='Administrator')
                 group.user_set.add(user)
             
@@ -162,7 +173,7 @@ def user_edit(request, user_id):
             pwreset = request.GET['pwreset']
 
         form = EditForm(initial=dict)
-        return render(request, 'users/edit.html', {'form': form, 'pwreset': pwreset, 'user': user})
+        return render(request, 'users/edit.html', {'request_user': request.user, 'form': form, 'pwreset': pwreset, 'user': user})
 
 def user_login(request):
     if request.method == 'POST':
