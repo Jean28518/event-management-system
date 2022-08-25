@@ -9,6 +9,25 @@ msgstr "Englisch"
 msgid "german"
 msgstr "Deutsch"
 
+# Global
+msgid "global.titel"
+msgstr "Event Management System"
+
+msgid "global.navbar.users"
+msgstr "Benutzer"
+
+msgid "global.navbar.events"
+msgstr "Veranstaltungen"
+
+msgid "global.navbar.rooms"
+msgstr "Räume"
+
+msgid "global.navbar.emails"
+msgstr "E-Mails"
+
+msgid "global.navbar.logout"
+msgstr "Abmelden"
+
 # Users
 msgid "users.create.titel"
 msgstr "Neuen Nutzer anlegen"
@@ -154,7 +173,7 @@ msgid "event.index.year"
 msgstr "Jahr"
 
 msgid "event.index.button.lectures"
-msgstr "Vorlesungen"
+msgstr "Vorträge"
 
 msgid "event.index.button.edit"
 msgstr "Bearbeiten"
@@ -203,6 +222,172 @@ msgstr "Anmeldung fehlgeschlagen! Versuche es erneut."
 
 msgid "event.lecture.create.titel"
 msgstr "Vortrag anlegen"
+
+msgid "event.lecture.create.timeslots"
+msgstr "Die Präsentation ist zu folgenden Zeiten verfügbar"
+
+msgid "event.lecture.create.button.cancel"
+msgstr "Abbrechen"
+
+msgid "event.lecture.create.input.create"
+msgstr "Anlegen"
+
+msgid "event.lecture.edit.titel"
+msgstr "Bearbeiten von"
+
+msgid "event.lecture.edit.timeslots"
+msgstr "Die Präsentation ist zu folgenden Zeiten verfügbar"
+
+msgid "event.lecture.edit.button.cancel"
+msgstr "Abbrechen"
+
+msgid "event.lecture.edit.input.save"
+msgstr "Speichern"
+
+msgid "event.lecture.index.titel"
+msgstr "Vortrag von"
+
+msgid "event.lecture.index.button.create"
+msgstr "Anlegen"
+
+msgid "event.lecture.index.send"
+msgstr "E-Mails versenden"
+
+msgid "event.lecture.index.call.text"
+msgstr "Aufruf zur Einreichung von Beiträgen"
+
+msgid "event.lecture.index.button.call.disabled"
+msgstr "Gesperrt"
+
+msgid "event.lecture.index.button.call.enabled"
+msgstr "Freigegeben"
+
+msgid "event.lecture.index.button.call.link"
+msgstr "Link zum Einreichen von Beiträgen"
+
+msgid "event.lecture.index.#"
+msgstr "#"
+
+msgid "event.lecture.index.lecture"
+msgstr "Vortrag"
+
+msgid "event.lecture.index.moderator"
+msgstr "Moderator"
+
+msgid "event.lecture.index.button.edit"
+msgstr "Bearbeiten"
+
+msgid "event.lecture.index.button.delete"
+msgstr "Löschen"
+
+msgid "event.lecture.index.back"
+msgstr "Zurück"
+
+msgid "event.room.create.titel"
+msgstr "Raum anlegen"
+
+msgid "event.room.create.button.cancel"
+msgstr "Abbrechen"
+
+msgid "event.room.create.button.create"
+msgstr "Anlegen"
+
+msgid "event.room.edit.titel"
+msgstr "Bearbeiten von"
+
+msgid "event.room.edit.button.cancel"
+msgstr "Abbrechen"
+
+msgid "event.room.edit.input.save"
+msgstr "Speichern"
+
+msgid "event.room.index.titel"
+msgstr "Räume"
+
+msgid "event.room.index.button.create"
+msgstr "Erstellen"
+
+msgid "event.room.index.button.edit"
+msgstr "Bearbeiten"
+
+msgid "event.room.index.button.delete"
+msgstr "Löschen"
+
+# Forms
+msgid "forms.email.name"
+msgstr "Name"
+
+msgid "forms.email.subject"
+msgstr "Betreff"
+
+msgid "forms.email.body"
+msgstr "Textkörper"
+
+msgid "forms.send.user.email"
+msgstr "E-Mail"
+
+msgid "forms.send.lecture.email"
+msgstr "E-Mail"
+
+msgid "forms.send.lecture.receiver"
+msgstr "E-Mail Empfänger"
+
+msgid "forms.event.name"
+msgstr "Name"
+
+msgid "forms.event.year"
+msgstr "Jahr"
+
+msgid "forms.event.website"
+msgstr "Internetseite"
+
+msgid "forms.room.name"
+msgstr "Name"
+
+msgid "forms.room.website"
+msgstr "Internetseite"
+
+msgid "forms.room.coordinates"
+msgstr "Koordinaten"
+
+msgid "forms.login.email"
+msgstr "E-Mail"
+
+msgid "forms.login.password"
+msgstr "Passwort"
+
+msgid "forms.lecture.submit.titel"
+msgstr "Titel"
+
+msgid "forms.lecture.submit.description"
+msgstr "Beschreibung"
+
+msgid "forms.lecture.submit.group"
+msgstr "Zielgruppe"
+
+msgid "forms.lecture.submit.qualification"
+msgstr "Ich bin qualifiziert für diese Präsentation weil..."
+
+msgid "forms.lecture.submit.style"
+msgstr "Bevorzugte Presentationsart"
+
+msgid "forms.lecture.submit.questions.during"
+msgstr "Sollten während der Vorlesungen Fragen gestellt werden?"
+
+msgid "forms.lecture.submit.questions.after"
+msgstr "Sollten Fragen nach den Vorlesungen gestellt werden?"
+
+msgid "forms.lecture.submit.length.min"
+msgstr "Minimale Vorlesungsdauer (in Minuten)"
+
+msgid "forms.lecture.submit.length.max"
+msgstr "Maximale Vorlesungsdauer (in Minuten)"
+
+msgid "forms.lecture.submit.info"
+msgstr "Zusätzliche Informationen (max. 2048 Zeuchen)"
+
+msgid "forms.lecture.submit.link"
+msgstr "Website zum Vortrag"
 
 
 

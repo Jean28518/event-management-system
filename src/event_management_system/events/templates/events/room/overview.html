@@ -1,9 +1,11 @@
 {% extends "global/base.html" %}
 {% block content %}
 {% load i18n %}
-<h1>Rooms</h1>
+<h1>{% trans "event.room.index.titel" %}</h1>
 <br>
-<a href="{% url 'room_create' %}"><button type="button" class="btn btn-success">Create</button></a>
+<a href="{% url 'room_create' %}">
+    <button type="button" class="btn btn-success">{% trans "event.room.index.button.create" %}</button>
+</a>
 <br>
 <br>
 <table class="table table-hover">
@@ -20,14 +22,15 @@
             <tr>
                 <th scope="row">{{room.id}}</th>
                 <td>{{room.name}}</td>
-                <td><a href="{% url 'room_edit' room.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
-                <td><a href="{% url 'room_delete' room.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td><a href="{% url 'room_edit' room.id%}">
+                    <button type="button" class="btn btn-primary">{% trans "event.room.index.button.edit" %}</button>
+                </a></td>
+                <td><a href="{% url 'room_delete' room.id%}">
+                    <button type="button" class="btn btn-danger">{% trans "event.room.index.button.delete" %}</button>
+                </a></td>
             </tr>
         {% endfor %}
-   
     </tbody>
   </table>
-
-
 
 {% endblock %}
