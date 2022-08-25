@@ -8,8 +8,6 @@ urlpatterns = [
     path('edit/<int:email_id>/', views.email_edit, name='email_edit'),
     path('delete/<int:email_id>/', views.email_delete, name='email_delete'),
 
-    path('send_mail/<int:user_id>/<int:lecture_id>/', views.email_send, name='email_send'),
-
     path('send_mass_user/', views.email_send_mass_user, name='email_send_mass_user'),
     path('email_send_mass_user_select_all/', views.email_send_mass_user_select_all, name='email_send_mass_user_select_all'),
     path('email_send_mass_user_deselect_all/', views.email_send_mass_user_deselect_all, name='email_send_mass_user_deselect_all'),
