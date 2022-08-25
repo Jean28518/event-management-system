@@ -1,5 +1,10 @@
 from django.db import models
 
+MAIL_RECEIVER = [
+    ('PR', 'Presentator'),
+    ('AT', 'Attendant'),
+]
+
 # Create your models here.
 class Email(models.Model):
     name = models.CharField(max_length=100)   

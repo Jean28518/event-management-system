@@ -1,0 +1,24 @@
+{% extends "global/base.html" %}
+{% block content %}
+<h1>Send mass emails depending at lectures</h1>
+<br>
+<a href="{% url 'email_send_mass_lecture_select_all' event_id %}"><button type="button" class="btn btn-dark">Select all</button></a>
+<a href="{% url 'email_send_mass_lecture_deselect_all' event_id%}"><button type="button" class="btn btn-dark">Deselect all</button></a>
+<br>
+<br>
+<form action="" method="post">
+    {% csrf_token %}
+    
+    {% for lecture_selection in lecture_selections%}
+    <div class="form-check">
+        <input type="checkbox" id="{{lecture_selection.id}}" {% if lecture_selection.selected %}checked="true"{% endif %}  name="{{lecture_selection.id}}" class="form-check-input">
+        <label class="form-check-label" for="{{lecture_selection.id}}">{{lecture_selection.name}}</label>
+    </div>
+    
+    {% endfor %}
+    <br>
+    {{form}}
+    <br>
+    <input type="submit" value="Send Mails" class="btn btn-primary">
+</form> 
+{% endblock %}
