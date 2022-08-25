@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponseServerError, HttpResponseRedirect, Http404, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect, Http404, HttpResponseBadRequest
 from .models import Event, Lecture, Room
-from .forms import CreateEventForm, CreateRoomForm, EditEventForm,\
-    EditRoomForm, LectureForm, LectureSubmitForm, LoginForm
+from .forms import RoomFrom, EventForm, LectureForm, LectureSubmitForm, LoginForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
@@ -11,12 +10,12 @@ def event_overview(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect("/users/login/")
     
-    return render(request, "events/event/overview.html", {'events': Event.objects.all()})
+    return render(request, "events/event/overview.html", {'events':Event.objects.all()})
 
 
 def event_create(request):
     if request.method == 'POST':
-        form = CreateEventForm(request.POST)
+        form = EventForm(request.POST)
         if form.is_valid():
             event = Event()
             event.name = request.POST['name']
@@ -25,13 +24,13 @@ def event_create(request):
             event.save()
             return HttpResponseRedirect('/events/event/')
     else:
-        form = CreateEventForm()
+        form = EventForm()
         return render(request, 'events/event/create.html', {'form': form})
 
 
 def event_edit(request, event_id):
     if request.method == 'POST':
-        form = EditEventForm(request.POST)
+        form = EventForm(request.POST)
         if form.is_valid():
             event = Event.objects.filter(id=event_id)[0]
             event.name = request.POST['name']
@@ -43,9 +42,9 @@ def event_edit(request, event_id):
     else:
         event = Event.objects.filter(id=event_id)[0]
 
-        form = EditEventForm(initial=event.__dict__)
-        return render(request, 'events/event/edit.html', {'form': form, 'event': event})
 
+        form = EventForm(initial=event.__dict__)
+        return render(request, 'events/event/edit.html', {'form': form, 'event': event})
 
 def event_delete(request, event_id):
     if Event.objects.filter(id=event_id).exists(): 
@@ -84,15 +83,12 @@ def event_timeslot(reqeust, event_id):
     if Event.objects.filter(id=event_id).exists(): 
         event = Event.objects.filter(id=event_id)[0]
         timeslots = _get_timeslots_of_string(event.available_timeslots)
-        return render(reqeust, 'events/event/timeslot.html',
-                      {'event_name': event.name, 'event_id': event.id, 'timeslots': timeslots})
-
+        return render(reqeust, 'events/event/timeslot.html', {'event_name': event.name, 'event_id': event.id, 'timeslots': timeslots})
 
 class Timeslot: 
     text = ""
     id = -1
     checked = False
-
 
 def _get_timeslots_of_string(string):
     timeslot_strings = string.split(";")
@@ -104,7 +100,6 @@ def _get_timeslots_of_string(string):
         timeslot.id = i
         timeslots.append(timeslot)
     return timeslots
-
 
 def _get_string_of_timeslots(timeslots):
     string = ""
@@ -118,12 +113,12 @@ def room_overview(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect("/users/login/")
     
-    return render(request, "events/room/overview.html", {'rooms': Room.objects.all()})
+    return render(request, "events/room/overview.html", {'rooms':Room.objects.all()})
 
 
 def room_create(request):
     if request.method == 'POST':
-        form = CreateRoomForm(request.POST)
+        form = RoomFrom(request.POST)
         if form.is_valid():
             room = Room()
             room.name = request.POST['name']
@@ -132,13 +127,12 @@ def room_create(request):
             room.save()
             return HttpResponseRedirect('/events/room/')
     else:
-        form = CreateRoomForm()
+        form = RoomFrom()
         return render(request, 'events/room/create.html', {'form': form})
-
 
 def room_edit(request, room_id):
     if request.method == 'POST':
-        form = EditRoomForm(request.POST)
+        form = RoomFrom(request.POST)
         if form.is_valid():
             room = Room.objects.filter(id=room_id)[0]
             room.name = request.POST['name']
@@ -150,7 +144,7 @@ def room_edit(request, room_id):
     else:
         room = Room.objects.filter(id=room_id)[0]
 
-        form = EditRoomForm(initial=room.__dict__)
+        form = RoomFrom(initial=room.__dict__)
         return render(request, 'events/room/edit.html', {'form': form, 'room': room})
 
 
@@ -198,9 +192,9 @@ def lecture_public_create(request, event_id):
 
             event_timeslots = _get_timeslots_of_string(event.available_timeslots)
             available_timeslots = []
-            for single_timeslot in event_timeslots:
-                if request.POST.get(f"timeslot_{single_timeslot.id}", "off") == "":
-                    available_timeslots.append(single_timeslot)
+            for event_timeslot in event_timeslots:
+                if (request.POST.get(f"timeslot_{event_timeslot.id}", "off") == ""):
+                    available_timeslots.append(event_timeslot)
             lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
             lecture.save()
             return HttpResponseRedirect('/events/room/')
@@ -225,23 +219,22 @@ def lecture_create(request, event_id):
         form = LectureForm(request.POST)
         if form.is_valid():
             lecture = Lecture()
-            _save_lecture_from_full_edit(request, lecture)
+            _saveLectureFromFullEdit(request, lecture)
             return HttpResponseRedirect(f'/events/{lecture.event.id}/lecture/overview/')
     else:
         form = LectureForm({'event': event_id})
-        return render(request, 'events/lecture/create.html', {
-            'form': form, 'timeslots': _get_timeslots_of_string(Event.objects.get(id=event_id).available_timeslots),
-            'event_id': event_id
-        })
+        return render(request, 'events/lecture/create.html', 
+                {'form': form, 
+                'timeslots': _get_timeslots_of_string(Event.objects.get(id=event_id).available_timeslots), 
+                'event_id': event_id})
 
 
 def lecture_edit(request, lecture_id):
-    lecture = Lecture.objects.filter(id=lecture_id).select_related(
-        'event').select_related('presentator').select_related('attendant').select_related('scheduled_in_room')[0]
+    lecture = Lecture.objects.filter(id=lecture_id).select_related('event').select_related('presentator').select_related('attendant').select_related('scheduled_in_room')[0]
     if request.method == 'POST':
         form = LectureForm(request.POST)
         if form.is_valid():
-            _save_lecture_from_full_edit(request, lecture)
+            _saveLectureFromFullEdit(request, lecture)
             return HttpResponseRedirect(f'/events/{lecture.event.id}/lecture/overview/')
     else:
         data = lecture.__dict__
@@ -299,12 +292,11 @@ def _save_lecture_from_full_edit(request, lecture):
 
     event_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
     available_timeslots = []
-    for timeslot in event_timeslots:
-        if request.POST.get(f"timeslot_{timeslot.id}", "off") == "":
-            available_timeslots.append(timeslot)
+    for event_timeslot in event_timeslots:
+        if (request.POST.get(f"timeslot_{event_timeslot.id}", "off") == ""):
+            available_timeslots.append(event_timeslot)
     lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
     lecture.save()
-
 
 def lecture_delete(request, lecture_id):
     event_id = 0
@@ -320,7 +312,6 @@ def enable_call_for_papers(request, event_id):
     event.call_for_papers = True
     event.save()
     return HttpResponseRedirect(f"/events/{event_id}/lecture/overview/")
-
 
 def disable_call_for_papers(request, event_id):
     event = Event.objects.get(id=event_id)

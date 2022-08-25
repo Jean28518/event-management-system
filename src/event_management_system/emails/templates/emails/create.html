@@ -8,4 +8,14 @@
     <br/>
     <input type="submit" value="Create" class="btn btn-primary">
 </form>
+<br>
+<br>
+<h2>Legend of variables:</h2>
+    <ul class="list-group list-group-flush">
+    {% for keyword in keywords%}
+        <li class="list-group-item">{{keyword}}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}
+
+{% comment %} parent element Display flex und dann das sitepannel width 150px fertig {% endcomment %}

@@ -2,7 +2,9 @@
 {% block content %}
 <h1>Lectures from {{event.name}}</h1>
 <br>
-
+<a href="{% url 'email_send_mass_lecture' event.id%}"><button type="button" class="btn btn-warning">Mass Mail Lectures</button></a>
+<br>
+<br>
 <a href="{% url 'lecture_create' event.id %}"><button type="button" class="btn btn-success">Create</button></a>
 
 {% if event.call_for_papers == False %}
@@ -11,10 +13,7 @@
   <a href="{% url 'disable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">Call For Papers: Enabled</button></a>
     <a href="{% url 'lecture_public_create_entry' event.id %}">Call For Paper Link</a>
 {% endif %}
-
-
 <br>
-
 <table class="table table-hover">
     <thead>
       <tr>
@@ -39,8 +38,5 @@
    
     </tbody>
   </table>
-
   <a href="{% url 'event_overview' %}"><button type="button" class="btn btn-secondary">Back</button></a>
-
-
 {% endblock %}
