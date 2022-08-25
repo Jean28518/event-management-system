@@ -14,6 +14,7 @@ class EventForm(forms.Form):
         required=False
     )
 
+
 class RoomFrom(forms.Form):
     name = forms.CharField(label='Name', max_length=100, widget=forms.TextInput(attrs={'class': "form-control"}))
     website = forms.CharField(

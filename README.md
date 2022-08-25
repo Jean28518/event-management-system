@@ -67,3 +67,19 @@ Change a user password
 ```bash
 python manage.py changepassword <username>
 ```
+
+### Language
+Django comes with the feature to build in multilingualism.
+For this we use the standard PO (GetText Portable Object) for multilingualism.
+You can find the related files under the following path:
+
+`locale/<language abbreviation>/LC_MESSAGES/django.po`
+
+The first time you start the program or make a change in the files,
+you must first run the following command to load the translation.
+
+```bash
+django-admin compilemessages --ignore=venv
+```
+*The `--ignore=venv` excludes the Python virtual environment. If the name of your directory is different from venv,
+you should adjust this parameter if necessary.

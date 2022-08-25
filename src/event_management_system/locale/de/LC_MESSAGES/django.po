@@ -1,2 +1,227 @@
-msgid "English"
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "english"
 msgstr "Englisch"
+
+msgid "german"
+msgstr "Deutsch"
+
+# Users
+msgid "users.create.titel"
+msgstr "Neuen Nutzer anlegen"
+
+msgid "users.register.titel"
+msgstr "Registrieren"
+
+msgid "users.edit.titel"
+msgstr "Bearbeiten von"
+
+msgid "users.login.titel"
+msgstr "Anmeldung"
+
+msgid "users.login.error"
+msgstr "Anmeldung fehlgeschlagen! Versuche es erneut."
+
+msgid "users.index.titel"
+msgstr "Benutzer"
+
+msgid "users.index.first"
+msgstr "Vorname"
+
+msgid "users.index.last"
+msgstr "Nachname"
+
+msgid "users.index.email"
+msgstr "E-Mail"
+
+msgid "users.index.#"
+msgstr "#"
+
+msgid "users.index.button.create"
+msgstr "Anlegen"
+
+msgid "users.index.button.massmails"
+msgstr "Versende E-Mails an Benutzer"
+
+msgid "users.index.button.email"
+msgstr "E-Mail"
+
+msgid "users.index.button.edit"
+msgstr "Bearbeiten"
+
+msgid "users.index.button.delete"
+msgstr "Löschen"
+
+# E-Mail
+msgid "email.index.titel"
+msgstr "E-Mails"
+
+msgid "email.index.button.edit"
+msgstr "Bearbeiten"
+
+msgid "email.index.button.create"
+msgstr "Anlegen"
+
+msgid "email.index.button.delete"
+msgstr "Löschen"
+
+msgid "email.index.email"
+msgstr "E-Mail"
+
+msgid "email.index.#"
+msgstr "#"
+
+msgid "email.create.titel"
+msgstr "E-Mail anlegen"
+
+msgid "email.create.legend"
+msgstr "Legende aller zur Verfügung stehenden Variablen"
+
+msgid "email.create.input.create"
+msgstr "Anlegen"
+
+msgid "email.edit.titel"
+msgstr "Bearbeiten von"
+
+msgid "email.edit.button.cancel"
+msgstr "Abbrechen"
+
+msgid "email.edit.input.save"
+msgstr "Speichern"
+
+msgid "email.edit.legend"
+msgstr "Legende aller zur Verfügung stehenden Variablen"
+
+msgid "email.send.user.titel"
+msgstr "Versende E-Mails abhängig vom Nutzer"
+
+msgid "email.send.user.select"
+msgstr "Alle Auswählen"
+
+msgid "email.send.user.deselect"
+msgstr "Alle Abwählen"
+
+msgid "email.send.user.input.send"
+msgstr "Versende Mails"
+
+msgid "email.send.lecture.titel"
+msgstr "Versende E-Mails abhängig von einem Vortrag"
+
+msgid "email.send.lecture.input.send"
+msgstr "Versende Mails"
+
+msgid "email.send.lecture.select"
+msgstr "Alle Auswählen"
+
+msgid "email.send.lecture.deselect"
+msgstr "Alle Abwählen"
+
+# Events
+msgid "event.create.titel"
+msgstr "Bearbeiten von"
+
+msgid "event.create.input.create"
+msgstr "Anlegen"
+
+msgid "event.edit.titel"
+msgstr "Bearbeiten von"
+
+msgid "event.edit.input.create"
+msgstr "Anlegen"
+
+msgid "event.edit.button.timeslots"
+msgstr "Zeitfenster"
+
+msgid "event.edit.button.cancel"
+msgstr "Abbrechen"
+
+msgid "event.index.titel"
+msgstr "Veranstaltungen"
+
+msgid "event.index.create"
+msgstr "Anlegen"
+
+msgid "event.index.#"
+msgstr "#"
+
+msgid "event.index.event"
+msgstr "Veranstaltung"
+
+msgid "event.index.year"
+msgstr "Jahr"
+
+msgid "event.index.button.lectures"
+msgstr "Vorlesungen"
+
+msgid "event.index.button.edit"
+msgstr "Bearbeiten"
+
+msgid "event.index.input.delete"
+msgstr "Löschen"
+
+msgid "event.timeslot.titel"
+msgstr "Zeitfenster für"
+
+msgid "event.timeslot.#"
+msgstr "#"
+
+msgid "event.timeslot.button.delete"
+msgstr "Löschen"
+
+msgid "event.timeslot.button.back"
+msgstr "Zurück"
+
+msgid "event.timeslot.new"
+msgstr "Neu"
+
+msgid "event.lecture.public.create.titel"
+msgstr "Vortrag einreichen"
+
+msgid "event.lecture.public.create.availability"
+msgstr "Ich bin zu folgenden Zeiten verfügbar"
+
+msgid "event.lecture.public.create.submit"
+msgstr "Absenden"
+
+msgid "event.lecture.public.create.entry.titel"
+msgstr "Vortrag einreichen"
+
+msgid "event.lecture.public.create.entry.info"
+msgstr "Herzlich willkommen! Wenn Sie bereits ein Benutzerkonto haben, melden Sie sich bitte an. Ansonsten registrieren Sie sich bitte zuerst."
+
+msgid "event.lecture.public.create.entry.button.register"
+msgstr "Registrieren"
+
+msgid "event.lecture.public.create.entry.input.login"
+msgstr "Anmelden"
+
+msgid "event.lecture.public.create.entry.error"
+msgstr "Anmeldung fehlgeschlagen! Versuche es erneut."
+
+msgid "event.lecture.create.titel"
+msgstr "Vortrag anlegen"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

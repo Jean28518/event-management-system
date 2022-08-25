@@ -1,5 +1,6 @@
 {% extends "global/base.html" %}
 {% block content %}
+{% load i18n %}
 <h1>Lectures from {{event.name}}</h1>
 <br>
 <a href="{% url 'lecture_create' event.id %}"><button type="button" class="btn btn-success">Create</button></a>

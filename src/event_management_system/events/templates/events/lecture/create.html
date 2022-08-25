@@ -1,8 +1,9 @@
 {% extends "global/base.html" %}
 {% block content %}
+{% load i18n %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Create Lecture</h1>
+    <h1>{% trans "event.lecture.create.titel" %}</h1>
     <br/>
     {{ form }}
     <br/>

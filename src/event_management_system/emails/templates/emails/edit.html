@@ -1,17 +1,20 @@
 {% extends "global/base.html" %}
 {% block content %}
+{% load i18n %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Edit {{email.name}}</h1>
+    <h1>{% trans "email.edit.titel" %} {{email.name}}</h1>
     <br/>
     {{ form }}
     <br/>
-    <a href="{% url 'email_overview' %}"><button type="button" class="btn btn-secondary">Cancel</button></a>
-    <input type="submit" value="Save" class="btn btn-primary">
+    <a href="{% url 'email_overview' %}">
+        <button type="button" class="btn btn-secondary">{% trans "email.edit.button.cancel" %}</button>
+    </a>
+    <input type="submit" value="{% trans "email.edit.input.save" %}" class="btn btn-primary">
 </form>
 <br>
 <br>
-<h2>Legend of variables:</h2>
+<h2>{% trans "email.edit.legend" %}</h2>
     <ul class="list-group list-group-flush">
     {% for keyword in keywords%}
         <li class="list-group-item">{{keyword}}</li>
