@@ -6,24 +6,42 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if perms.users.view_profile %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'user_overview' %}">Users</a>
           </li>
+          {% endif %}
+          {% if perms.events.view_event %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'event_overview' %}">Events</a>
           </li>
+          {% endif %}
+          {% if perms.events.view_room %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'room_overview' %}">Rooms</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'email_overview' %}">Emails</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'user_logout' %}">Logout</a>
-          </li>
+          {% endif %}
+          {% if perms.emails.view_email %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'email_overview' %}">Emails</a>
+            </li>
+          {% endif %}
+
+
+          
+
 
          
         </ul>
+          <span class="navbar-text">
+            {{request_user.username}} 
+          </span>
+          {% if request_user.is_authenticated %}
+          <a class="nav-link" href="{% url 'user_logout' %}">
+            <button class="btn btn-sm btn-outline-danger" type="button">Logout</button>
+          </a>
+          {% endif %}
+
 
       </div>
     </div>

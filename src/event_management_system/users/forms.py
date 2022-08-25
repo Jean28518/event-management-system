@@ -1,7 +1,7 @@
 from django import forms
 
 ROLES = [
-    ('CU', 'Contact'),
+    ('CO', 'Contact'),
     ('AT', 'Attendant'),
     ('OR', 'Organisator'),
     ('AD', 'Admin'),
