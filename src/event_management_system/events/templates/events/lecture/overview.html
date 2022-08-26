@@ -1,23 +1,37 @@
 {% extends "global/base.html" %}
 {% block content %}
-<h1>Lectures from {{event.name}}</h1>
+{% load i18n %}
+<h1>{% trans "event.lecture.index.titel" %} {{event.name}}</h1>
 <br>
-<a href="{% url 'lecture_create' event.id %}"><button type="button" class="btn btn-success">Create</button></a>
-<a href="{% url 'email_send_mass_lecture' event.id%}"><button type="button" class="btn btn-warning">Mass Mail Lectures</button></a>
+<a href="{% url 'lecture_create' event.id %}">
+    <button type="button" class="btn btn-success">{% trans "event.lecture.index.button.create" %}</button>
+</a>
+<a href="{% url 'email_send_mass_lecture' event.id%}">
+    <button type="button" class="btn btn-warning">{% trans "event.lecture.index.send" %}</button>
+</a>
+<br>
+<br>
+<h4>
+    {% trans "event.lecture.index.call.text" %}
+</h4>
 {% if event.call_for_papers == False %}
-  <a href="{% url 'enable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">Call For Papers: Disabled</button></a>
-  {% else %}
-  <a href="{% url 'disable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">Call For Papers: Enabled</button></a>
-    <a href="{% url 'lecture_public_create_entry' event.id %}">Call For Paper Link</a>
+  <a href="{% url 'enable_call_for_papers' event.id %}">
+      <button type="button" class="btn btn-dark">{% trans "event.lecture.index.button.call.disabled" %}</button>
+  </a>
+{% else %}
+  <a href="{% url 'disable_call_for_papers' event.id %}">
+      <button type="button" class="btn btn-dark">{% trans "event.lecture.index.button.call.enabled" %}</button>
+  </a>
+  <a href="{% url 'lecture_public_create_entry' event.id %}">{% trans "event.lecture.index.button.call.link" %}</a>
 {% endif %}
 <br>
 <br>
 <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col" style="width:10%">#</th>
-        <th scope="col" style="width:45%">Lecture</th>
-        <th scope="col" style="width:35%">Presentator</th>
+        <th scope="col" style="width:10%">{% trans "event.lecture.index.#" %}</th>
+        <th scope="col" style="width:45%">{% trans "event.lecture.index.lecture" %}</th>
+        <th scope="col" style="width:35%">{% trans "event.lecture.index.moderator" %}</th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
       </tr>
@@ -28,13 +42,17 @@
                 <th scope="row">{{lecture.id}}</th>
                 <td>{{lecture.title}}</td>
                 <td>{{lecture.presentator}}</td>
-                <td><a href="{% url 'lecture_edit' lecture.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
-                <td><a href="{% url 'lecture_delete' lecture.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td><a href="{% url 'lecture_edit' lecture.id%}">
+                    <button type="button" class="btn btn-primary">{% trans "event.lecture.index.button.edit" %}</button>
+                </a></td>
+                <td><a href="{% url 'lecture_delete' lecture.id%}">
+                    <button type="button" class="btn btn-danger">{% trans "event.lecture.index.button.delete" %}</button>
+                </a></td>
             </tr>
             <br/> 
         {% endfor %}
    
     </tbody>
   </table>
-  <a href="{% url 'event_overview' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+  <a href="{% url 'event_overview' %}"><button type="button" class="btn btn-secondary">{% trans "event.lecture.index.back" %}</button></a>
 {% endblock %}

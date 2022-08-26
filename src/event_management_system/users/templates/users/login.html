@@ -1,8 +1,9 @@
 {% extends "global/base.html" %}
 {% block content %}
+{% load i18n %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Login</h1>
+    <h1>{% trans "users.login.titel" %}</h1>
     <br/>
     {{ form }}
     <br/>
@@ -10,6 +11,6 @@
 </form>
 {% if login_failed %}
 <br/>
-Login failed! Try again.
+    {% trans "users.login.error" %}
 {% endif %}
 {% endblock %}

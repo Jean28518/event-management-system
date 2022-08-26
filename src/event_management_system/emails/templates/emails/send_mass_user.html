@@ -1,9 +1,14 @@
 {% extends "global/base.html" %}
 {% block content %}
-<h1>Send mass emails depending at users</h1>
+{% load i18n %}
+<h1>{% trans "email.send.user.titel" %}</h1>
 <br>
-<a href="{% url 'email_send_mass_user_select_all' %}"><button type="button" class="btn btn-dark">Select all</button></a>
-<a href="{% url 'email_send_mass_user_deselect_all' %}"><button type="button" class="btn btn-dark">Deselect all</button></a>
+<a href="{% url 'email_send_mass_user_select_all' %}">
+    <button type="button" class="btn btn-dark">{% trans "email.send.user.select" %}</button>
+</a>
+<a href="{% url 'email_send_mass_user_deselect_all' %}">
+    <button type="button" class="btn btn-dark">{% trans "email.send.user.deselect" %}</button>
+</a>
 <br>
 <br>
 <form action="" method="post">
@@ -19,6 +24,6 @@
     <br>
     {{form}}
     <br>
-    <input type="submit" value="Send Mails" class="btn btn-primary">
+    <input type="submit" value="{% trans "email.send.user.input.send" %}" class="btn btn-primary">
 </form> 
 {% endblock %}

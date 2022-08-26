@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,11 +31,36 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# Internationalization
+# https://docs.djangoproject.com/en/3.1/topics/i18n/
+
+LANGUAGE_CODE = 'en'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+LANGUAGES = (
+    ('en', _("language.en")),
+    ('de', _("language.de"))
+)
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
+
+
 # Application definition
 INSTALLED_APPS = [
     'emails.apps.EmailsConfig',
     'events.apps.EventsConfig',
     'users.apps.UsersConfig',
+
+    'rosetta',  # Translation
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,12 +68,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -107,18 +133,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_TZ = True
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -129,22 +143,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# This section is for email host configuration.
-# >> Set environment variable:
-# On Linux:
-# EMAIL_HOST="<EMAIL_HOST>"
-# EMAIL_PORT="<EMAIL_PORT>"
-# EMAIL_HOST_USER="<EMAIL_HOST_USER>"
-# EMAIL_HOST_PASSWORD="<EMAIL_HOST_PASSWORD>"
-# On Windows:
-# set EMAIL_HOST="<EMAIL_HOST>"
-# set EMAIL_PORT="<EMAIL_PORT>"
-# set EMAIL_HOST_USER="<EMAIL_HOST_USER>"
-# set EMAIL_HOST_PASSWORD="<EMAIL_HOST_PASSWORD>"
-
 # Email Settings
-EMAIL_HOST = os.environ["EMAIL_HOST"]                    # <- host name [e.g. smtp.gmail.com for gmail]
-EMAIL_PORT = int(os.environ["EMAIL_PORT"])               # <- smtp port [e.g. 587]
-EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]          # <- username
-EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]  # <- password
-EMAIL_USE_TLS = True
+try:
+    EMAIL_HOST = os.environ["EMAIL_HOST"]                    # <- host name [e.g. smtp.gmail.com for gmail]
+    EMAIL_PORT = int(os.environ["EMAIL_PORT"])               # <- smtp port [e.g. 587]
+    EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]          # <- username
+    EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]  # <- password
+    EMAIL_USE_TLS = True
+except KeyError:
+    print("[ERROR] There are no environment variables defined for the e-mail server.")

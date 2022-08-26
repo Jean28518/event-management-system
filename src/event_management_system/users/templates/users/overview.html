@@ -1,18 +1,23 @@
 {% extends "global/base.html" %}
 {% block content %}
-<h1>Users</h1>
+{% load i18n %}
+<h1>{% trans "users.index.titel" %}</h1>
 <br>
-<a href="{% url 'user_create' %}"><button type="button" class="btn btn-success">Create</button></a>
-<a href="{% url 'email_send_mass_user' %}"><button type="button" class="btn btn-warning">Mass Mail Users</button></a>
+<a href="{% url 'user_create' %}">
+    <button type="button" class="btn btn-success">{% trans "users.index.button.create" %}</button>
+</a>
+<a href="{% url 'email_send_mass_user' %}">
+    <button type="button" class="btn btn-warning">{% trans "users.index.button.massmails" %}</button>
+</a>
 <br>
 <br>
 <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col" style="width:10%">#</th>
-        <th scope="col" style="width:20%">First</th>
-        <th scope="col" style="width:20%">Last</th>
-        <th scope="col" style="width:40%">E-Mail</th>
+        <th scope="col" style="width:10%">{% trans "users.index.#" %}</th>
+        <th scope="col" style="width:20%">{% trans "users.index.first" %}</th>
+        <th scope="col" style="width:20%">{% trans "users.index.last" %}</th>
+        <th scope="col" style="width:40%">{% trans "users.index.email" %}</th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
       </tr>
@@ -25,9 +30,9 @@
                 <td>{{user.last_name}}</td>
                 <td>{{user.username}}</td>
                 
-                {% comment %} <td><a href="{% url 'email_send' user.id 0%}"><button type="button" class="btn btn-warning">Mail</button></a></td> {% endcomment %}
-                <td><a href="{% url 'user_edit' user.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
-                <td><a href="{% url 'user_delete' user.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                {% comment %} <td><a href="{% url 'email_send' user.id 0%}"><button type="button" class="btn btn-warning">{% trans "users.index.button.email" %}</button></a></td> {% endcomment %}
+                <td><a href="{% url 'user_edit' user.id%}"><button type="button" class="btn btn-primary">{% trans "users.index.button.edit" %}</button></a></td>
+                <td><a href="{% url 'user_delete' user.id%}"><button type="button" class="btn btn-danger">{% trans "users.index.button.delete" %}</button></a></td>
             </tr>
         {% endfor %}
    

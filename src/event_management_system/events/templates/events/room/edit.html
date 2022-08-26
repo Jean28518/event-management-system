@@ -1,12 +1,15 @@
 {% extends "global/base.html" %}
 {% block content %}
+{% load i18n %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Edit {{room.name}}</h1>
+    <h1>{% trans "event.room.edit.titel" %} {{room.name}}</h1>
     <br/>
     {{ form }}
     <br/>
-    <a href="{% url 'room_overview' %}"><button type="button" class="btn btn-secondary">Cancel</button></a>
-    <input type="submit" value="Save" class="btn btn-primary">
+    <a href="{% url 'room_overview' %}">
+        <button type="button" class="btn btn-secondary">{% trans "event.room.edit.button.cancel" %}</button>
+    </a>
+    <input type="submit" value="{% trans "event.room.edit.input.save" %}" class="btn btn-primary">
 </form>
 {% endblock %}

@@ -1,0 +1,562 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "language.en"
+msgstr "English"
+
+msgid "language.de"
+msgstr "German"
+
+# Global
+msgid "global.titel"
+msgstr "Event Management System"
+
+msgid "global.navbar.users"
+msgstr "Users"
+
+msgid "global.navbar.events"
+msgstr "Events"
+
+msgid "global.navbar.rooms"
+msgstr "Rooms"
+
+msgid "global.navbar.emails"
+msgstr "Emails"
+
+msgid "global.navbar.logout"
+msgstr "Logout"
+
+msgid "global.navbar.languages"
+msgstr "Languages"
+
+# Users
+msgid "users.create.titel"
+msgstr "Create user"
+
+msgid "users.create.input.create"
+msgstr "Create"
+
+msgid "users.register.titel"
+msgstr "Register"
+
+msgid "users.register.input.register"
+msgstr "Register"
+
+msgid "users.edit.titel"
+msgstr "Edit"
+
+msgid "users.login.titel"
+msgstr "Login"
+
+msgid "users.login.error"
+msgstr "Login failed! Try again."
+
+msgid "users.index.titel"
+msgstr "Users"
+
+msgid "users.index.first"
+msgstr "Firstname"
+
+msgid "users.index.last"
+msgstr "Lastname"
+
+msgid "users.index.email"
+msgstr "E-Mail"
+
+msgid "users.index.#"
+msgstr "#"
+
+msgid "users.index.button.create"
+msgstr "Create"
+
+msgid "users.index.button.massmails"
+msgstr "Send emails to users"
+
+msgid "users.index.button.email"
+msgstr "Mail"
+
+msgid "users.index.button.edit"
+msgstr "Edit"
+
+msgid "users.index.button.delete"
+msgstr "Delete"
+
+# E-Mail
+msgid "email.index.titel"
+msgstr "E-Mails"
+
+msgid "email.index.button.edit"
+msgstr "Edit"
+
+msgid "email.index.button.create"
+msgstr "Create"
+
+msgid "email.index.button.delete"
+msgstr "Delete"
+
+msgid "email.index.email"
+msgstr "Email"
+
+msgid "email.index.#"
+msgstr "#"
+
+msgid "email.create.titel"
+msgstr "Create email"
+
+msgid "email.create.legend"
+msgstr "Legend of all available variables"
+
+msgid "email.create.input.create"
+msgstr "Create"
+
+msgid "email.edit.titel"
+msgstr "Edit"
+
+msgid "email.edit.button.cancel"
+msgstr "Cancel"
+
+msgid "email.edit.input.save"
+msgstr "Save"
+
+msgid "email.edit.legend"
+msgstr "Legend of all available variables"
+
+msgid "email.send.user.titel"
+msgstr "Send mass emails depending at users"
+
+msgid "email.send.user.select"
+msgstr "Select all"
+
+msgid "email.send.user.deselect"
+msgstr "Deselect all"
+
+msgid "email.send.user.input.send"
+msgstr "Send Mails"
+
+msgid "email.send.lecture.titel"
+msgstr "Send mass emails depending at lectures"
+
+msgid "email.send.lecture.input.send"
+msgstr "Send Mails"
+
+msgid "email.send.lecture.select"
+msgstr "Select all"
+
+msgid "email.send.lecture.deselect"
+msgstr "Deselect all"
+
+# Events
+msgid "event.create.titel"
+msgstr "Create event"
+
+msgid "event.create.input.create"
+msgstr "Create"
+
+msgid "event.edit.titel"
+msgstr "Edit"
+
+msgid "event.edit.input.create"
+msgstr "Create"
+
+msgid "event.edit.button.timeslots"
+msgstr "Timeslots"
+
+msgid "event.edit.button.cancel"
+msgstr "Cancel"
+
+msgid "event.index.titel"
+msgstr "Events"
+
+msgid "event.index.create"
+msgstr "Create"
+
+msgid "event.index.#"
+msgstr "#"
+
+msgid "event.index.event"
+msgstr "Event"
+
+msgid "event.index.year"
+msgstr "Year"
+
+msgid "event.index.button.lectures"
+msgstr "Lectures"
+
+msgid "event.index.button.edit"
+msgstr "Edit"
+
+msgid "event.index.input.delete"
+msgstr "Delete"
+
+msgid "event.timeslot.titel"
+msgstr "Timeslots for"
+
+msgid "event.timeslot.#"
+msgstr "#"
+
+msgid "event.timeslot.button.delete"
+msgstr "Delete"
+
+msgid "event.timeslot.button.back"
+msgstr "Back"
+
+msgid "event.timeslot.new"
+msgstr "New"
+
+msgid "event.lecture.public.create.titel"
+msgstr "Submit Lecture"
+
+msgid "event.lecture.public.create.availability"
+msgstr "I am available at these timeslots"
+
+msgid "event.lecture.public.create.submit"
+msgstr "Submit"
+
+msgid "event.lecture.public.create.entry.titel"
+msgstr "Submit Lecture"
+
+msgid "event.lecture.public.create.entry.info"
+msgstr "Welcome! If you already have a user account, please login. Otherwise please register first."
+
+msgid "event.lecture.public.create.entry.button.register"
+msgstr "Register"
+
+msgid "event.lecture.public.create.entry.input.login"
+msgstr "Login"
+
+msgid "event.lecture.public.create.entry.error"
+msgstr "Login failed! Try again."
+
+msgid "event.lecture.create.titel"
+msgstr "Create Lecture"
+
+msgid "event.lecture.create.timeslots"
+msgstr "Presentation is available at these timeslots"
+
+msgid "event.lecture.create.button.cancel"
+msgstr "Cancel"
+
+msgid "event.lecture.create.input.create"
+msgstr "Create"
+
+msgid "event.lecture.edit.titel"
+msgstr "Edit"
+
+msgid "event.lecture.edit.timeslots"
+msgstr "Presentation is available at these timeslots"
+
+msgid "event.lecture.edit.button.cancel"
+msgstr "Cancel"
+
+msgid "event.lecture.edit.input.save"
+msgstr "Save"
+
+msgid "event.lecture.index.titel"
+msgstr "Lectures from"
+
+msgid "event.lecture.index.button.create"
+msgstr "Create"
+
+msgid "event.lecture.index.send"
+msgstr "Send mass emails"
+
+msgid "event.lecture.index.call.text"
+msgstr "Call For Papers"
+
+msgid "event.lecture.index.button.call.disabled"
+msgstr "Disabled"
+
+msgid "event.lecture.index.button.call.enabled"
+msgstr "Enabled"
+
+msgid "event.lecture.index.button.call.link"
+msgstr "Call For Paper Link"
+
+msgid "event.lecture.index.#"
+msgstr "#"
+
+msgid "event.lecture.index.lecture"
+msgstr "Lecture"
+
+msgid "event.lecture.index.moderator"
+msgstr "Moderator"
+
+msgid "event.lecture.index.button.edit"
+msgstr "Edit"
+
+msgid "event.lecture.index.button.delete"
+msgstr "Delete"
+
+msgid "event.lecture.index.back"
+msgstr "Back"
+
+msgid "event.room.create.titel"
+msgstr "Create room"
+
+msgid "event.room.create.button.cancel"
+msgstr "Cancel"
+
+msgid "event.room.create.button.create"
+msgstr "Create"
+
+msgid "event.room.edit.titel"
+msgstr "Edit"
+
+msgid "event.room.edit.button.cancel"
+msgstr "Cancel"
+
+msgid "event.room.edit.input.save"
+msgstr "Save"
+
+msgid "event.room.index.titel"
+msgstr "Rooms"
+
+msgid "event.room.index.button.create"
+msgstr "Create"
+
+msgid "event.room.index.button.edit"
+msgstr "Edit"
+
+msgid "event.room.index.button.delete"
+msgstr "Delete"
+
+# Forms
+msgid "forms.email.name"
+msgstr "Name"
+
+msgid "forms.email.subject"
+msgstr "Subject"
+
+msgid "forms.email.body"
+msgstr "Body"
+
+msgid "forms.send.user.email"
+msgstr "Email"
+
+msgid "forms.send.lecture.email"
+msgstr "Email"
+
+msgid "forms.send.lecture.receiver"
+msgstr "Mail Receivers"
+
+msgid "forms.event.name"
+msgstr "Name"
+
+msgid "forms.event.year"
+msgstr "Year"
+
+msgid "forms.event.website"
+msgstr "Website"
+
+msgid "forms.room.name"
+msgstr "Name"
+
+msgid "forms.room.website"
+msgstr "Website"
+
+msgid "forms.room.coordinates"
+msgstr "Coordinates"
+
+msgid "forms.login.email"
+msgstr "Email"
+
+msgid "forms.login.password"
+msgstr "Password"
+
+msgid "forms.lecture.submit.titel"
+msgstr "Titel"
+
+msgid "forms.lecture.submit.description"
+msgstr "Description"
+
+msgid "forms.lecture.submit.group"
+msgstr "Target Group"
+
+msgid "forms.lecture.submit.qualification"
+msgstr "I am qualified for the presentatien beacause..."
+
+msgid "forms.lecture.submit.style"
+msgstr "Preferred presentation style"
+
+msgid "forms.lecture.submit.questions.during"
+msgstr "Should questions during lectures been asked?"
+
+msgid "forms.lecture.submit.questions.after"
+msgstr "Should questions after lectures been asked?"
+
+msgid "forms.lecture.submit.length.min"
+msgstr "Minimal Lecture Length (in minutes)"
+
+msgid "forms.lecture.submit.length.max"
+msgstr "Maximal Lecture Length (in minutes)"
+
+msgid "forms.lecture.submit.info"
+msgstr "Additional information (max. 2048 signs)"
+
+msgid "forms.lecture.submit.link"
+msgstr "Lecture related Website"
+
+msgid "forms.lecture.event"
+msgstr "Event"
+
+msgid "forms.lecture.moderator"
+msgstr "Moderator"
+
+msgid "forms.lecture.attendant"
+msgstr "Attendant"
+
+msgid "forms.lecture.title"
+msgstr "Title"
+
+msgid "forms.lecture.description"
+msgstr "Description (max. 2048 signs)"
+
+msgid "forms.lecture.group"
+msgstr "Target Group"
+
+msgid "forms.lecture.qualification"
+msgstr "I am qualified for the presentatien beacause..."
+
+msgid "forms.lecture.style"
+msgstr "Preferred presentation style"
+
+msgid "forms.lecture.questions.during"
+msgstr "Should questions during lectures been asked?"
+
+msgid "forms.lecture.questions.after"
+msgstr "Should questions after lectures been asked?"
+
+msgid "forms.lecture.length.min"
+msgstr "Minimal Lecture Length (in minutes)"
+
+msgid "forms.lecture.length.max"
+msgstr "Maximal Lecture Length (in minutes)"
+
+msgid "forms.lecture.moderator.info"
+msgstr "Additional information (max. 2048 signs)"
+
+msgid "forms.lecture.link"
+msgstr "Lecture related Website"
+
+msgid "forms.lecture.scheduled.room"
+msgstr "Scheduled in Room"
+
+msgid "forms.lecture.scheduled.datetime"
+msgstr "Scheduled Time Format: YYYY-MM-DD hh:mm"
+
+msgid "forms.lecture.scheduled.length"
+msgstr "Scheduled Length (in minutes)"
+
+msgid "forms.lecture.scheduled.style"
+msgstr "Scheduled presentation style"
+
+msgid "forms.lecture.private.info"
+msgstr "Further private information (Presentator can't see this) [max. 2048 signs]"
+
+msgid "forms.lecture.material.link"
+msgstr "Link to Material"
+
+msgid "forms.lecture.recording.link"
+msgstr "Link to Recording"
+
+msgid "forms.user.create.role"
+msgstr "Role"
+
+msgid "forms.user.create.email"
+msgstr "Email"
+
+msgid "forms.user.create.firstname"
+msgstr "First name"
+
+msgid "forms.user.create.lastname"
+msgstr "Last name"
+
+msgid "forms.user.create.password"
+msgstr "Password"
+
+msgid "forms.user.create.website"
+msgstr "Website"
+
+msgid "forms.user.create.company"
+msgstr "Company"
+
+msgid "forms.user.create.adult"
+msgstr "Over 18"
+
+msgid "forms.user.create.pin"
+msgstr "Private Pin"
+
+msgid "forms.user.register.email"
+msgstr "Email"
+
+msgid "forms.user.register.firstname"
+msgstr "First name"
+
+msgid "forms.user.register.lastname"
+msgstr "Last name"
+
+msgid "forms.user.register.password"
+msgstr "Password"
+
+msgid "forms.user.register.website"
+msgstr "Website"
+
+msgid "forms.user.register.company"
+msgstr "Company"
+
+msgid "forms.user.register.adult"
+msgstr "Over 18"
+
+msgid "forms.user.edit.role"
+msgstr "Role"
+
+msgid "forms.user.edit.email"
+msgstr "Email"
+
+msgid "forms.user.edit.firstname"
+msgstr "First name"
+
+msgid "forms.user.edit.lastname"
+msgstr "Last name"
+
+msgid "forms.user.edit.website"
+msgstr "Website"
+
+msgid "forms.user.edit.company"
+msgstr "Company"
+
+msgid "forms.user.edit.adult"
+msgstr "Over 18"
+
+msgid "forms.user.edit.pin"
+msgstr "Private Pin"
+
+msgid "forms.user.login.email"
+msgstr "Email"
+
+msgid "forms.user.login.password"
+msgstr "Password"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

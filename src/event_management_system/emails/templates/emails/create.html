@@ -1,16 +1,17 @@
 {% extends "global/base.html" %}
 {% block content %}
+{% load i18n %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Create email</h1>
+    <h1>{% trans "email.create.titel" %}</h1>
     <br/>
     {{ form }}
     <br/>
-    <input type="submit" value="Create" class="btn btn-primary">
+    <input type="submit" value="{% trans "email.create.input.create" %}" class="btn btn-primary">
 </form>
 <br>
 <br>
-<h2>Legend of variables:</h2>
+<h2>{% trans "email.create.legend" %}</h2>
     <ul class="list-group list-group-flush">
     {% for keyword in keywords%}
         <li class="list-group-item">{{keyword}}</li>
