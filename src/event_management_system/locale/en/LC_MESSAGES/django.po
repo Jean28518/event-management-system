@@ -32,7 +32,13 @@ msgstr "Logout"
 msgid "users.create.titel"
 msgstr "Create user"
 
+msgid "users.create.input.create"
+msgstr "Create"
+
 msgid "users.register.titel"
+msgstr "Register"
+
+msgid "users.register.input.register"
 msgstr "Register"
 
 msgid "users.edit.titel"

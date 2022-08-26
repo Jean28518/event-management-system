@@ -32,7 +32,13 @@ msgstr "Abmelden"
 msgid "users.create.titel"
 msgstr "Neuen Nutzer anlegen"
 
+msgid "users.create.input.create"
+msgstr "Anlegen"
+
 msgid "users.register.titel"
+msgstr "Registrieren"
+
+msgid "users.register.input.register"
 msgstr "Registrieren"
 
 msgid "users.edit.titel"
