@@ -28,6 +28,9 @@ msgstr "Emails"
 msgid "global.navbar.logout"
 msgstr "Logout"
 
+msgid "global.navbar.languages"
+msgstr "Languages"
+
 # Users
 msgid "users.create.titel"
 msgstr "Create user"
