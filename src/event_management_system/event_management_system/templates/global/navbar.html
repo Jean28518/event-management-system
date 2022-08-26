@@ -1,6 +1,9 @@
+{% load i18n %}
+{% load navbar_tags %}
+
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'user_overview' %}">Event Management System</a>
+      <a class="navbar-brand" href="{% url 'user_overview' %}">{% trans "global.titel" %}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -8,41 +11,52 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           {% if perms.users.view_profile %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'user_overview' %}">Users</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'user_overview' %}">{% trans "global.navbar.users" %}</a>
           </li>
           {% endif %}
           {% if perms.events.view_event %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'event_overview' %}">Events</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'event_overview' %}">{% trans "global.navbar.events" %}</a>
           </li>
           {% endif %}
           {% if perms.events.view_room %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'room_overview' %}">Rooms</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'room_overview' %}">{% trans "global.navbar.rooms" %}</a>
           </li>
           {% endif %}
           {% if perms.emails.view_email %}
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'email_overview' %}">Emails</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'email_overview' %}">{% trans "global.navbar.emails" %}</a>
             </li>
           {% endif %}
-
-
-          
-
-
-         
         </ul>
-          <span class="navbar-text">
-            {{request_user.username}} 
-          </span>
-          {% if request_user.is_authenticated %}
-          <a class="nav-link" href="{% url 'user_logout' %}">
-            <button class="btn btn-sm btn-outline-danger" type="button">Logout</button>
-          </a>
-          {% endif %}
 
+        {% if request_user.is_authenticated %}
+        <span class="navbar-text" style="margin-right: 10px">
+        {{request_user.username}}
+        </span>
+        <a class="nav-link" href="{% url 'user_logout' %}" style="margin-right: 10px">
+        <button class="btn btn-sm btn-outline-danger" type="button">{% trans "global.navbar.logout" %}</button>
+        </a>
+        {% endif %}
 
+        {% get_current_language as CURRENT_LANGUAGE %}
+        {% get_available_languages as AVAILABLE_LANGUAGES %}
+        {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {% trans "global.navbar.languages" %}
+          </button>
+          <ul class="dropdown-menu">
+          {% for language in languages %}
+            <li>
+              <a class="dropdown-item" href="/{{ language.code }}{{ request.path|slice:"3:" }}" {% if language.code == CURRENT_LANGUAGE %} class="active"{% endif %}>
+                {{ language.name_local }}
+              </a>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
       </div>
     </div>
   </nav>

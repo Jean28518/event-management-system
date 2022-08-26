@@ -1,17 +1,20 @@
 {% extends "global/base.html" %}
 {% block content %}
+{% load i18n %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Submit Lecture</h1>
-    <p>Welcome! If you already have a user account, please login. Otherwise please register first.</p>
+    <h1>{% trans "event.lecture.public.create.entry.titel" %}</h1>
+    <p>{% trans "event.lecture.public.create.entry.info" %}</p>
     <br/>
     {{ form }}
     <br/>
-    <a href="{% url 'user_register' %}"><button type="button" class="btn btn-secondary">Register</button></a>
-    <input type="submit" value="Login" class="btn btn-primary">
+    <a href="{% url 'user_register' %}">
+        <button type="button" class="btn btn-secondary">{% trans "event.lecture.public.create.entry.button.register" %}</button>
+    </a>
+    <input type="submit" value="{% trans "event.lecture.public.create.entry.input.login" %}" class="btn btn-primary">
 </form>
 {% if login_failed %}
 <br/>
-Login failed! Try again.
+{% trans "event.lecture.public.create.entry.error" %}
 {% endif %}
-{% endblock %}
+{% endblock %}s

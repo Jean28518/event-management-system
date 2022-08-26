@@ -1,16 +1,19 @@
 {% extends "global/base.html" %}
 {% block content %}
-<h1>Events</h1>
+{% load i18n %}
+<h1>{% trans "event.index.titel" %}</h1>
 <br>
-<a href="{% url 'event_create' %}"><button type="button" class="btn btn-success">Create</button></a>
+<a href="{% url 'event_create' %}">
+    <button type="button" class="btn btn-success">{% trans "event.index.create" %}</button>
+</a>
 <br>
 <br>
 <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col" style="width:10%">#</th>
-        <th scope="col" style="width:40%">Event</th>
-        <th scope="col" style="width:35%">Year</th>
+        <th scope="col" style="width:10%">{% trans "event.index.#" %}</th>
+        <th scope="col" style="width:40%">{% trans "event.index.event" %}</th>
+        <th scope="col" style="width:35%">{% trans "event.index.year" %}</th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
@@ -22,9 +25,21 @@
                 <th scope="row">{{event.id}}</th>
                 <td>{{event.name}}</td>
                 <td>{{event.year}}</td>
-                <td><a href="{% url 'lecture_overview' event.id%}"><button type="button" class="btn btn-info">Lectures</button></a></td>
-                <td><a href="{% url 'event_edit' event.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
-                <td><a href="{% url 'event_delete' event.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td>
+                    <a href="{% url 'lecture_overview' event.id %}">
+                        <button type="button" class="btn btn-info">{% trans "event.index.button.lectures" %}</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'event_edit' event.id %}">
+                        <button type="button" class="btn btn-primary">{% trans "event.index.button.edit" %}</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'event_delete' event.id%}">
+                        <button type="button" class="btn btn-danger">{% trans "event.index.input.delete" %}</button>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
    

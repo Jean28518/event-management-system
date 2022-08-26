@@ -1,12 +1,13 @@
 {% extends "global/base_public.html" %}
 {% block content %}
+{% load i18n %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Submit Lecture</h1>
+    <h1>{% trans "event.lecture.public.create.titel" %}</h1>
     <br/>
     {{ form }}
     <br/>
-    <label class="form-label">I am available at these timeslots</label>
+    <label class="form-label">{% trans "event.lecture.public.create.availability" %}</label>
     {% for timeslot in timeslots %}
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="timeslot_{{timeslot.id}}" name="timeslot_{{timeslot.id}}">
@@ -17,6 +18,6 @@
     {% endfor %}
 
 
-    <input type="submit" value="Submit" class="btn btn-primary">
+    <input type="submit" value="{% trans "event.lecture.public.create.submit" %}" class="btn btn-primary">
 </form>
 {% endblock %}
