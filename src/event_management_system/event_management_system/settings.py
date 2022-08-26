@@ -45,8 +45,8 @@ USE_L10N = True
 USE_TZ = True
 
 LANGUAGES = (
-    ('en', _('English')),
-    ('de', _('German'))
+    ('en', _("language.en")),
+    ('de', _("language.de"))
 )
 
 LOCALE_PATHS = [
@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'emails.apps.EmailsConfig',
     'events.apps.EventsConfig',
     'users.apps.UsersConfig',
+
+    'rosetta',  # Translation
 
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,1 +1,2 @@
 Django>=4.1
+django-rosetta>=0.9.8

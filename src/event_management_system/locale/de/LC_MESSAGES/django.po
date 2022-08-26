@@ -3,10 +3,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-msgid "english"
+msgid "language.en"
 msgstr "Englisch"
 
-msgid "german"
+msgid "language.de"
 msgstr "Deutsch"
 
 # Global
