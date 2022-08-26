@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load navbar_tags %}
+
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'user_overview' %}">{% trans "global.titel" %}</a>
@@ -29,6 +31,15 @@
           {% endif %}
         </ul>
 
+        {% if request_user.is_authenticated %}
+        <span class="navbar-text" style="margin-right: 10px">
+        {{request_user.username}}
+        </span>
+        <a class="nav-link" href="{% url 'user_logout' %}" style="margin-right: 10px">
+        <button class="btn btn-sm btn-outline-danger" type="button">{% trans "global.navbar.logout" %}</button>
+        </a>
+        {% endif %}
+
         {% get_current_language as CURRENT_LANGUAGE %}
         {% get_available_languages as AVAILABLE_LANGUAGES %}
         {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
@@ -39,22 +50,13 @@
           <ul class="dropdown-menu">
           {% for language in languages %}
             <li>
-              <a class="dropdown-item" href="/{{ language.code }}/{{ request.path }}" {% if language.code == CURRENT_LANGUAGE %} class="active"{% endif %}>
+              <a class="dropdown-item" href="/{{ language.code }}{{ request.path|slice:"3:" }}" {% if language.code == CURRENT_LANGUAGE %} class="active"{% endif %}>
                 {{ language.name_local }}
               </a>
             </li>
           {% endfor %}
           </ul>
         </div>
-
-        {% if request_user.is_authenticated %}
-        <span class="navbar-text">
-        {{request_user.username}}
-        </span>
-        <a class="nav-link" href="{% url 'user_logout' %}">
-        <button class="btn btn-sm btn-outline-danger" type="button">{% trans "global.navbar.logout" %}</button>
-        </a>
-        {% endif %}
       </div>
     </div>
   </nav>
