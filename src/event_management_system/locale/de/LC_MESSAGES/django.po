@@ -389,6 +389,147 @@ msgstr "Zusätzliche Informationen (max. 2048 Zeuchen)"
 msgid "forms.lecture.submit.link"
 msgstr "Website zum Vortrag"
 
+msgid "forms.lecture.event"
+msgstr "Veranstaltung"
+
+msgid "forms.lecture.moderator"
+msgstr "Moderator"
+
+msgid "forms.lecture.attendant"
+msgstr "Betreuer"
+
+msgid "forms.lecture.title"
+msgstr "Titel"
+
+msgid "forms.lecture.description"
+msgstr "Beschreibung (max. 2048 Zeichen)"
+
+msgid "forms.lecture.group"
+msgstr "Zielgruppe"
+
+msgid "forms.lecture.qualification"
+msgstr "Ich bin qualifiziert für die Presentation weil..."
+
+msgid "forms.lecture.style"
+msgstr "Bevorzugte Presentationsart"
+
+msgid "forms.lecture.questions.during"
+msgstr "Sollten während der Vorlesungen Fragen gestellt werden?"
+
+msgid "forms.lecture.questions.after"
+msgstr "Sollten Fragen nach den Vorlesungen gestellt werden?"
+
+msgid "forms.lecture.length.min"
+msgstr "Minimale Vorlesungsdauer (in Minuten)"
+
+msgid "forms.lecture.length.max"
+msgstr "Maximale Vorlesungsdauer (in Minuten)"
+
+msgid "forms.lecture.moderator.info"
+msgstr "Zusätzliche Informationen (max. 2048 Zeichen)"
+
+msgid "forms.lecture.link"
+msgstr "Internetseite zum Vortrag"
+
+msgid "forms.lecture.scheduled.room"
+msgstr "Geplant im Raum"
+
+msgid "forms.lecture.scheduled.datetime"
+msgstr "Format der geplanten Zeit: JJJJ-MM-TT ss:mm"
+
+msgid "forms.lecture.scheduled.length"
+msgstr "Geplante Länge (in Minuten)"
+
+msgid "forms.lecture.scheduled.style"
+msgstr "Geplanter Präsentationsstil"
+
+msgid "forms.lecture.private.info"
+msgstr "Weitere private Informationen (Der Moderator kann dies nicht sehen) [max. 2048 Zeichen]"
+
+msgid "forms.lecture.link.material"
+msgstr "Link zum Material"
+
+msgid "forms.lecture.link.recording"
+msgstr "Link zur Aufnahme"
+
+msgid "forms.user.create.role"
+msgstr "Rolle"
+
+msgid "forms.user.create.email"
+msgstr "E-Mail"
+
+msgid "forms.user.create.firstname"
+msgstr "Vorname"
+
+msgid "forms.user.create.lastname"
+msgstr "Nachname"
+
+msgid "forms.user.create.password"
+msgstr "Passwort"
+
+msgid "forms.user.create.website"
+msgstr "Internetseite"
+
+msgid "forms.user.create.company"
+msgstr "Firma"
+
+msgid "forms.user.create.adult"
+msgstr "Über 18"
+
+msgid "forms.user.create.pin"
+msgstr "Privater Pin"
+
+msgid "forms.user.register.email"
+msgstr "E-Mail"
+
+msgid "forms.user.register.firstname"
+msgstr "Vorname"
+
+msgid "forms.user.register.lastname"
+msgstr "Nachname"
+
+msgid "forms.user.register.password"
+msgstr "Passwort"
+
+msgid "forms.user.register.website"
+msgstr "Internetseite"
+
+msgid "forms.user.register.company"
+msgstr "Firma"
+
+msgid "forms.user.register.adult"
+msgstr "Über 18"
+
+msgid "forms.user.edit.role"
+msgstr "Rolle"
+
+msgid "forms.user.edit.email"
+msgstr "E-Mail"
+
+msgid "forms.user.edit.firstname"
+msgstr "Vorname"
+
+msgid "forms.user.edit.lastname"
+msgstr "Nachname"
+
+msgid "forms.user.edit.website"
+msgstr "Internetseite"
+
+msgid "forms.user.edit.company"
+msgstr "Firma"
+
+msgid "forms.user.edit.adult"
+msgstr "Über 18"
+
+msgid "forms.user.edit.pin"
+msgstr "Privater Pin"
+
+msgid "forms.user.login.email"
+msgstr "E-Mail"
+
+msgid "forms.user.login.password"
+msgstr "Passwort"
+
 
 
 
