@@ -178,7 +178,7 @@ def user_edit(request, user_id):
 def user_login(request):
     if request.method == 'POST':
         user = authenticate(username=request.POST['email'], password=request.POST['password'])
-        if user.is_authenticated:
+        if user and user.is_authenticated:
             login(request, user)
             return HttpResponseRedirect("/users/")
         else:

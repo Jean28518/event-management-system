@@ -4,7 +4,7 @@ ROLES = [
     ('CO', 'Contact'),
     ('AT', 'Attendant'),
     ('OR', 'Organisator'),
-    ('AD', 'Admin'),
+    ('AD', 'Administrator'),
     ]
 
 class CreateForm(forms.Form):
