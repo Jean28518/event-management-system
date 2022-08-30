@@ -45,7 +45,7 @@ class LectureSubmitForm(forms.Form):
     questions_after_lecture = forms.BooleanField(label='Should questions after lectures been asked?', widget=forms.CheckboxInput(attrs={'class': "form-check-input"}), required=False)
     minimal_lecture_length = forms.IntegerField(label='Minimal Lecture Length (in minutes)', widget=forms.NumberInput(attrs={'class': "form-control"}),)
     maximal_lecture_length = forms.IntegerField(label='Maximal Lecture Length (in minutes)', widget=forms.NumberInput(attrs={'class': "form-control"}),)
-    additional_information_by_presentator = forms.CharField(label='Additional information (max. 2048 signs)', max_length=2048, widget=forms.Textarea(attrs={'class': "form-control"}),)
+    additional_information_by_presentator = forms.CharField(label='Additional information (max. 2048 signs)', max_length=2048, widget=forms.Textarea(attrs={'class': "form-control"}), required=False)
     related_website = forms.CharField(label='Lecture related Website', max_length=100, widget=forms.URLInput(attrs={'class': "form-control"}), required=False)
 
 

@@ -1,0 +1,10 @@
+{% extends "global/base_public.html" %}
+{% block content %}
+<center>
+    <h1>Submitting Lecture successful!</h1>
+    <br>
+    <br>
+    <a href="{% url 'lecture_public_create' event_id %}"><button type="button" class="btn btn-success">Submit another lecture</button></a>
+</center>
+
+{% endblock %}

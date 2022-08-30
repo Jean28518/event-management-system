@@ -160,8 +160,10 @@ def room_delete(request, room_id):
 
 
 # Lectures:
-@permission_required("events.add_lecture")
+# @permission_required("events.add_lecture")
 def lecture_public_create_entry(request, event_id):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(f"/events/{event_id}/lecture/public/create/?email={request.user.username}")
     if request.method == 'POST':
         user = authenticate(username=request.POST['email'], password=request.POST['password'])
         if user.is_authenticated:
@@ -169,11 +171,11 @@ def lecture_public_create_entry(request, event_id):
             return HttpResponseRedirect(f"/events/{event_id}/lecture/public/create/?email={user.username}")
         else:
             form = LoginForm()
-            return render(request, 'events/lecture/public/create_entry.html', {'request_user': request.user, 'form': form, 'login_failed': True})
+            return render(request, 'events/lecture/public/create_entry.html', {'request_user': request.user, 'form': form, 'login_failed': True, 'event_id': event_id})
     else:
         if request.user is not None:
             form = LoginForm()
-            return render(request, 'events/lecture/public/create_entry.html', {'request_user': request.user, 'form': form, 'login_failed': False})
+            return render(request, 'events/lecture/public/create_entry.html', {'request_user': request.user, 'form': form, 'login_failed': False, 'event_id': event_id})
 
 @permission_required("events.add_lecture")
 def lecture_public_create(request, event_id):
@@ -203,12 +205,15 @@ def lecture_public_create(request, event_id):
                     available_timeslots.append(event_timeslot)
             lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
             lecture.save()
-            return HttpResponseRedirect('/events/room/')
+            return HttpResponseRedirect(f'/events/{event_id}/lecture/public/created_success')
     else:
         form = LectureSubmitForm()
         event = Event.objects.filter(id=event_id)[0]
         return render(request, 'events/lecture/public/create.html',
                       {'request_user': request.user, 'form': form, 'event': event, 'timeslots': _get_timeslots_of_string(event.available_timeslots)})
+
+def lecture_public_created_successfully(request, event_id):
+    return render(request, 'events/lecture/public/create_successful.html', {'event_id': event_id})
 
 
 @permission_required("events.view_lecture")

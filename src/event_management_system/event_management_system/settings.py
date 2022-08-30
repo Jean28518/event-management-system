@@ -148,3 +148,6 @@ EMAIL_PORT = int(os.environ["EMAIL_PORT"])               # <- smtp port [e.g. 58
 EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]          # <- username
 EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]  # <- password
 EMAIL_USE_TLS = True
+
+
+LOGIN_URL = "/users/login"

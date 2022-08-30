@@ -7,21 +7,31 @@ from .models import Profile
 from django.core import serializers
 from django.contrib.auth.models import User, make_password, Group
 from django.contrib.auth import authenticate, login, logout
-from .forms import CreateForm, EditForm, LoginForm, RegisterForm, ROLES
+from .forms import CreateForm, EditForm, LoginForm, RegisterForm, PasswordForgot, ROLES
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 import random
+from django.core.mail import send_mail
 
 
 
 
-def user_reset_password(request, user_id):
-    if Profile.objects.filter(id=user_id).exists():
-        user = User.objects.select_related('profile').filter(id=user_id)[0]      
-        user.profile.reset_password()
-        return HttpResponseRedirect(f"/users/edit/{user_id}?pwreset=success")
 
-    return HttpResponse("User not found.")
+def user_reset_password(request):
+    if request.method == "POST":
+        form = PasswordForgot(request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            if User.objects.filter(email=email).exists():
+                user = User.objects.get(email=email)      
+                password = user.profile.reset_password()
+                send_mail(subject="New Password", from_email="", message=f"Your new password is:\n\n{password}", recipient_list=[user.email])
+            return render(request, "users/reset_password.html", {'mail_sent': True, 'form': form})
+    else:
+        form = PasswordForgot()
+        return render(request, "users/reset_password.html", {'mail_sent': False, 'form': form})
+
+        
 
 
 @permission_required('users.view_profile') 
@@ -55,6 +65,8 @@ def user_create(request):
     if request.method == 'POST':
         form = CreateForm(request.POST)
         if form.is_valid():
+            if User.objects.filter(email=request.POST['email']).exists():
+                return render(request, 'users/create.html', {'request_user': request.user, 'form': form, 'email_already_exists': True})
             user = User()
             user.username = request.POST['email']
             user.email = request.POST['email']
@@ -88,7 +100,7 @@ def user_create(request):
     else:
 
         form = CreateForm(initial = {'private_pin': _get_random_private_pin()})
-        return render(request, 'users/create.html', {'request_user': request.user, 'form': form})
+        return render(request, 'users/create.html', {'request_user': request.user, 'form': form, 'email_already_exists': False})
 
 def _get_random_private_pin():
     # 10000 lowest Pin
@@ -97,10 +109,13 @@ def _get_random_private_pin():
     print(num)
     return num
 
-def user_register(request):
+def user_register(request, next = ''):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
+            print(request.GET)
+            if User.objects.filter(email=request.POST['email']).exists():
+                return render(request, 'users/create_public.html', {'form': form, 'email_already_exists': True})
             user = User()
             user.username = request.POST['email']
             user.email = request.POST['email']
@@ -118,10 +133,15 @@ def user_register(request):
             profile.company = request.POST['company']
             profile.over_18 = (request.POST.get('over_18', "off") == "on")
             profile.save()
-            return HttpResponseRedirect('/lectures/public/create/')
+            login(request, user)
+            if request.GET.get("next", "") != "":
+                return HttpResponseRedirect(request.GET['next'])
+            else: 
+                return HttpResponseRedirect('/')
+            
     else:
         form = RegisterForm()
-        return render(request, 'users/create_public.html', {'form': form})
+        return render(request, 'users/create_public.html', {'form': form, 'email_already_exists': False})
 
 @permission_required('users.change_profile') 
 def user_edit(request, user_id):
@@ -208,7 +228,10 @@ def user_login(request):
         user = authenticate(username=request.POST['email'], password=request.POST['password'])
         if user and user.is_authenticated:
             login(request, user)
-            return HttpResponseRedirect("/users/")
+            if request.GET.get("next", "") != "":
+                return HttpResponseRedirect(request.GET['next'])
+            else: 
+                return HttpResponseRedirect('/')
         else:
             form = LoginForm()
             return render(request, 'users/login.html', {'form': form, 'login_failed': True})

@@ -59,4 +59,4 @@ class Profile(models.Model):
         password_string = "".join(password)
         self.user.set_password(password_string)
         self.user.save()
-        print(f"new password = {self.password}")
+        return password_string
