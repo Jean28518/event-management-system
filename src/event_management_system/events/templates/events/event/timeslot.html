@@ -29,11 +29,11 @@
       <label class="form-label">New timeslot</label>
       <input type="text" class="form-control" id="new_timeslot" name="new_timeslot">
     </div>
+    <a href="{% url 'event_edit' event_id %}"><button type="button" class="btn btn-secondary">Back</button></a>
     <button type="submit" class="btn btn-primary">Add new timeslot</button>
   </form>
 
 
-  <a href="{% url 'event_edit' event_id %}"><button type="button" class="btn btn-secondary">Back</button></a>
 
 
 

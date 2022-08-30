@@ -4,7 +4,16 @@
     {% csrf_token %}
     <h1>Create Lecture</h1>
     <br/>
-    {{ form }}
+    {% comment %} {{ form }} {% endcomment %}
+    {% for field in form %}
+        {% if field.field.label == "Should questions during lectures been asked?" %}
+            {{ field.label_tag }} <br> {{ field }} <br>
+        {% elif field.field.label == "Should questions after lectures been asked?" %}
+            {{ field.label_tag }} <br> {{ field }} <br>
+        {% else %}
+            {{ field.label_tag }} {{ field }}
+        {% endif %}
+    {% endfor %}
     <br/>
     <label class="form-label">Presentator is available at these timeslots</label>
     {% for timeslot in timeslots %}
@@ -15,6 +24,7 @@
             </label>
         </div>
     {% endfor %}
+    <br>
     <a href="{% url 'lecture_overview' event_id %}"><button type="button" class="btn btn-secondary">Cancel</button></a>
     <input type="submit" value="Create" class="btn btn-primary">
 </form>

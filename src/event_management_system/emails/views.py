@@ -2,6 +2,7 @@ from ast import keyword
 import re
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect, Http404, HttpResponseBadRequest
+from users.models import Profile
 
 from events.models import Event, Lecture, Room
 from .forms import EmailForm, EmailSendMassFormLecture, EmailSendMassFormUser
@@ -39,7 +40,12 @@ def email_create(request):
             return HttpResponseRedirect('/emails/')
     else:
         form = EmailForm()
-        keywords = get_all_keywords()
+        keywords = {}
+        keywords['user'] = get_keywords_user()
+        keywords['lecture'] = get_keywords_lecture()
+        keywords['attendant'] = get_keywords_attendant()
+        keywords['event'] = get_keywords_event()
+        keywords['room'] = get_keywords_room()
         return render(request, 'emails/create.html', {'request_user': request.user, 'form': form, 'keywords': keywords})
 
 
@@ -68,7 +74,12 @@ def email_edit(request, email_id):
     else:
         email = Email.objects.get(id=email_id)
         form = EmailForm(initial=email.__dict__)
-        keywords = get_all_keywords()
+        keywords = {}
+        keywords['user'] = get_keywords_user()
+        keywords['lecture'] = get_keywords_lecture()
+        keywords['attendant'] = get_keywords_attendant()
+        keywords['event'] = get_keywords_event()
+        keywords['room'] = get_keywords_room()
         return render(request, 'emails/edit.html', {'request_user': request.user, 'form': form, 'email': email, 'keywords': keywords})
 
 
@@ -232,17 +243,58 @@ def email_send_mass_lecture_deselect_all(request, event_id):
 ## Variable handling (keywords)
 def get_all_keywords():
     return_value = []
+    for string in get_keywords_user():
+        return_value.append(string)
+    for string in get_keywords_lecture():
+        return_value.append(string)
+    for string in get_keywords_attendant():
+        return_value.append(string)
+    for string in get_keywords_event():
+        return_value.append(string)
+    for string in get_keywords_room():
+        return_value.append(string)
+    return return_value
+
+
+def get_keywords_user():
+    return_value = []
     for field in User._meta.fields:
         return_value.append(f"$user.{field.attname}")
+    for field in Profile._meta.fields:
+        return_value.append(f"$user.profile.{field.attname}")
+        
+    return return_value
+
+
+def get_keywords_lecture():
+    return_value = []
     for field in Lecture._meta.fields:
         return_value.append(f"$lecture.{field.attname}")
+    return return_value
+
+
+def get_keywords_attendant():
+    return_value = []
     for field in User._meta.fields:
         return_value.append(f"$attendant.{field.attname}")
+    for field in Profile._meta.fields:
+        return_value.append(f"$attendant.profile.{field.attname}")
+    return return_value
+
+
+def get_keywords_room():
+    return_value = []
     for field in Room._meta.fields:
         return_value.append(f"$room.{field.attname}")
+    return return_value
+
+
+def get_keywords_event():
+    return_value = []
     for field in Event._meta.fields:
         return_value.append(f"$event.{field.attname}")
     return return_value
+
 
 def get_converted_string_user(string, user):
     for keyword in get_all_keywords():
@@ -258,11 +310,17 @@ def get_converted_string_lecture(string, lecture):
 
     for keyword in get_all_keywords():
         if keyword.startswith("$user."):
-            string = string.replace(keyword, str(user.__dict__[keyword.replace("$user.", "")]))
+            if keyword.startswith("$user.profile."):
+                string = string.replace(keyword, str(user.profile.__dict__[keyword.replace("$user.profile.", "")]))
+            else:
+                string = string.replace(keyword, str(user.__dict__[keyword.replace("$user.", "")]))
         if keyword.startswith("$lecture."):
             string = string.replace(keyword, str(lecture.__dict__[keyword.replace("$lecture.", "")]))
         if keyword.startswith("$attendant.") and attendant:
-            string = string.replace(keyword, str(attendant.__dict__[keyword.replace("$attendant.", "")]))
+            if keyword.startswith("$attendant.profile."):
+                string = string.replace(keyword, str(user.profile.__dict__[keyword.replace("$attendant.profile.", "")]))
+            else:
+                string = string.replace(keyword, str(user.__dict__[keyword.replace("$attendant.", "")]))
         if keyword.startswith("$room.") and room:
             string = string.replace(keyword, str(room.__dict__[keyword.replace("$room.", "")]))
         if keyword.startswith("$event."):

@@ -4,7 +4,14 @@
     {% csrf_token %}
     <h1>Create user</h1>
     <br/>
-    {{ form }}
+    {% comment %} {{ form }} {% endcomment %}
+    {% for field in form %}
+        {% if field.field.label == "Over 18" %}
+            {{ field.label_tag }} <br> {{ field }} <br>
+        {% else %}
+            {{ field.label_tag }} {{ field }}
+        {% endif %}
+    {% endfor %}
     <br/>
     <input type="submit" value="Create" class="btn btn-primary">
 </form>

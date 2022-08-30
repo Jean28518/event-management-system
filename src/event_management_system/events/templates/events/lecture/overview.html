@@ -27,7 +27,7 @@
             <tr>
                 <th scope="row">{{lecture.id}}</th>
                 <td>{{lecture.title}}</td>
-                <td>{{lecture.presentator}}</td>
+                <td>{{lecture.presentator.first_name}} {{lecture.presentator.last_name}} {{lecture.presentator.profile.company}}</td>
                 <td><a href="{% url 'lecture_edit' lecture.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                 <td><a href="{% url 'lecture_delete' lecture.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
             </tr>

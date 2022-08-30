@@ -7,9 +7,11 @@ from .models import Profile
 from django.core import serializers
 from django.contrib.auth.models import User, make_password, Group
 from django.contrib.auth import authenticate, login, logout
-from .forms import CreateForm, EditForm, LoginForm, RegisterForm
+from .forms import CreateForm, EditForm, LoginForm, RegisterForm, ROLES
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
+import random
+
 
 
 
@@ -27,7 +29,19 @@ def user_overview(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect("/users/login/")
     print(request.user._meta.fields)
-    return render(request, "users/overview.html", {'request_user': request.user, 'users':User.objects.all().select_related('profile')})
+    users = User.objects.all().select_related('profile')
+    for user in users:
+        user.user_role = _get_user_role(user)
+        if user.user_role == "CO":
+            user.user_role = ROLES[0][1]
+        if user.user_role == "AT":
+            user.user_role = ROLES[1][1]
+        if user.user_role == "OR":
+            user.user_role = ROLES[2][1]
+        if user.user_role == "AD":
+            user.user_role = ROLES[3][1]
+        print(_get_user_role(user))
+    return render(request, "users/overview.html", {'request_user': request.user, 'users': users})
 
 @permission_required('users.delete_profile') 
 def user_delete(request, user_id):
@@ -72,8 +86,16 @@ def user_create(request):
             profile.save()
             return HttpResponseRedirect('/users/')
     else:
-        form = CreateForm()
+
+        form = CreateForm(initial = {'private_pin': _get_random_private_pin()})
         return render(request, 'users/create.html', {'request_user': request.user, 'form': form})
+
+def _get_random_private_pin():
+    # 10000 lowest Pin
+    # 99999 highest Pin
+    num = int((random.random()*89999) + 10000)
+    print(num)
+    return num
 
 def user_register(request):
     if request.method == 'POST':
@@ -145,15 +167,7 @@ def user_edit(request, user_id):
         return HttpResponseServerError()
     else:
         user = User.objects.select_related('profile').filter(id=user_id)[0]
-        user_role = "CO"
-        if user.groups.filter(name='Contact').exists():
-            user_role = "CO"
-        elif user.groups.filter(name='Attendant').exists():
-            user_role = "AT"
-        elif user.groups.filter(name='Organisator').exists():
-            user_role = "OR"
-        elif user.groups.filter(name='Administrator').exists():
-            user_role = "AD"
+        
 
         dict = {
             'email': user.email,
@@ -164,16 +178,30 @@ def user_edit(request, user_id):
             'company': user.profile.company,
             'over_18': user.profile.over_18 == True,
             'private_pin': user.profile.private_pin,
-            'user_role': user_role
-
+            'user_role': _get_user_role(user)
         }
 
         pwreset = ""
         if 'pwreset' in request.GET:
-            pwreset = request.GET['pwreset']
+            pwreset = request.GET['pwreset']#
+
+        
 
         form = EditForm(initial=dict)
+        print(form.__dict__['fields']['over_18'].__dict__)
         return render(request, 'users/edit.html', {'request_user': request.user, 'form': form, 'pwreset': pwreset, 'user': user})
+
+def _get_user_role(user):
+    user_role = "CO"
+    if user.groups.filter(name='Contact').exists():
+        user_role = "CO"
+    elif user.groups.filter(name='Attendant').exists():
+        user_role = "AT"
+    elif user.groups.filter(name='Organisator').exists():
+        user_role = "OR"
+    elif user.groups.filter(name='Administrator').exists():
+        user_role = "AD"
+    return user_role
 
 def user_login(request):
     if request.method == 'POST':
