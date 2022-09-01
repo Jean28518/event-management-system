@@ -52,7 +52,7 @@ class LectureSubmitForm(forms.Form):
 # For edit and create:
 class LectureForm(forms.Form):
     event = forms.ModelChoiceField(label="Event", queryset=Event.objects.all(), widget=forms.Select(attrs={'class': "form-select"}))
-    presentator = forms.ModelChoiceField(label="Presentator", queryset=User.objects.all(), widget=forms.Select(attrs={'class': "form-select"}), required=False, blank=False)
+    presentator = forms.ModelChoiceField(label="Presentator", queryset=User.objects.all(), widget=forms.Select(attrs={'class': "form-select"}), blank=False)
     attendant = forms.ModelChoiceField(label="Attendant", queryset=User.objects.filter(groups__name='Attendant'), widget=forms.Select(attrs={'class': "form-select"}), required=False, blank=False)
     title = forms.CharField(label='Title', max_length=100, widget=forms.TextInput(attrs={'class': "form-control"}),)
     description = forms.CharField(label='Description (max. 2048 signs)', max_length=2048, widget=forms.Textarea(attrs={'class': "form-control"}),)
@@ -67,7 +67,7 @@ class LectureForm(forms.Form):
     related_website = forms.CharField(label='Lecture related Website', max_length=100, widget=forms.URLInput(attrs={'class': "form-control"}), required=False)
     scheduled_in_room = forms.ModelChoiceField(label="Scheduled in Room", queryset=Room.objects.all(), widget=forms.Select(attrs={'class': "form-select"}), required=False)
     scheduled_presentation_time = forms.DateTimeField(label="Scheduled Time Format: YYYY-MM-DD HH:MM", required=False, widget=forms.DateTimeInput(attrs={'class': "form-select"}))
-    scheduled_presentation_length = forms.IntegerField(label='Scheduled Length (in minutes)', widget=forms.NumberInput(attrs={'class': "form-control"}),)
+    scheduled_presentation_length = forms.IntegerField(label='Scheduled Length (in minutes)', widget=forms.NumberInput(attrs={'class': "form-control"}), required=False)
     scheduled_presentation_style = forms.CharField(label='Scheduled presentation style', widget=forms.Select(choices=PRESENTATION_STYLE, attrs={'class': "form-select"}), required=False)
     further_information = forms.CharField(label='Further private information (max. 2048 signs) (Presentator can\'t see this)', max_length=2048, widget=forms.Textarea(attrs={'class': "form-control"}), required=False)
     link_to_material = forms.CharField(label='Link to Material', max_length=100, widget=forms.URLInput(attrs={'class': "form-control"}), required=False)

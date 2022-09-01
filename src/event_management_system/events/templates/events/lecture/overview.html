@@ -3,7 +3,14 @@
 <h1>Lectures from {{event.name}}</h1>
 <br>
 <a href="{% url 'lecture_create' event.id %}"><button type="button" class="btn btn-success">Create</button></a>
-<a href="{% url 'email_send_mass_lecture' event.id%}"><button type="button" class="btn btn-warning">Mass Mail Lectures</button></a>
+
+{% if lectures_empty %}
+  <button type="button" class="btn btn-warning" disabled>Mass Mail Lectures</button>
+{% else %}
+  <a href="{% url 'email_send_mass_lecture' event.id%}"><button type="button" class="btn btn-warning">Mass Mail Lectures</button></a>
+{% endif %}
+
+
 {% if event.call_for_papers == False %}
   <a href="{% url 'enable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">Call For Papers: Disabled</button></a>
   {% else %}

@@ -222,8 +222,8 @@ def lecture_overview(request, event_id):
         return HttpResponseRedirect("/users/login/")
     event = Event.objects.filter(id=event_id)[0]
     lectures = Lecture.objects.filter(event=event).all()
-    
-    return render(request, "events/lecture/overview.html", {'request_user': request.user, 'lectures': lectures, 'event': event})
+    lectures_empty = Lecture.objects.filter(event=event).count() == 0
+    return render(request, "events/lecture/overview.html", {'request_user': request.user, 'lectures': lectures, 'event': event, 'lectures_empty': lectures_empty})
 
 
 @permission_required("events.add_lecture")
@@ -299,7 +299,8 @@ def _save_lecture_from_full_edit(request, lecture):
     lecture.related_website = request.POST['related_website']
     if request.POST['scheduled_presentation_time'] != "":
         lecture.scheduled_presentation_time = request.POST['scheduled_presentation_time']
-    lecture.scheduled_presentation_length = int(request.POST['scheduled_presentation_length'])
+    if request.POST['scheduled_presentation_length'] != "":
+        lecture.scheduled_presentation_length = int(request.POST['scheduled_presentation_length'])
     lecture.scheduled_presentation_style = request.POST['scheduled_presentation_style']
     lecture.further_information = request.POST['further_information']
     lecture.link_to_material = request.POST['link_to_material']
