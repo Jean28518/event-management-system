@@ -7,7 +7,7 @@ from .models import Profile
 from django.core import serializers
 from django.contrib.auth.models import User, make_password, Group
 from django.contrib.auth import authenticate, login, logout
-from .forms import CreateForm, EditForm, LoginForm, RegisterForm, PasswordForgot, ROLES
+from .forms import CreateForm, EditForm, LoginForm, RegisterForm, PasswordForgot, PasswordChange, ROLES
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 import random
@@ -30,6 +30,72 @@ def user_reset_password(request):
     else:
         form = PasswordForgot()
         return render(request, "users/reset_password.html", {'mail_sent': False, 'form': form})
+
+@login_required
+def user_change_password(request):
+    if request.method == "POST":
+        form = PasswordChange(request.POST)
+        if form.is_valid():
+            user = request.user
+            authenticated_user = authenticate(username=user.username, password=request.POST['old_password'])
+            if authenticated_user and authenticated_user.is_authenticated:
+                if len(request.POST['new_password']) >= 8:
+                    if request.POST['new_password'] == request.POST['new_password_repeated']:
+                        user.set_password(request.POST['new_password'])
+                        return render(request, "users/change_password.html", 
+                            {
+                                'request_user': request.user,
+                                'success': True, 
+                                'wrong_password': False, 
+                                'passwords_differ': False, 
+                                'password_to_short': False, 
+                                'form': PasswordChange()
+                            })
+                    else:
+                        # Passwords differ
+                        return render(request, "users/change_password.html", 
+                                {
+                                    'request_user': request.user,
+                                    'success': False, 
+                                    'wrong_password': False, 
+                                    'passwords_differ': True, 
+                                    'password_to_short': False, 
+                                    'form': form
+                                })
+                else:
+                    ## Password length under 8
+                    return render(request, "users/change_password.html", 
+                            {
+                                'request_user': request.user,
+                                'success': False, 
+                                'wrong_password': False, 
+                                'passwords_differ': False, 
+                                'password_to_short': True, 
+                                'form': form
+                            })
+            else:
+                return render(request, "users/change_password.html", 
+                            {
+                                'request_user': request.user,
+                                'success': False, 
+                                'wrong_password': True, 
+                                'passwords_differ': False, 
+                                'password_to_short': False, 
+                                'form': form
+                            })
+
+           
+    else:
+        form = PasswordChange()
+        return render(request, "users/change_password.html", 
+                            {
+                                'request_user': request.user,
+                                'success': False, 
+                                'wrong_password': False, 
+                                'passwords_differ': False, 
+                                'password_to_short': False, 
+                                'form': form
+                            })
 
         
 
@@ -208,8 +274,30 @@ def user_edit(request, user_id):
         
 
         form = EditForm(initial=dict)
-        print(form.__dict__['fields']['over_18'].__dict__)
         return render(request, 'users/edit.html', {'request_user': request.user, 'form': form, 'pwreset': pwreset, 'user': user})
+
+
+@permission_required('users.view_profile') 
+def user_view(request, user_id):
+    user = User.objects.select_related('profile').filter(id=user_id)[0]
+    
+
+    dict = {
+        'email': user.email,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'password': user.password,
+        'website': user.profile.website,
+        'company': user.profile.company,
+        'over_18': user.profile.over_18 == True,
+        'private_pin': user.profile.private_pin,
+        'user_role': _get_user_role(user)
+    }  
+
+    form = EditForm(initial=dict)
+    for field in form.fields:
+        form.fields[field].disabled = True
+    return render(request, 'users/view.html', {'request_user': request.user, 'form': form, 'user': user})
 
 def _get_user_role(user):
     user_role = "CO"

@@ -29,7 +29,10 @@ organisator_permissions = [
 attendant_permissions = [
         "view_lecture",
         "view_event",
-        "view_profile"
+        "view_profile",
+        "add_lecture",
+        "change_lecture",
+        "change_profile",
         ]
 
 contact_permissions = [

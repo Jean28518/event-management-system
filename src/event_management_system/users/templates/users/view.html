@@ -1,0 +1,18 @@
+{% extends "global/base.html" %}
+{% block content %}
+<form action="" method="">
+    {% csrf_token %}
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <br/>
+    {% comment %} {{ form }} {% endcomment %}
+    {% for field in form %}
+        {% if field.field.label == "Over 18" %}
+            {{ field.label_tag }} <br> {{ field }} <br>
+        {% else %}
+            {{ field.label_tag }} {{ field }}
+        {% endif %}
+    {% endfor %}
+    <br/>
+    <a href="{% url 'user_overview' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+</form>
+{% endblock %}

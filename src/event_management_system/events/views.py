@@ -184,7 +184,7 @@ def lecture_public_create(request, event_id):
         form = LectureSubmitForm(request.POST)
         if form.is_valid():
             lecture = Lecture()
-            lecture.presentator = User.objects.filter(email=request.GET['email'])[0]
+            lecture.presentator = request.user
             lecture.event = event
             lecture.title = request.POST['title']
             lecture.description = request.POST['description']
@@ -223,7 +223,15 @@ def lecture_overview(request, event_id):
     event = Event.objects.filter(id=event_id)[0]
     lectures = Lecture.objects.filter(event=event).all()
     lectures_empty = Lecture.objects.filter(event=event).count() == 0
-    return render(request, "events/lecture/overview.html", {'request_user': request.user, 'lectures': lectures, 'event': event, 'lectures_empty': lectures_empty})
+    no_timeslots_defined = False
+    if len(_get_timeslots_of_string(event.available_timeslots)) == 0:
+        no_timeslots_defined = True
+    return render(request, "events/lecture/overview.html", {
+        'request_user': request.user, 
+        'lectures': lectures, 
+        'event': event, 
+        'lectures_empty': lectures_empty, 
+        'no_timeslots_defined': no_timeslots_defined})
 
 
 @permission_required("events.add_lecture")
@@ -269,6 +277,30 @@ def lecture_edit(request, lecture_id):
         return render(request, 'events/lecture/edit.html',
                       {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
 
+
+@permission_required("events.change_lecture")
+def lecture_view(request, lecture_id):
+    lecture = Lecture.objects.filter(id=lecture_id).select_related('event').select_related('presentator').select_related('attendant').select_related('scheduled_in_room')[0]
+    data = lecture.__dict__
+    data['event'] = lecture.event.id
+    data['presentator'] = lecture.presentator.id
+    if lecture.attendant:
+        data['attendant'] = lecture.attendant.id
+    if lecture.scheduled_in_room:
+        data['scheduled_in_room'] = lecture.scheduled_in_room.id
+    form = LectureForm(data=data)
+    print(lecture.available_timeslots)
+    all_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
+    available_timeslots = _get_timeslots_of_string(lecture.available_timeslots)
+    for timeslot in available_timeslots: 
+        for all_timeslot in all_timeslots:
+            if all_timeslot.text == timeslot.text:     
+                all_timeslot.checked = True
+    # Disable Form Field because of view
+    for field in form.fields:
+        form.fields[field].disabled = True
+    return render(request, 'events/lecture/view.html',
+                    {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
 
 @permission_required("events.change_lecture")
 def _save_lecture_from_full_edit(request, lecture):

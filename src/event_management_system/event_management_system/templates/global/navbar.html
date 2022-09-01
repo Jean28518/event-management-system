@@ -26,21 +26,20 @@
               <a class="nav-link active" aria-current="page" href="{% url 'email_overview' %}">Emails</a>
             </li>
           {% endif %}
-
-
-          
-
-
-         
         </ul>
-          <span class="navbar-text">
-            {{request_user.username}} 
-          </span>
+
           {% if request_user.is_authenticated %}
-          <a class="nav-link" href="{% url 'user_logout' %}">
-            <button class="btn btn-sm btn-outline-danger" type="button">Logout</button>
-          </a>
-          {% endif %}
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{request_user.username}}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'user_change_password' %}">Change Password</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'user_logout' %}">Logout</a></li>
+              {% endif %}
+            </ul>
+          </div>
 
 
       </div>

@@ -2,6 +2,11 @@
 {% block content %}
 <h1>Lectures from {{event.name}}</h1>
 <br>
+{% if no_timeslots_defined %}
+  <div class="alert alert-warning" role="alert">
+      You didn't define any big lecture timeslots for this event yet. You can do it <a href="{% url 'event_timeslot' event.id %}">here</a>.
+  </div>
+{% endif %}
 <a href="{% url 'lecture_create' event.id %}"><button type="button" class="btn btn-success">Create</button></a>
 
 {% if lectures_empty %}
@@ -24,7 +29,8 @@
       <tr>
         <th scope="col" style="width:10%">#</th>
         <th scope="col" style="width:45%">Lecture</th>
-        <th scope="col" style="width:35%">Presentator</th>
+        <th scope="col" style="width:30%">Presentator</th>
+        <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
       </tr>
@@ -35,6 +41,7 @@
                 <th scope="row">{{lecture.id}}</th>
                 <td>{{lecture.title}}</td>
                 <td>{{lecture.presentator.first_name}} {{lecture.presentator.last_name}} {{lecture.presentator.profile.company}}</td>
+                <td><a href="{% url 'lecture_view' lecture.id%}"><button type="button" class="btn btn-info">View</button></a></td>
                 <td><a href="{% url 'lecture_edit' lecture.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                 <td><a href="{% url 'lecture_delete' lecture.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
             </tr>

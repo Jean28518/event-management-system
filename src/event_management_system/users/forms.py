@@ -44,3 +44,9 @@ class LoginForm(forms.Form):
     
 class PasswordForgot(forms.Form):
     email = forms.CharField(label='Email', max_length=100, widget=forms.EmailInput(attrs={'class': "form-control"}))
+
+class PasswordChange(forms.Form):
+    old_password = forms.CharField(label='Old Password', max_length=100, widget=forms.PasswordInput(attrs={'class': "form-control"}),)
+    new_password = forms.CharField(label='New Password', max_length=100, widget=forms.PasswordInput(attrs={'class': "form-control"}),)
+    new_password_repeated = forms.CharField(label='New Password (repeated)', max_length=100, widget=forms.PasswordInput(attrs={'class': "form-control"}),)
+

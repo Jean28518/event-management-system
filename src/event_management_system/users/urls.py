@@ -8,9 +8,11 @@ urlpatterns = [
     path('create/', views.user_create, name='user_create'),
     path('register/', views.user_register, name='user_register'),
     path('edit/<int:user_id>', views.user_edit, name='user_edit'),
+    path('view/<int:user_id>/', views.user_view, name='user_view'),
     path('login/', views.user_login, name='user_login'),
     path('logout/', views.user_logout, name='user_logout'),
     path('reset_password/', views.user_reset_password, name='user_reset_password'),
+    path('change_password/', views.user_change_password, name='user_change_password'),
 
     
 ]

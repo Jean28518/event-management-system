@@ -29,6 +29,7 @@ urlpatterns = [
     path('<int:event_id>/lecture/overview/', views.lecture_overview, name = 'lecture_overview'),
     path('<int:event_id>/lecture/create/', views.lecture_create, name = 'lecture_create'),
     path('lecture/edit/<int:lecture_id>/', views.lecture_edit, name = 'lecture_edit'),
+    path('lecture/view/<int:lecture_id>/', views.lecture_view, name = 'lecture_view'),
     path('lecture/delete/<int:lecture_id>/', views.lecture_delete, name = 'lecture_delete'),
 
 
