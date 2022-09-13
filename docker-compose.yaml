@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  django_gunicorn:
+    volumes:
+      - static:/static
+    env_file:
+      - .env
+    build: 
+      context: .
+
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - static:/static
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - django_gunicorn
+
+volumes:
+  static:
+  caddy_data:
+  caddy_config:

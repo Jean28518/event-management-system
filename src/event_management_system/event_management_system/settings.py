@@ -20,14 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x2^(vck@*n!r&3)a=t(i1p=w6pcx7h(yj4-akh&m^)1#%i*8+g'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 CSRF_COOKIE_SECURE = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -122,6 +122,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+STATIC_ROOT = '/static/'
 STATIC_URL = 'static/'
 
 # Default primary key field type
@@ -129,24 +130,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# This section is for email host configuration.
-# >> Set environment variable:
-# On Linux:
-# EMAIL_HOST="<EMAIL_HOST>"
-# EMAIL_PORT="<EMAIL_PORT>"
-# EMAIL_HOST_USER="<EMAIL_HOST_USER>"
-# EMAIL_HOST_PASSWORD="<EMAIL_HOST_PASSWORD>"
-# On Windows:
-# set EMAIL_HOST="<EMAIL_HOST>"
-# set EMAIL_PORT="<EMAIL_PORT>"
-# set EMAIL_HOST_USER="<EMAIL_HOST_USER>"
-# set EMAIL_HOST_PASSWORD="<EMAIL_HOST_PASSWORD>"
-
 # Email Settings
-EMAIL_HOST = os.environ["EMAIL_HOST"]                    # <- host name [e.g. smtp.gmail.com for gmail]
-EMAIL_PORT = int(os.environ["EMAIL_PORT"])               # <- smtp port [e.g. 587]
-EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]          # <- username
-EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]  # <- password
+EMAIL_HOST = os.getenv("EMAIL_HOST")                    # <- host name [e.g. smtp.gmail.com for gmail]
+EMAIL_PORT = int(os.getenv("EMAIL_PORT"))               # <- smtp port [e.g. 587]
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")          # <- username
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # <- password
 EMAIL_USE_TLS = True
 
 

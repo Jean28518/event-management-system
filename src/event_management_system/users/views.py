@@ -190,8 +190,13 @@ def user_register(request, next = ''):
             user.password = make_password(request.POST['password'])
             user.save()
 
-            # Add user to group Contact
-            group = Group.objects.get(name='Contact')
+            # Add user to group Contact. Add first user to Group Administrator
+            if User.objects.count() == 1:
+                group = Group.objects.get(name='Administrator')
+                user.is_staff = True
+                user.save()
+            else:
+                group = Group.objects.get(name='Contact')
             group.user_set.add(user)
           
             profile = user.profile
