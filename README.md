@@ -12,16 +12,16 @@ nano .env
 Insert the following content and change it to your needs:
 
 ```bash
-DJANGO_SETTINGS_MODULE="event_management_system.settings"
+DJANGO_SETTINGS_MODULE=event_management_system.settings
 
 # Change these for production use!
-SECRET_KEY="k=x2nhy8#(&lt1&$*g%382fpa8kymrl7_$rvk=d=eg_moof=8z"
+SECRET_KEY=k=x2nhy8#(&lt1&$*g%382fpa8kymrl7_$rvk=d=eg_moof=8z
 DEBUG=True
 
-EMAIL_HOST="smtp.gmail.com"                         
-EMAIL_PORT="587"                                   
-EMAIL_HOST_USER="example@gmail.com"                 
-EMAIL_HOST_PASSWORD="xhdsajshds"   
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_HOST_USER=example@gmail.com
+EMAIL_HOST_PASSWORD=xhdsajshds
 EMAIL_USE_TLS=True
 ```
 
