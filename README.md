@@ -23,10 +23,6 @@ EMAIL_PORT="587"
 EMAIL_HOST_USER="example@gmail.com"                 
 EMAIL_HOST_PASSWORD="xhdsajshds"   
 EMAIL_USE_TLS=True
-
-# Initial Data
-FIRET_USER_MAIL="user@example.com"
-FIRST_USER_PASSWORD="Oomahohj8ootoosiph3i"
 ```
 
 If you want to activate https://, change http:// to your server domain (e.g. www.example.com) in ``src/caddy/Caddyfile``.
