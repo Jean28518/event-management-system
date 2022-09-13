@@ -16,6 +16,8 @@ DJANGO_SETTINGS_MODULE=event_management_system.settings
 
 # Change these for production use!
 SECRET_KEY=k=x2nhy8#(&lt1&$*g%382fpa8kymrl7_$rvk=d=eg_moof=8z
+
+# Comment this line out to deactivate Debug
 DEBUG=True
 
 EMAIL_HOST=smtp.gmail.com
