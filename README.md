@@ -56,6 +56,7 @@ sudo pacman -S tk
 ## Setup
 This command will create the database with the given models.
 ```bash
+mkdir src/event_management_system/db
 python3 src/event_management_system/manage.py migrate
 ```
 Run this command if you want to create the admin user of the local server.

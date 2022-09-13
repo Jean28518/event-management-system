@@ -4,6 +4,7 @@ services:
   django_gunicorn:
     volumes:
       - static:/static
+      - sqlite-data:/app/db
     env_file:
       - .env
     build: 
@@ -27,3 +28,4 @@ volumes:
   static:
   caddy_data:
   caddy_config:
+  sqlite-data:
