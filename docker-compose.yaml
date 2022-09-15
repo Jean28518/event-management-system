@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   django_gunicorn:
+    restart: unless-stopped
     volumes:
       - static:/static
       - sqlite-data:/app/db
