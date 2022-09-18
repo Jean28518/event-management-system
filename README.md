@@ -20,6 +20,9 @@ SECRET_KEY=k=x2nhy8#(&lt1&$*g%382fpa8kymrl7_$rvk=d=eg_moof=8z
 # Comment this line out to deactivate Debug
 DEBUG=True
 
+# To deactivate csrf protection uncomment this line:
+#DISABLE_CSRF_PROTECTION=True
+
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_HOST_USER=example@gmail.com

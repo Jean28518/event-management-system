@@ -55,6 +55,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+if os.getenv("DISABLE_CSRF_PROTECTION"):
+    MIDDLEWARE.remove('django.middleware.csrf.CsrfViewMiddleware')
+
 ROOT_URLCONF = 'event_management_system.urls'
 
 MASTER_BASE_DIR = os.path.dirname(__file__)
