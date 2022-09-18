@@ -8,6 +8,7 @@ RUN pip install -r requirements.txt
 COPY ./src/event_management_system /app
 
 WORKDIR /app
+VOLUME sqlite-data:/app/db
 
 COPY ./entrypoint.sh /
 ENTRYPOINT [ "sh", "/entrypoint.sh" ]
