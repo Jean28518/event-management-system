@@ -39,7 +39,7 @@ class LectureSubmitForm(forms.Form):
     title = forms.CharField(label='Title', max_length=100, widget=forms.TextInput(attrs={'class': "form-control"}),)
     description = forms.CharField(label='Description (max. 2048 signs)', max_length=2048, widget=forms.Textarea(attrs={'class': "form-control"}),)
     target_group = forms.CharField(label='Target Group', widget=forms.Select(choices=TARGET_GROUP, attrs={'class': "form-control"}))
-    qualification_for_lecture = forms.CharField(label='I am qualified for the presentatien beacause...', max_length=100, widget=forms.TextInput(attrs={'class': "form-control"}),)
+    qualification_for_lecture = forms.CharField(label='I am qualified for the presentation because...', max_length=100, widget=forms.TextInput(attrs={'class': "form-control"}),)
     preferred_presentation_style = forms.CharField(label='Preferred presentation style', widget=forms.Select(choices=PRESENTATION_STYLE, attrs={'class': "form-select"}))
     questions_during_lecture = forms.BooleanField(label='Should questions during lectures been asked?', widget=forms.CheckboxInput(attrs={'class': "form-check-input"}), required=False)
     questions_after_lecture = forms.BooleanField(label='Should questions after lectures been asked?', widget=forms.CheckboxInput(attrs={'class': "form-check-input"}), required=False)
