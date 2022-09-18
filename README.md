@@ -37,6 +37,13 @@ sudo docker-compose up -d --build
 sudo docker-compose up --build # For debugging, if something goes wrong.
 ```
 
+## Update running production instance:
+Because the sql data is stored in a separate docker volume we can easily rebuild our docker image. A stop of the containers is not needed.
+```
+git pull
+sudo docker-compose up -d --build
+```
+
 # Run manually (development only)
 
 
