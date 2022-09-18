@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect, Http404, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect, Http404, HttpResponseBadRequest, HttpResponseNotAllowed, HttpResponseNotFound
 from .models import Event, Lecture, Room
 from .forms import RoomFrom, EventForm, LectureForm, LectureSubmitForm, LoginForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
+from django.shortcuts import redirect
 
 
 @permission_required("events.view_event")
@@ -278,7 +279,7 @@ def lecture_edit(request, lecture_id):
                       {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
 
 
-@permission_required("events.change_lecture")
+@permission_required("events.view_lecture")
 def lecture_view(request, lecture_id):
     lecture = Lecture.objects.filter(id=lecture_id).select_related('event').select_related('presentator').select_related('attendant').select_related('scheduled_in_room')[0]
     data = lecture.__dict__
@@ -288,7 +289,7 @@ def lecture_view(request, lecture_id):
         data['attendant'] = lecture.attendant.id
     if lecture.scheduled_in_room:
         data['scheduled_in_room'] = lecture.scheduled_in_room.id
-    form = LectureForm(data=data)
+    form = LectureForm(initial=data)
     print(lecture.available_timeslots)
     all_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
     available_timeslots = _get_timeslots_of_string(lecture.available_timeslots)
@@ -302,9 +303,77 @@ def lecture_view(request, lecture_id):
     return render(request, 'events/lecture/view.html',
                     {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
 
+def lecture_contact_overview(request):
+    lectures = Lecture.objects.filter(presentator=request.user.id)
+    return render(request, 'events/lecture/contact/overview.html', {'request_user': request.user, 'lectures': lectures})
+
+def lecture_contact_create_entry(request):
+    events = Event.objects.all()
+    return render(request, 'events/lecture/contact/select_event_for_submit.html', {'request_user': request.user, 'events': events})
+
+
+def lecture_contact_edit(request, lecture_id):
+    if not Lecture.objects.filter(id=lecture_id).exists():
+        return HttpResponseNotFound()
+    lecture = Lecture.objects.get(id=lecture_id)
+    user = request.user
+    if not _does_contact_user_has_access_to_lecture(user, lecture):
+        return HttpResponseNotAllowed()
+    if request.method == 'POST':
+        form = LectureSubmitForm(request.POST)
+        if form.is_valid():
+            _save_lecture_from_presentator_edit(request, lecture)
+            return redirect('lecture_contact_overview')
+    else:
+        data = lecture.__dict__
+        form = LectureSubmitForm(data=data)
+        all_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
+        available_timeslots = _get_timeslots_of_string(lecture.available_timeslots)
+        for timeslot in available_timeslots: 
+            for all_timeslot in all_timeslots:
+                if all_timeslot.text == timeslot.text:     
+                    all_timeslot.checked = True
+        return render(request, 'events/lecture/contact/edit.html',
+                      {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
+
+# If This is a contact user, which has access
+def _does_contact_user_has_access_to_lecture(user, lecture):
+    if not user.groups.filter(name='Contact').exists() or lecture.presentator != user:
+        return False
+    return True
+
+
+def lecture_contact_view(request, lecture_id):
+    if not Lecture.objects.filter(id=lecture_id).exists():
+        return HttpResponseNotFound()
+    lecture = Lecture.objects.get(id=lecture_id)
+    user = request.user
+    if not _does_contact_user_has_access_to_lecture(user, lecture):
+        return HttpResponseNotAllowed()
+    lecture = Lecture.objects.filter(id=lecture_id)[0]
+    data = lecture.__dict__
+    data['event'] = lecture.event.id
+    data['presentator'] = lecture.presentator.id
+    if lecture.attendant:
+        data['attendant'] = lecture.attendant.id
+    if lecture.scheduled_in_room:
+        data['scheduled_in_room'] = lecture.scheduled_in_room.id
+    form = LectureSubmitForm(initial=data)
+    print(lecture.available_timeslots)
+    all_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
+    available_timeslots = _get_timeslots_of_string(lecture.available_timeslots)
+    for timeslot in available_timeslots: 
+        for all_timeslot in all_timeslots:
+            if all_timeslot.text == timeslot.text:     
+                all_timeslot.checked = True
+    # Disable Form Field because of view
+    for field in form.fields:
+        form.fields[field].disabled = True
+    return render(request, 'events/lecture/contact/view.html',
+                    {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
+
 @permission_required("events.change_lecture")
 def _save_lecture_from_full_edit(request, lecture):
-    print(request.POST)
     if request.POST['presentator'] != "":
         lecture.presentator = User.objects.filter(id=request.POST['presentator'])[0]
     if request.POST['event'] != "":
@@ -346,14 +415,42 @@ def _save_lecture_from_full_edit(request, lecture):
     lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
     lecture.save()
 
+def _save_lecture_from_presentator_edit(request, lecture):
+    lecture.title = request.POST['title']
+    lecture.description = request.POST['description']
+    lecture.target_group = request.POST['target_group']
+    lecture.qualification_for_lecture = request.POST['qualification_for_lecture']
+    lecture.preferred_presentation_style = request.POST['preferred_presentation_style']
+    lecture.questions_during_lecture = (request.POST.get('questions_during_lecture', "off") == "on")
+    lecture.questions_after_lecture = (request.POST.get('questions_after_lecture', "off") == "on")
+    lecture.minimal_lecture_length = int(request.POST['minimal_lecture_length'])
+    lecture.maximal_lecture_length = int(request.POST['maximal_lecture_length'])
+    lecture.additional_information_by_presentator = request.POST['additional_information_by_presentator']
+    lecture.related_website = request.POST['related_website']
 
-@permission_required("events.delete_lecture")
+    event_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
+    available_timeslots = []
+    for event_timeslot in event_timeslots:
+        if (request.POST.get(f"timeslot_{event_timeslot.id}", "off") == ""):
+            available_timeslots.append(event_timeslot)
+    lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
+    lecture.save()
+
+
 def lecture_delete(request, lecture_id):
+    if not Lecture.objects.filter(id=lecture_id).exists():
+        return HttpResponseNotFound()
+    lecture = Lecture.objects.get(id=lecture_id)
+    user = request.user
+    if not _does_contact_user_has_access_to_lecture(user, lecture) and not user.has_perm("events.delete_lecture"):
+        return HttpResponseNotAllowed("")
     event_id = 0
     if Lecture.objects.filter(id=lecture_id).exists(): 
         lecture = Lecture.objects.get(id=lecture_id)
         event_id = lecture.event.id
         lecture.delete()
+    if _does_contact_user_has_access_to_lecture(user, lecture):
+        return redirect("lecture_contact_overview")
     return HttpResponseRedirect(f"/events/{event_id}/lecture/overview/")
 
 

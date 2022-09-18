@@ -32,6 +32,12 @@ urlpatterns = [
     path('lecture/view/<int:lecture_id>/', views.lecture_view, name = 'lecture_view'),
     path('lecture/delete/<int:lecture_id>/', views.lecture_delete, name = 'lecture_delete'),
 
+    # Lectures (contact specific)
+    path('lecture/contact/overview', views.lecture_contact_overview, name = 'lecture_contact_overview'),
+    path('lecture/contact/create_entry', views.lecture_contact_create_entry, name = 'lecture_contact_create_entry'),
+    path('lecture/contact/edit/<int:lecture_id>', views.lecture_contact_edit, name = 'lecture_contact_edit'),
+    path('lecture/contact/view/<int:lecture_id>', views.lecture_contact_view, name = 'lecture_contact_view'),
+
 
 
 ]

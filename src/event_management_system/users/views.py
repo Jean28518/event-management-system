@@ -13,10 +13,6 @@ from django.contrib.auth.decorators import permission_required
 import random
 from django.core.mail import send_mail
 
-
-
-
-
 def user_reset_password(request):
     if request.method == "POST":
         form = PasswordForgot(request.POST)

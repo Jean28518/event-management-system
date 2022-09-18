@@ -1,0 +1,30 @@
+{% extends "global/base.html" %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>Edit Lecture</h1>
+    <br/>
+    {% for field in form %}
+        {% if field.field.label == "Should questions during lectures been asked?" %}
+            {{ field.label_tag }} <br> {{ field }} <br>
+        {% elif field.field.label == "Should questions after lectures been asked?" %}
+            {{ field.label_tag }} <br> {{ field }} <br>
+        {% else %}
+            {{ field.label_tag }} {{ field }}
+        {% endif %}
+    {% endfor %}
+    <br/>
+    <label class="form-label">I am available at these timeslots</label>
+    {% for timeslot in timeslots %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="timeslot_{{timeslot.id}}" name="timeslot_{{timeslot.id}}">
+            <label class="form-check-label" for="flexCheckDefault">
+            {{timeslot.text}}
+            </label>
+        </div>
+    {% endfor %}
+    <br>
+
+    <a href="{% url 'lecture_contact_overview' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+</form>
+{% endblock %}

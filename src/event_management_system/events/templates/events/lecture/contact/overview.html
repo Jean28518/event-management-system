@@ -1,0 +1,32 @@
+{% extends "global/base.html" %}
+{% block content %}
+<h1>My Lectures</h1>
+<br>
+<a href="{% url 'lecture_contact_create_entry' %}"><button type="button" class="btn btn-success">Submit</button></a>
+<br>
+<br>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="width:55%">Lecture</th>
+        <th scope="col" style="width:30%">Event</th>
+        <th scope="col" style="width:5%"></th>
+        <th scope="col" style="width:5%"></th>
+        <th scope="col" style="width:5%"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for lecture in lectures%}
+            <tr>
+                <td>{{lecture.title}}</td>
+                <td>{{lecture.event}}</td>
+                <td><a href="{% url 'lecture_contact_view' lecture.id%}"><button type="button" class="btn btn-info">View</button></a></td>
+                <td><a href="{% url 'lecture_contact_edit' lecture.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+                <td><a href="{% url 'lecture_delete' lecture.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+            </tr>
+            <br/> 
+        {% endfor %}
+   
+    </tbody>
+  </table>
+{% endblock %}

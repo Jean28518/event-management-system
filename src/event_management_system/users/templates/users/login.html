@@ -1,5 +1,8 @@
 {% extends "global/base.html" %}
 {% block content %}
+<h1>Login</h1>
+<p>Welcome! If you already have a user account, please login. Otherwise please register first.</p>
+<a href="{% url 'user_register' %}"><button type="button" class="btn btn-secondary">Register</button></a>
 {% if login_failed %}
 <div class="alert alert-danger" role="alert">
     Login failed! Try again.
@@ -7,7 +10,6 @@
 {% endif %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Login</h1>
     <br/>
     {{ form }}
     <br/>
