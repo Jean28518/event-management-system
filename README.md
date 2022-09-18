@@ -33,8 +33,8 @@ EMAIL_USE_TLS=True
 If you want to activate https://, change http:// to your server domain (e.g. www.example.com) in ``src/caddy/Caddyfile``.
 
 ```bash
-sudo docker-compose up -d
-sudo docker-compose up  # For debugging, if something goes wrong.
+sudo docker-compose up -d --build
+sudo docker-compose up --build # For debugging, if something goes wrong.
 ```
 
 # Run manually (development only)
