@@ -12,8 +12,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 import random
 from django.core.mail import send_mail
-from django.utils.translation import gettext as _
-from django.utils.translation import get_language
 
 def user_reset_password(request):
     if request.method == "POST":
@@ -103,8 +101,6 @@ def user_overview(request):
         return HttpResponseRedirect("/users/login/")
     if not request.user.has_perm('users.view_profile'):
         return HttpResponseRedirect("/")
-    print(_("Users"))
-    print(get_language())
     users = User.objects.all().select_related('profile')
     for user in users:
         user.user_role = _get_user_role(user)
