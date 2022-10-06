@@ -1,6 +1,7 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
-<h1>Timeslots for {{event_name}}</h1>
+<h1>{% trans "Timeslots for" %} {{event_name}}</h1>
 <br>
 
 <br>
@@ -16,7 +17,7 @@
         {% for timeslot in timeslots%}
             <tr>
                 <th scope="row">{{timeslot.text}}</th>
-                <td><a href="{% url 'event_timeslot_remove' event_id timeslot.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td><a href="{% url 'event_timeslot_remove' event_id timeslot.id%}"><button type="button" class="btn btn-danger">{% trans "Delete" %}</button></a></td>
             </tr>
         {% endfor %}
    
@@ -26,11 +27,11 @@
   <form action="add/" method="post">
     {% csrf_token %}
     <div class="mb-3">
-      <label class="form-label">New timeslot</label>
+      <label class="form-label">{% trans "New timeslot" %}</label>
       <input type="text" class="form-control" id="new_timeslot" name="new_timeslot">
     </div>
-    <a href="{% url 'event_edit' event_id %}"><button type="button" class="btn btn-secondary">Back</button></a>
-    <button type="submit" class="btn btn-primary">Add new timeslot</button>
+    <a href="{% url 'event_edit' event_id %}"><button type="button" class="btn btn-secondary">{% trans "Back" %}</button></a>
+    <button type="submit" class="btn btn-primary">{% trans "Add new timeslot" %}</button>
   </form>
 
 

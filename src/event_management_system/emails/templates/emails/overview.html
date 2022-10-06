@@ -20,8 +20,8 @@
             <tr>
                 <th scope="row">{{email.id}}</th>
                 <td>{{email.name}}</td>
-                <td><a href="{% url 'email_edit' email.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
-                <td><a href="{% url 'email_delete' email.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td><a href="{% url 'email_edit' email.id%}"><button type="button" class="btn btn-primary">{% trans "Edit" %}</button></a></td>
+                <td><a href="{% url 'email_delete' email.id%}"><button type="button" class="btn btn-danger">{% trans "Delete" %}</button></a></td>
             </tr>
         {% endfor %}
    

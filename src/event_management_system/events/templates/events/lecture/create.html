@@ -1,15 +1,16 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Create Lecture</h1>
+    <h1>{% trans "Create Lecture" %}</h1>
     <br/>
     {% comment %} {{ form }} {% endcomment %}
     {% for field in form %}
-        {% if field.field.label == "Should questions during lectures been asked?" %}
-            {{ field.label_tag }} <br> {{ field }} <br>
-        {% elif field.field.label == "Should questions after lectures been asked?" %}
-            {{ field.label_tag }} <br> {{ field }} <br>
+        {% if field.name == "questions_during_lecture" %}
+        <br>  {{ field }} {{ field.label_tag }}  <br>
+        {% elif field.name == "questions_after_lecture" %}
+        <br>  {{ field }}  {{ field.label_tag }}  <br> <br>
         {% else %}
             {{ field.label_tag }} {{ field }}
         {% endif %}

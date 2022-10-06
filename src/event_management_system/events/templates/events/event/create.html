@@ -1,12 +1,13 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Create event</h1>
+    <h1>{% trans "Create event" %}</h1>
     <br/>
     {{ form }}
     <br/>
-    <a href="{% url 'event_overview' %}"><button type="button" class="btn btn-secondary">Cancel</button></a>
-    <input type="submit" value="Create" class="btn btn-primary">
+    <a href="{% url 'event_overview' %}"><button type="button" class="btn btn-secondary">{% trans "Cancel" %}</button></a>
+    <input type="submit" value="{% trans "Create" %}" class="btn btn-primary">
 </form>
 {% endblock %}

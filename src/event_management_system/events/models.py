@@ -1,15 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 TARGET_GROUP = [
-    ('BE', 'Beginner'),
-    ('IN', 'Intermediate'),
-    ('PR', 'Professional'),
+    ('BE', _('Beginner')),
+    ('IN', _('Intermediate')),
+    ('PR', _('Professional')),
 ]
 
 PRESENTATION_STYLE = [
-    ('RE', 'Recorded'),
-    ('LI', 'Live'),
+    ('RE', _('Recorded')),
+    ('LI', _('Live')),
 ]
 
 

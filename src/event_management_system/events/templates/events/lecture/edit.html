@@ -1,22 +1,23 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Edit {{lecture.title}}</h1>
+    <h1>{% trans "Edit.heading" %} {{lecture.title}}</h1>
     <br/>
     {% comment %} {{ form }} {% endcomment %}
     {% for field in form %}
-        {% if field.field.label == "Should questions during lectures been asked?" %}
-            {{ field.label_tag }} <br> {{ field }} <br>
-        {% elif field.field.label == "Should questions after lectures been asked?" %}
-            {{ field.label_tag }} <br> {{ field }} <br>
+        {% if field.name == "questions_during_lecture" %}
+        <br>  {{ field }} {{ field.label_tag }}  <br>
+        {% elif field.name == "questions_after_lecture" %}
+        <br>  {{ field }}  {{ field.label_tag }}  <br> <br>
         {% else %}
             {{ field.label_tag }} {{ field }}
         {% endif %}
     {% endfor %}
     <br/>
 
-    <label class="form-label">Presentator is available at these timeslots</label>
+    <label class="form-label">{% trans "Presentator is available at these timeslots" %}</label>
     {% for timeslot in timeslots %}
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" {% if timeslot.checked %}checked="true"{% endif %}  id="timeslot_{{timeslot.id}}" name="timeslot_{{timeslot.id}}">
@@ -28,7 +29,7 @@
     <br>
 
 
-    <a href="{% url 'lecture_overview' lecture.event.id %}"><button type="button" class="btn btn-secondary">Cancel</button></a>
-    <input type="submit" value="Save" class="btn btn-primary">
+    <a href="{% url 'lecture_overview' lecture.event.id %}"><button type="button" class="btn btn-secondary">{% trans "Cancel" %}</button></a>
+    <input type="submit" value="{% trans "Save" %}" class="btn btn-primary">
 </form>
 {% endblock %}

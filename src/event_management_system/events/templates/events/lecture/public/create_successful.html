@@ -1,13 +1,14 @@
 {% extends "global/base_public.html" %}
+{% load i18n %}
 {% block content %}
 <center>
-    <h1>Submitting Lecture successful!</h1>
+    <h1>{% trans "Submitting Lecture successful!" %}</h1>
     <br>
     <br>
-    <a href="{% url 'lecture_public_create' event_id %}"><button type="button" class="btn btn-success">Submit another lecture</button></a> 
+    <a href="{% url 'lecture_public_create' event_id %}"><button type="button" class="btn btn-success">{% trans "Submit another lecture" %}</button></a> 
     <br>
     <br>
-    <a href="{% url 'lecture_contact_overview' %}"><button type="button" class="btn btn-primary">Go to overview</button></a>
+    <a href="{% url 'lecture_contact_overview' %}"><button type="button" class="btn btn-primary">{% trans "Go to overview" %}</button></a>
 </center>
 
 {% endblock %}

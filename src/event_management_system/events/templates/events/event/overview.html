@@ -1,17 +1,18 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
-<h1>Events</h1>
+<h1>{% trans "Events" %}</h1>
 <br>
-<a href="{% url 'event_create' %}"><button type="button" class="btn btn-success">Create</button></a>
+<a href="{% url 'event_create' %}"><button type="button" class="btn btn-success">{% trans "Create" %}</button></a>
 <br>
 <br>
 <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col" style="width:10%">#</th>
-        <th scope="col" style="width:40%">Event</th>
-        <th scope="col" style="width:5%">Year</th>
-        <th scope="col" style="width:30%">Website</th>
+        <th scope="col" style="width:40%">{% trans "Event" %}</th>
+        <th scope="col" style="width:5%">{% trans "Year" %}</th>
+        <th scope="col" style="width:30%">{% trans "Website" %}</th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
@@ -24,9 +25,9 @@
                 <td>{{event.name}}</td>
                 <td>{{event.year}}</td>
                 <td><a href="{{event.website}}">{{event.website}}</a></td>
-                <td><a href="{% url 'lecture_overview' event.id%}"><button type="button" class="btn btn-info">Lectures</button></a></td>
-                <td><a href="{% url 'event_edit' event.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
-                <td><a href="{% url 'event_delete' event.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td><a href="{% url 'lecture_overview' event.id%}"><button type="button" class="btn btn-info">{% trans "Lectures" %}</button></a></td>
+                <td><a href="{% url 'event_edit' event.id%}"><button type="button" class="btn btn-primary">{% trans "Edit" %}</button></a></td>
+                <td><a href="{% url 'event_delete' event.id%}"><button type="button" class="btn btn-danger">{% trans "Delete" %}</button></a></td>
             </tr>
         {% endfor %}
    

@@ -1,10 +1,11 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
-<h1>Select Event</h1>
+<h1>{% trans "Select Event" %}</h1>
 <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col" style="width:90%">Event</th>
+        <th scope="col" style="width:90%">{% trans "Event" %}</th>
         <th scope="col" style="width:10%"></th>
       </tr>
     </thead>
@@ -12,7 +13,7 @@
         {% for event in events%}
             <tr>
                 <td>{{event.name}}</td>
-                <td><a href="{% url 'lecture_public_create' event.id%}"><button type="button" class="btn btn-secondary">Select</button></a></td>
+                <td><a href="{% url 'lecture_public_create' event.id%}"><button type="button" class="btn btn-secondary">{% trans "Select" %}</button></a></td>
             </tr>
             <br/> 
         {% endfor %}
