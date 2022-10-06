@@ -7,7 +7,7 @@ from .models import Profile
 from django.core import serializers
 from django.contrib.auth.models import User, make_password, Group
 from django.contrib.auth import authenticate, login, logout
-from .forms import CreateForm, EditForm, LoginForm, RegisterForm, PasswordForgot, PasswordChange, ROLES
+from .forms import UserForm, LoginForm, RegisterForm, PasswordForgot, PasswordChange, ROLES
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 import random
@@ -112,7 +112,6 @@ def user_overview(request):
             user.user_role = ROLES[2][1]
         if user.user_role == "AD":
             user.user_role = ROLES[3][1]
-        print(_get_user_role(user))
     return render(request, "users/overview.html", {'request_user': request.user, 'users': users})
 
 @permission_required('users.delete_profile') 
@@ -125,7 +124,7 @@ def user_delete(request, user_id):
 @permission_required('users.add_profile') 
 def user_create(request):
     if request.method == 'POST':
-        form = CreateForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             if User.objects.filter(email=request.POST['email']).exists():
                 return render(request, 'users/create.html', {'request_user': request.user, 'form': form, 'email_already_exists': True})
@@ -161,7 +160,7 @@ def user_create(request):
             return HttpResponseRedirect('/users/')
     else:
 
-        form = CreateForm(initial = {'private_pin': _get_random_private_pin()})
+        form = UserForm(initial = {'private_pin': _get_random_private_pin()})
         return render(request, 'users/create.html', {'request_user': request.user, 'form': form, 'email_already_exists': False})
 
 def _get_random_private_pin():
@@ -213,7 +212,7 @@ def user_register(request, next = ''):
 @permission_required('users.change_profile') 
 def user_edit(request, user_id):
     if request.method == 'POST':
-        form = EditForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             user = User.objects.select_related('profile').filter(id=user_id)[0]
             user.username = request.POST['email']
@@ -274,7 +273,7 @@ def user_edit(request, user_id):
 
         
 
-        form = EditForm(initial=dict)
+        form = UserForm(initial=dict)
         return render(request, 'users/edit.html', {'request_user': request.user, 'form': form, 'pwreset': pwreset, 'user': user})
 
 
@@ -295,7 +294,7 @@ def user_view(request, user_id):
         'user_role': _get_user_role(user)
     }  
 
-    form = EditForm(initial=dict)
+    form = UserForm(initial=dict)
     for field in form.fields:
         form.fields[field].disabled = True
     return render(request, 'users/view.html', {'request_user': request.user, 'form': form, 'user': user})

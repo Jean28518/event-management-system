@@ -1,3 +1,4 @@
+{% load i18n %}
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'user_overview' %}">Event Management System</a>
@@ -8,22 +9,22 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           {% if perms.users.view_profile %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'user_overview' %}">Users</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'user_overview' %}">{% trans "Users" %}</a>
           </li>
           {% endif %}
           {% if perms.events.view_event %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'event_overview' %}">Events</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'event_overview' %}">{% trans "Events" %}</a>
           </li>
           {% endif %}
           {% if perms.events.view_room %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'room_overview' %}">Rooms</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'room_overview' %}">{% trans "Rooms" %}</a>
           </li>
           {% endif %}
           {% if perms.emails.view_email %}
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'email_overview' %}">Emails</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'email_overview' %}">{% trans "Emails" %}</a>
             </li>
           {% endif %}
         </ul>
@@ -34,9 +35,9 @@
               {{request_user.username}}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'user_change_password' %}">Change Password</a></li>
+              <li><a class="dropdown-item" href="{% url 'user_change_password' %}">{% trans "Change Password" %}</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'user_logout' %}">Logout</a></li>
+              <li><a class="dropdown-item" href="{% url 'user_logout' %}">{% trans "Logout" %}</a></li>
               {% endif %}
             </ul>
           </div>

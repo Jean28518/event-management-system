@@ -1,11 +1,12 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
-<h1>Login</h1>
-<p>Welcome! If you already have a user account, please login. Otherwise please register first.</p>
-<a href="{% url 'user_register' %}"><button type="button" class="btn btn-secondary">Register</button></a>
+<h1>{% trans "Login" %}</h1>
+<p>{% trans "Welcome! If you already have a user account, please login. Otherwise please register first." %}</p>
+<a href="{% url 'user_register' %}"><button type="button" class="btn btn-secondary">{% trans "Register" %}</button></a>
 {% if login_failed %}
 <div class="alert alert-danger" role="alert">
-    Login failed! Try again.
+    {% trans "Login failed! Try again." %}
 </div>
 {% endif %}
 <form action="" method="post">
@@ -13,7 +14,7 @@
     <br/>
     {{ form }}
     <br/>
-    <a href="{% url 'user_reset_password' %}"><button type="button" class="btn btn-warning">Reset Password</button></a>
+    <a href="{% url 'user_reset_password' %}"><button type="button" class="btn btn-warning">{% trans "Reset Password" %}</button></a>
     <input type="submit" value="Login" class="btn btn-primary">
 </form>
 {% endblock %}

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 14:07+0000\n"
-"PO-Revision-Date: 2022-10-06 16:08+0200\n"
+"POT-Creation-Date: 2022-10-06 14:54+0000\n"
+"PO-Revision-Date: 2022-10-06 16:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -19,14 +19,17 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 
 #: emails/templates/emails/overview.html:4
+#: emails/templates/emails/overview.html:13
+#: event_management_system/templates/global/navbar.html:27
 msgid "Emails"
 msgstr "E-Mails"
 
 #: emails/templates/emails/overview.html:6
+#: users/templates/users/overview.html:6
 msgid "Create"
 msgstr "Erstellen"
 
-#: emails/views.py:26 event_management_system/settings.py:129
+#: event_management_system/settings.py:129
 msgid "language.en"
 msgstr "Englisch"
 
@@ -38,10 +41,183 @@ msgstr "Deutsch"
 msgid "Event Management System"
 msgstr "Event Management System"
 
-#: users/templates/users/overview.html:4 users/views.py:106
+#: event_management_system/templates/global/navbar.html:12
+#: users/templates/users/overview.html:4
 msgid "Users"
 msgstr "Benutzer"
 
-#: users/views.py:253
+#: event_management_system/templates/global/navbar.html:17
+msgid "Events"
+msgstr "Events"
+
+#: event_management_system/templates/global/navbar.html:22
+msgid "Rooms"
+msgstr "Räume"
+
+#: event_management_system/templates/global/navbar.html:38
+#: users/templates/users/change_password.html:4
+#: users/templates/users/change_password.html:34
+msgid "Change Password"
+msgstr "Passwort ändern"
+
+#: event_management_system/templates/global/navbar.html:40
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: users/forms.py:6
+msgid "Contact"
+msgstr "Kontakt"
+
+#: users/forms.py:7
+msgid "Attendant"
+msgstr "Helfer"
+
+#: users/forms.py:8
+msgid "Organisator"
+msgstr "Organisator"
+
+#: users/forms.py:9 users/views.py:248
 msgid "Administrator"
-msgstr "Adminstrator"
+msgstr "Administrator"
+
+#: users/forms.py:13 users/templates/users/overview.html:17
+msgid "Role"
+msgstr "Rolle"
+
+#: users/forms.py:14 users/forms.py:25 users/forms.py:34 users/forms.py:38
+#: users/templates/users/overview.html:16
+msgid "Email"
+msgstr "E-Mail"
+
+#: users/forms.py:15 users/forms.py:26
+msgid "First name"
+msgstr "Vorname"
+
+#: users/forms.py:16 users/forms.py:27
+msgid "Last name"
+msgstr "Nachname"
+
+#: users/forms.py:17 users/forms.py:28 users/forms.py:35
+msgid "Password"
+msgstr "Passwort"
+
+#: users/forms.py:18 users/forms.py:29
+msgid "Website"
+msgstr "Webseite"
+
+#: users/forms.py:19 users/forms.py:30
+msgid "Company"
+msgstr "Firma/Organisation"
+
+#: users/forms.py:20 users/forms.py:31
+msgid "Over 18"
+msgstr "Über 18 Jahre"
+
+#: users/forms.py:21
+msgid "Private Pin"
+msgstr "Private Pin"
+
+#: users/forms.py:41
+msgid "Old Password"
+msgstr "Altes Passwort"
+
+#: users/forms.py:42
+msgid "New Password"
+msgstr "Neues Passwort"
+
+#: users/forms.py:43
+msgid "New Password (repeated)"
+msgstr "Neues Passwort (wiederholt)"
+
+#: users/templates/users/change_password.html:9
+msgid "Your old password is wrong!"
+msgstr "Das alte Passwort ist falsch!"
+
+#: users/templates/users/change_password.html:15
+msgid "Your new passwords differ!"
+msgstr "Die eingegebene Passwörter sind unterschiedlich!"
+
+#: users/templates/users/change_password.html:21
+msgid "Your password must be at least 8 characters long!"
+msgstr "Das Passwort muss mindestens 8 Zeichen lang sein!"
+
+#: users/templates/users/change_password.html:27
+msgid "Password successfully changed!"
+msgstr "Passwort wurde erfolgreich geändert!"
+
+#: users/templates/users/create.html:6
+msgid "Create user"
+msgstr "Benutzer erstellen"
+
+#: users/templates/users/create.html:10
+#: users/templates/users/create_public.html:10
+msgid "E-Mail already exists!"
+msgstr "Diese E-Mail existiert bereits!"
+
+#: users/templates/users/create.html:23 users/templates/users/edit.html:18
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: users/templates/users/create_public.html:6
+#: users/templates/users/create_public.html:15
+#: users/templates/users/login.html:6
+msgid "Register"
+msgstr "Registrieren"
+
+#: users/templates/users/edit.html:6
+msgid "Edit.heading"
+msgstr "Bearbeite"
+
+#: users/templates/users/login.html:4
+msgid "Login"
+msgstr "Einloggen"
+
+#: users/templates/users/login.html:5
+msgid ""
+"Welcome! If you already have a user account, please login. Otherwise please "
+"register first."
+msgstr ""
+
+#: users/templates/users/login.html:9
+msgid "Login failed! Try again."
+msgstr ""
+
+#: users/templates/users/login.html:17
+#: users/templates/users/reset_password.html:4
+#: users/templates/users/reset_password.html:15
+msgid "Reset Password"
+msgstr "Passwort zurücksetzen"
+
+#: users/templates/users/overview.html:7
+msgid "Mass Mail Users"
+msgstr ""
+
+#: users/templates/users/overview.html:14
+msgid "First.name"
+msgstr "Vorname"
+
+#: users/templates/users/overview.html:15
+msgid "Last.name"
+msgstr "Nachname"
+
+#: users/templates/users/overview.html:32
+msgid "View"
+msgstr "Anzeigen"
+
+#: users/templates/users/overview.html:33
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: users/templates/users/overview.html:34
+msgid "Delete"
+msgstr "Löschen"
+
+#: users/templates/users/reset_password.html:8
+msgid ""
+"If this mail is registered at this instance, a mail with a new password was "
+"sent."
+msgstr ""
+
+#: users/templates/users/view.html:18
+msgid "Back"
+msgstr "Zurück"

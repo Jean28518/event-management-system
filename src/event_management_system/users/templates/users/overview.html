@@ -3,18 +3,18 @@
 {% block content %}
 <h1>{% trans "Users" %}</h1>
 <br>
-<a href="{% url 'user_create' %}"><button type="button" class="btn btn-success">Create</button></a>
-<a href="{% url 'email_send_mass_user' %}"><button type="button" class="btn btn-warning">Mass Mail Users</button></a>
+<a href="{% url 'user_create' %}"><button type="button" class="btn btn-success">{% trans "Create" %}</button></a>
+<a href="{% url 'email_send_mass_user' %}"><button type="button" class="btn btn-warning">{% trans "Mass Mail Users" %}</button></a>
 <br>
 <br>
 <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col" style="width:10%">#</th>
-        <th scope="col" style="width:20%">First</th>
-        <th scope="col" style="width:20%">Last</th>
-        <th scope="col" style="width:20%">E-Mail</th>
-        <th scope="col" style="width:15%">Role</th>
+        <th scope="col" style="width:20%">{% trans "First.name" %}</th>
+        <th scope="col" style="width:20%">{% trans "Last.name" %}</th>
+        <th scope="col" style="width:20%">{% trans "Email" %}</th>
+        <th scope="col" style="width:15%">{% trans "Role" %}</th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
@@ -29,9 +29,9 @@
                 <td>{{user.email}}</td>
                 <td>{{user.user_role}}</td>
                 
-                <td><a href="{% url 'user_view' user.id%}"><button type="button" class="btn btn-info">View</button></a></td>
-                <td><a href="{% url 'user_edit' user.id%}"><button type="button" class="btn btn-primary">Edit</button></a></td>
-                <td><a href="{% url 'user_delete' user.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td><a href="{% url 'user_view' user.id%}"><button type="button" class="btn btn-info">{% trans "View" %}</button></a></td>
+                <td><a href="{% url 'user_edit' user.id%}"><button type="button" class="btn btn-primary">{% trans "Edit" %}</button></a></td>
+                <td><a href="{% url 'user_delete' user.id%}"><button type="button" class="btn btn-danger">{% trans "Delete" %}</button></a></td>
             </tr>
         {% endfor %}
    

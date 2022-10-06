@@ -1,4 +1,5 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
 <form action="" method="">
     {% csrf_token %}
@@ -13,6 +14,6 @@
         {% endif %}
     {% endfor %}
     <br/>
-    <a href="{% url 'user_overview' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+    <a href="{% url 'user_overview' %}"><button type="button" class="btn btn-secondary">{% trans "Back" %}</button></a>
 </form>
 {% endblock %}

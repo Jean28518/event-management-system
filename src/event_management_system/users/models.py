@@ -6,7 +6,6 @@ from django.dispatch import receiver
 import string
 import random
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     website = models.URLField()
@@ -28,12 +27,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.email} - {self.user.last_name} - {self.company}"
-
-    def get_private_jitsi_url(self):
-        return(f"https://jitsi.tux-tage.de/p_{self.surname}")
-    
-    def get_public_jitsi_url(self):
-        return(f"https://jitsi.tux-tage.de/{self.surname}")
 
     def getUserRoleOfString(user_role_string):
         if user_role_string == 'CO':

@@ -1,12 +1,13 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    <h1>Create user</h1>
+    <h1>{% trans "Create user" %}</h1>
     <br/>
     {% if email_already_exists %}
     <div class="alert alert-warning" role="alert">
-        E-Mail already exists!
+        {% trans "E-Mail already exists!" %}
       </div>
     {% endif %}
     {% comment %} {{ form }} {% endcomment %}
@@ -18,7 +19,7 @@
         {% endif %}
     {% endfor %}
     <br/>
-    <a href="{% url 'user_overview' %}"><button type="button" class="btn btn-secondary">Cancel</button></a>
+    <a href="{% url 'user_overview' %}"><button type="button" class="btn btn-secondary">{% trans "Cancel" %}</button></a>
     <input type="submit" value="Create" class="btn btn-primary">
 </form>
 {% endblock %}
