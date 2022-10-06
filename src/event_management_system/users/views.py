@@ -96,10 +96,11 @@ def user_change_password(request):
         
 
 
-@permission_required('users.view_profile') 
 def user_overview(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect("/users/login/")
+    if not request.user.has_perm('users.view_profile'):
+        return HttpResponseRedirect("/")
     print(request.user._meta.fields)
     users = User.objects.all().select_related('profile')
     for user in users:
