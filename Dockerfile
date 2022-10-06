@@ -1,5 +1,7 @@
 FROM python:3.10.4-alpine
 
+RUN apk add gettext
+
 RUN pip install --upgrade pip
 
 COPY ./requirements.txt .
