@@ -10,8 +10,6 @@ from .models import Email, MAIL_RECEIVER
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 
-
-
 from django.core.mail import send_mail
 
 
@@ -19,7 +17,7 @@ from django.core.mail import send_mail
 def email_overview(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect("/users/login/")
-    
+
     return render(request, "emails/overview.html", {'request_user': request.user, 'emails':Email.objects.all()})
 
 

@@ -1,15 +1,16 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
-<h1>Emails</h1>
+<h1>{% trans "Emails" %}</h1>
 <br>
-<a href="{% url 'email_create' %}"><button type="button" class="btn btn-success">Create</button></a>
+<a href="{% url 'email_create' %}"><button type="button" class="btn btn-success">{% trans "Create" %}</button></a>
 <br>
 <br>
 <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col" style="width:10%">#</th>
-        <th scope="col" style="width:80%">Email</th>
+        <th scope="col" style="width:80%">{% trans "Emails" %}</th>
         <th scope="col" style="width:5%"></th>
         <th scope="col" style="width:5%"></th>
       </tr>

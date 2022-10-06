@@ -1,6 +1,7 @@
 {% extends "global/base.html" %}
+{% load i18n %}
 {% block content %}
-<h1>Users</h1>
+<h1>{% trans "Users" %}</h1>
 <br>
 <a href="{% url 'user_create' %}"><button type="button" class="btn btn-success">Create</button></a>
 <a href="{% url 'email_send_mass_user' %}"><button type="button" class="btn btn-warning">Mass Mail Users</button></a>

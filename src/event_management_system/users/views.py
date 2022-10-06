@@ -12,6 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 import random
 from django.core.mail import send_mail
+from django.utils.translation import gettext as _
+from django.utils.translation import get_language
 
 def user_reset_password(request):
     if request.method == "POST":
@@ -101,7 +103,8 @@ def user_overview(request):
         return HttpResponseRedirect("/users/login/")
     if not request.user.has_perm('users.view_profile'):
         return HttpResponseRedirect("/")
-    print(request.user._meta.fields)
+    print(_("Users"))
+    print(get_language())
     users = User.objects.all().select_related('profile')
     for user in users:
         user.user_role = _get_user_role(user)
@@ -247,7 +250,7 @@ def user_edit(request, user_id):
                 group.user_set.add(user)
             elif request.POST['user_role'] == 'AD' and request.user.groups.filter(name="Administrator").exists():
                 user.groups.clear()
-                group = Group.objects.get(name='Administrator')
+                group = Group.objects.get(name=_("Administrator"))
                 group.user_set.add(user)
             
             profile.save()
