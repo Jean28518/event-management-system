@@ -17,7 +17,7 @@
     <label class="form-label">I am available at these timeslots</label>
     {% for timeslot in timeslots %}
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="timeslot_{{timeslot.id}}" name="timeslot_{{timeslot.id}}">
+            <input class="form-check-input" type="checkbox" value="" {% if timeslot.checked %}checked="true"{% endif %} id="timeslot_{{timeslot.id}}" disabled="true" name="timeslot_{{timeslot.id}}">
             <label class="form-check-label" for="flexCheckDefault">
             {{timeslot.text}}
             </label>
