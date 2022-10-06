@@ -213,7 +213,9 @@ def user_register(request, next = ''):
 def user_edit(request, user_id):
     if request.method == 'POST':
         form = UserForm(request.POST)
-        if form.is_valid():
+        # if form.is_valid():
+        # Disabled that because of the weird handling of disabled password fields
+        if True:
             user = User.objects.select_related('profile').filter(id=user_id)[0]
             user.username = request.POST['email']
             user.email = request.POST['email']
@@ -259,22 +261,18 @@ def user_edit(request, user_id):
             'email': user.email,
             'first_name': user.first_name,
             'last_name': user.last_name,
-            'password': user.password,
             'website': user.profile.website,
             'company': user.profile.company,
+            'password' : "******",
             'over_18': user.profile.over_18 == True,
             'private_pin': user.profile.private_pin,
             'user_role': _get_user_role(user)
         }
 
-        pwreset = ""
-        if 'pwreset' in request.GET:
-            pwreset = request.GET['pwreset']#
-
-        
-
         form = UserForm(initial=dict)
-        return render(request, 'users/edit.html', {'request_user': request.user, 'form': form, 'pwreset': pwreset, 'user': user})
+        form.fields["password"].required = False
+        form.fields["password"].disabled = True
+        return render(request, 'users/edit.html', {'request_user': request.user, 'form': form, 'user': user})
 
 
 @permission_required('users.view_profile') 

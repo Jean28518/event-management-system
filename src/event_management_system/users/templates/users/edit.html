@@ -7,8 +7,8 @@
     <br/>
     {% comment %} {{ form }} {% endcomment %}
     {% for field in form %}
-        {% if field.field.label == "Over 18" %}
-            {{ field.label_tag }} <br> {{ field }} <br>
+        {% if field.name == "over_18" %}
+        <br> {{ field }} {{ field.label_tag }}  <br> <br>
         {% else %}
             {{ field.label_tag }} {{ field }}
         {% endif %}
