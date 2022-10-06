@@ -69,12 +69,9 @@ This command will create the database with the given models.
 mkdir src/event_management_system/db
 python3 src/event_management_system/manage.py migrate
 ```
-Run this command if you want to create the admin user of the local server.
-```bash
-python3 src/event_management_system/manage.py createsuperuser
-```
 
-### Email configuration
+
+### Configuration
 This section is intended for the configuration of the email host.
 Please keep this access data confidential.
 Keep in mind that other apps can also see these environment variables.
@@ -90,6 +87,13 @@ export EMAIL_PORT="587"
 export EMAIL_HOST_USER="example@gmail.com"                 
 export EMAIL_HOST_PASSWORD="xhdsajshds"   
 export EMAIL_USE_TLS=True
+```
+
+**After changing the bashrc file you have to restart your terminal!**
+
+Run this command if you want to create the admin user of the local server.
+```bash
+python3 src/event_management_system/manage.py createsuperuser
 ```
 
 ## Development
