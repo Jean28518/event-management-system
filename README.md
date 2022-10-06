@@ -55,12 +55,12 @@ pip install -r requirements.txt
 
 ### debain based
 ```bash
-sudo apt install libpq-dev python3-tk
+sudo apt install libpq-dev python3-tk gettext
 ```
 
 ### arch based
 ```bash
-sudo pacman -S tk
+sudo pacman -S tk gettext
 ```
 
 ## Setup
