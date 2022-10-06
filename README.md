@@ -90,10 +90,13 @@ export EMAIL_USE_TLS=True
 
 **After changing the bashrc file you have to restart your terminal!**
 
-Run this command if you want to create the admin user of the local server.
 ```bash
 python3 src/event_management_system/manage.py migrate
-python3 src/event_management_system/manage.py createsuperuser
+```
+
+Run this command if you want to create the admin user of the local server.
+```
+python3 src/event_management_system/manage.py createsuperuser # (This is optional)
 ```
 
 ## Development
