@@ -26,7 +26,7 @@
                 <th scope="row">{{user.id}}</th>
                 <td>{{user.first_name}}</td>
                 <td>{{user.last_name}}</td>
-                <td>{{user.email}}</td>
+                <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>{{user.user_role}}</td>
                 
                 <td><a href="{% url 'user_view' user.id%}"><button type="button" class="btn btn-info">{% trans "View" %}</button></a></td>
