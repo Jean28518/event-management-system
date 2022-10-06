@@ -67,7 +67,6 @@ sudo pacman -S tk
 This command will create the database with the given models.
 ```bash
 mkdir src/event_management_system/db
-python3 src/event_management_system/manage.py migrate
 ```
 
 
