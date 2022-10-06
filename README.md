@@ -92,6 +92,7 @@ export EMAIL_USE_TLS=True
 
 ```bash
 python3 src/event_management_system/manage.py migrate
+python manage.py compilemessages
 ```
 
 Run this command if you want to create the admin user of the local server.
