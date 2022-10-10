@@ -21,7 +21,28 @@
                 <th scope="row">{{email.id}}</th>
                 <td>{{email.name}}</td>
                 <td><a href="{% url 'email_edit' email.id%}"><button type="button" class="btn btn-primary">{% trans "Edit" %}</button></a></td>
-                <td><a href="{% url 'email_delete' email.id%}"><button type="button" class="btn btn-danger">{% trans "Delete" %}</button></a></td>
+
+                {% comment %} Delete Button {% endcomment %}
+                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{email.id}}">{% trans "Delete" %}</button></td>
+
+                {% comment %} Delete Popup {% endcomment %}
+                <div class="modal fade" id="deleteModal{{email.id}}" tabindex="-1" aria-labelledby="deleteModal{{email.id}}Label" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModal{{email.id}}Label">{% trans "Delete.heading" %} {{email.name}}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancel"></button>
+                      </div>
+                      <div class="modal-body">
+                        {% trans "delete.question.part1" %} {{email.name}} {% trans "delete.question.part2" %}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                          <a href="{% url 'email_delete' email.id%}"><button type="button" class="btn btn-danger">{% trans "Delete" %}</button></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </tr>
         {% endfor %}
    

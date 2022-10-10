@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 14:55+0000\n"
-"PO-Revision-Date: 2022-10-06 21:57+0200\n"
+"POT-Creation-Date: 2022-10-10 20:13+0000\n"
+"PO-Revision-Date: 2022-10-10 22:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: emails/forms.py:13 emails/forms.py:16 events/forms.py:33 users/forms.py:14
 #: users/forms.py:25 users/forms.py:34 users/forms.py:38 users/forms.py:46
-#: users/templates/users/overview.html:16
+#: users/templates/users/overview.html:17
 msgid "Email"
 msgstr ""
 
@@ -45,14 +45,20 @@ msgid "Create email"
 msgstr ""
 
 #: emails/templates/emails/create.html:12 emails/templates/emails/edit.html:12
+#: emails/templates/emails/overview.html:42
 #: events/templates/events/event/create.html:10
 #: events/templates/events/event/edit.html:10
+#: events/templates/events/event/overview.html:50
 #: events/templates/events/lecture/contact/edit.html:29
+#: events/templates/events/lecture/contact/overview.html:44
 #: events/templates/events/lecture/edit.html:33
+#: events/templates/events/lecture/overview.html:65
 #: events/templates/events/room/create.html:11
 #: events/templates/events/room/edit.html:10
+#: events/templates/events/room/overview.html:43
 #: users/templates/users/create.html:23 users/templates/users/edit.html:18
 #: users/templates/users/edit_profile.html:18
+#: users/templates/users/overview.html:53
 msgid "Cancel"
 msgstr ""
 
@@ -87,7 +93,7 @@ msgid "Attendant"
 msgstr ""
 
 #: emails/templates/emails/create.html:78 emails/templates/emails/edit.html:78
-#: events/forms.py:56 events/templates/events/event/overview.html:13
+#: events/forms.py:56 events/templates/events/event/overview.html:15
 #: events/templates/events/lecture/contact/overview.html:13
 #: events/templates/events/lecture/contact/select_event_for_submit.html:8
 msgid "Event"
@@ -121,23 +127,56 @@ msgid "Emails"
 msgstr ""
 
 #: emails/templates/emails/overview.html:23
-#: events/templates/events/event/overview.html:29
+#: events/templates/events/event/overview.html:31
 #: events/templates/events/lecture/contact/overview.html:25
 #: events/templates/events/lecture/overview.html:46
 #: events/templates/events/room/overview.html:23
-#: users/templates/users/overview.html:33
+#: users/templates/users/overview.html:34
 msgid "Edit"
 msgstr ""
 
-#: emails/templates/emails/overview.html:24
-#: events/templates/events/event/overview.html:30
+#: emails/templates/emails/overview.html:27
+#: emails/templates/emails/overview.html:43
+#: events/templates/events/event/overview.html:35
+#: events/templates/events/event/overview.html:51
 #: events/templates/events/event/timeslot.html:20
-#: events/templates/events/lecture/contact/overview.html:26
-#: events/templates/events/lecture/overview.html:47
-#: events/templates/events/room/overview.html:24
-#: users/templates/users/overview.html:34
+#: events/templates/events/lecture/contact/overview.html:29
+#: events/templates/events/lecture/contact/overview.html:45
+#: events/templates/events/lecture/overview.html:50
+#: events/templates/events/lecture/overview.html:66
+#: events/templates/events/room/overview.html:28
+#: events/templates/events/room/overview.html:44
+#: users/templates/users/overview.html:38
+#: users/templates/users/overview.html:54
 msgid "Delete"
 msgstr ""
+
+#: emails/templates/emails/overview.html:35
+#: events/templates/events/event/overview.html:43
+#: events/templates/events/lecture/contact/overview.html:37
+#: events/templates/events/lecture/overview.html:58
+#: events/templates/events/room/overview.html:36
+#: users/templates/users/overview.html:46
+msgid "Delete.heading"
+msgstr "Delete"
+
+#: emails/templates/emails/overview.html:39
+#: events/templates/events/event/overview.html:47
+#: events/templates/events/lecture/contact/overview.html:41
+#: events/templates/events/lecture/overview.html:62
+#: events/templates/events/room/overview.html:40
+#: users/templates/users/overview.html:50
+msgid "delete.question.part1"
+msgstr "Do you really want to delete"
+
+#: emails/templates/emails/overview.html:39
+#: events/templates/events/event/overview.html:47
+#: events/templates/events/lecture/contact/overview.html:41
+#: events/templates/events/lecture/overview.html:62
+#: events/templates/events/room/overview.html:40
+#: users/templates/users/overview.html:50
+msgid "delete.question.part2"
+msgstr "?"
 
 #: emails/templates/emails/send_mass_lecture.html:4
 msgid "Send mass emails depending at lectures"
@@ -203,12 +242,12 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: events/forms.py:12 events/templates/events/event/overview.html:14
+#: events/forms.py:12 events/templates/events/event/overview.html:16
 msgid "Year"
 msgstr ""
 
 #: events/forms.py:14 events/forms.py:22
-#: events/templates/events/event/overview.html:15 users/forms.py:18
+#: events/templates/events/event/overview.html:17 users/forms.py:18
 #: users/forms.py:29 users/forms.py:49
 msgid "Website"
 msgstr ""
@@ -326,7 +365,12 @@ msgstr ""
 msgid "Timeslots"
 msgstr ""
 
-#: events/templates/events/event/overview.html:28
+#: events/templates/events/event/overview.html:7
+#: users/templates/users/overview.html:8
+msgid "Export csv"
+msgstr ""
+
+#: events/templates/events/event/overview.html:30
 msgid "Lectures"
 msgstr ""
 
@@ -340,7 +384,7 @@ msgstr ""
 
 #: events/templates/events/event/timeslot.html:33
 #: events/templates/events/lecture/contact/view.html:29
-#: events/templates/events/lecture/overview.html:53
+#: events/templates/events/lecture/overview.html:76
 #: events/templates/events/lecture/view.html:33
 #: users/templates/users/view.html:18
 msgid "Back"
@@ -371,7 +415,7 @@ msgstr ""
 
 #: events/templates/events/lecture/contact/overview.html:24
 #: events/templates/events/lecture/overview.html:45
-#: users/templates/users/overview.html:32
+#: users/templates/users/overview.html:33
 msgid "View"
 msgstr ""
 
@@ -478,11 +522,11 @@ msgstr ""
 msgid "Organisator"
 msgstr ""
 
-#: users/forms.py:9 users/views.py:251
+#: users/forms.py:9
 msgid "Administrator"
 msgstr ""
 
-#: users/forms.py:13 users/templates/users/overview.html:17
+#: users/forms.py:13 users/templates/users/overview.html:18
 msgid "Role"
 msgstr ""
 
@@ -551,11 +595,11 @@ msgstr ""
 msgid "Mass Mail Users"
 msgstr ""
 
-#: users/templates/users/overview.html:14
+#: users/templates/users/overview.html:15
 msgid "First.name"
 msgstr "First"
 
-#: users/templates/users/overview.html:15
+#: users/templates/users/overview.html:16
 msgid "Last.name"
 msgstr "Last"
 
