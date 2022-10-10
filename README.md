@@ -27,7 +27,10 @@ EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_HOST_USER=example@gmail.com
 EMAIL_HOST_PASSWORD=xhdsajshds
-EMAIL_USE_TLS=True
+
+# only activate (uncomment) one of these:
+#EMAIL_USE_TLS=True
+#EMAIL_USE_SSL=True
 ```
 
 If you want to activate https://, change http:// to your server domain (e.g. www.example.com) in ``src/caddy/Caddyfile``.
@@ -85,7 +88,10 @@ export EMAIL_HOST="smtp.gmail.com"
 export EMAIL_PORT="587"                                   
 export EMAIL_HOST_USER="example@gmail.com"                 
 export EMAIL_HOST_PASSWORD="xhdsajshds"   
-export EMAIL_USE_TLS=True
+
+# only activate (uncomment) one of these:
+#EMAIL_USE_TLS=True
+#EMAIL_USE_SSL=True
 ```
 
 **After changing the bashrc file you have to restart your terminal!**
