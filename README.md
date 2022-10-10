@@ -90,8 +90,8 @@ export EMAIL_HOST_USER="example@gmail.com"
 export EMAIL_HOST_PASSWORD="xhdsajshds"   
 
 # only activate (uncomment) one of these:
-#EMAIL_USE_TLS=True
-#EMAIL_USE_SSL=True
+#export EMAIL_USE_TLS=True
+#export EMAIL_USE_SSL=True
 ```
 
 **After changing the bashrc file you have to restart your terminal!**

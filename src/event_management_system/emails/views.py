@@ -297,7 +297,10 @@ def get_keywords_event():
 def get_converted_string_user(string, user):
     for keyword in get_all_keywords():
         if keyword.startswith("$user."):
-            string = string.replace(keyword, str(user.__dict__[keyword.replace("$user.", "")]))
+            if keyword.startswith("$user.profile."):
+                string = string.replace(keyword, str(user.profile.__dict__[keyword.replace("$user.profile.", "")]))
+            else:
+                string = string.replace(keyword, str(user.__dict__[keyword.replace("$user.", "")]))
     return string
 
 def get_converted_string_lecture(string, lecture):
