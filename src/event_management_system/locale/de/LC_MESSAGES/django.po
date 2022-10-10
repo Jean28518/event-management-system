@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 19:53+0000\n"
-"PO-Revision-Date: 2022-10-06 21:53+0200\n"
+"POT-Creation-Date: 2022-10-10 14:55+0000\n"
+"PO-Revision-Date: 2022-10-10 16:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -31,7 +31,7 @@ msgid "Body"
 msgstr "Nachrichtenkörper"
 
 #: emails/forms.py:13 emails/forms.py:16 events/forms.py:33 users/forms.py:14
-#: users/forms.py:25 users/forms.py:34 users/forms.py:38
+#: users/forms.py:25 users/forms.py:34 users/forms.py:38 users/forms.py:46
 #: users/templates/users/overview.html:16
 msgid "Email"
 msgstr "E-Mail"
@@ -52,6 +52,7 @@ msgstr "Email erstellen"
 #: events/templates/events/room/create.html:11
 #: events/templates/events/room/edit.html:10
 #: users/templates/users/create.html:23 users/templates/users/edit.html:18
+#: users/templates/users/edit_profile.html:18
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -101,6 +102,7 @@ msgstr "Raum"
 #: events/templates/events/event/edit.html:6
 #: events/templates/events/lecture/edit.html:6
 #: events/templates/events/room/edit.html:6 users/templates/users/edit.html:6
+#: users/templates/users/edit_profile.html:6
 msgid "Edit.heading"
 msgstr "Bearbeite"
 
@@ -188,12 +190,16 @@ msgid "Rooms"
 msgstr "Räume"
 
 #: event_management_system/templates/global/navbar.html:38
+msgid "Edit Profile"
+msgstr "Bearbeite Benutzerprofil"
+
+#: event_management_system/templates/global/navbar.html:39
 #: users/templates/users/change_password.html:4
 #: users/templates/users/change_password.html:34
 msgid "Change Password"
 msgstr "Passwort ändern"
 
-#: event_management_system/templates/global/navbar.html:40
+#: event_management_system/templates/global/navbar.html:41
 msgid "Logout"
 msgstr "Ausloggen"
 
@@ -203,7 +209,7 @@ msgstr "Jahr"
 
 #: events/forms.py:14 events/forms.py:22
 #: events/templates/events/event/overview.html:15 users/forms.py:18
-#: users/forms.py:29
+#: users/forms.py:29 users/forms.py:49
 msgid "Website"
 msgstr "Webseite"
 
@@ -336,7 +342,7 @@ msgstr "Neuer Zeitslot"
 
 #: events/templates/events/event/timeslot.html:33
 #: events/templates/events/lecture/contact/view.html:29
-#: events/templates/events/lecture/overview.html:54
+#: events/templates/events/lecture/overview.html:53
 #: events/templates/events/lecture/view.html:33
 #: users/templates/users/view.html:18
 msgid "Back"
@@ -476,7 +482,7 @@ msgstr "Kontakt"
 msgid "Organisator"
 msgstr "Organisator"
 
-#: users/forms.py:9 users/views.py:248
+#: users/forms.py:9 users/views.py:251
 msgid "Administrator"
 msgstr "Administrator"
 
@@ -484,23 +490,23 @@ msgstr "Administrator"
 msgid "Role"
 msgstr "Rolle"
 
-#: users/forms.py:15 users/forms.py:26
+#: users/forms.py:15 users/forms.py:26 users/forms.py:47
 msgid "First name"
 msgstr "Vorname"
 
-#: users/forms.py:16 users/forms.py:27
+#: users/forms.py:16 users/forms.py:27 users/forms.py:48
 msgid "Last name"
 msgstr "Nachname"
 
-#: users/forms.py:19 users/forms.py:30
+#: users/forms.py:19 users/forms.py:30 users/forms.py:50
 msgid "Company"
 msgstr "Firma/Organisation"
 
-#: users/forms.py:20 users/forms.py:31
+#: users/forms.py:20 users/forms.py:31 users/forms.py:51
 msgid "Over 18"
 msgstr "Über 18 Jahre"
 
-#: users/forms.py:21
+#: users/forms.py:21 users/forms.py:52
 msgid "Private Pin"
 msgstr "Private Pin"
 
@@ -540,6 +546,10 @@ msgstr "Benutzer erstellen"
 #: users/templates/users/create_public.html:10
 msgid "E-Mail already exists!"
 msgstr "Diese E-Mail existiert bereits!"
+
+#: users/templates/users/edit_profile.html:6
+msgid "Profile"
+msgstr "Profil"
 
 #: users/templates/users/overview.html:7
 msgid "Mass Mail Users"

@@ -35,6 +35,7 @@
               {{request_user.username}}
             </a>
             <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'user_edit_profile' %}">{% trans "Edit Profile" %}</a></li>
               <li><a class="dropdown-item" href="{% url 'user_change_password' %}">{% trans "Change Password" %}</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{% url 'user_logout' %}">{% trans "Logout" %}</a></li>

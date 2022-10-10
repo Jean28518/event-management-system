@@ -7,11 +7,12 @@ from .models import Profile
 from django.core import serializers
 from django.contrib.auth.models import User, make_password, Group
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserForm, LoginForm, RegisterForm, PasswordForgot, PasswordChange, ROLES
+from .forms import EditProfileForm, UserForm, LoginForm, RegisterForm, PasswordForgot, PasswordChange, ROLES
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 import random
 from django.core.mail import send_mail
+from django.shortcuts import redirect
 
 def user_reset_password(request):
     if request.method == "POST":
@@ -273,6 +274,46 @@ def user_edit(request, user_id):
         form.fields["password"].required = False
         form.fields["password"].disabled = True
         return render(request, 'users/edit.html', {'request_user': request.user, 'form': form, 'user': user})
+
+
+
+def user_edit_profile(request):
+    if not request.user.is_authenticated:
+        return redirect("user_login")
+    user = request.user
+    if user.profile.private_pin == "":
+        user.profile.private_pin = _get_random_private_pin()
+        user.save()
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST)
+        if form.is_valid():
+            user.username = request.POST['email']
+            user.email = request.POST['email']
+            user.last_name = request.POST['last_name']
+            user.first_name = request.POST['first_name']
+            user.save()
+
+            profile = user.profile
+            profile.website = request.POST['website']
+            profile.company = request.POST['company']
+            profile.over_18 = (request.POST.get('over_18', "off") == "on")
+            profile.private_pin = request.POST['private_pin']
+
+            profile.save()
+            return redirect("user_overview")
+        return HttpResponseServerError()
+    else:
+        dict = {
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'website': user.profile.website,
+            'company': user.profile.company,
+            'over_18': user.profile.over_18 == True,
+            'private_pin': user.profile.private_pin,
+        }
+        form = EditProfileForm(initial=dict)
+        return render(request, 'users/edit_profile.html', {'request_user': request.user, 'form': form, 'user': user})
 
 
 @permission_required('users.view_profile') 
