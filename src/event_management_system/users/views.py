@@ -2,6 +2,7 @@ from urllib import request
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from event_management_system.meta import meta
 from .authentication import get_user, handle_failed_authorization
 from .models import Profile
 from django.core import serializers
@@ -13,6 +14,7 @@ from django.contrib.auth.decorators import permission_required
 import random
 from django.core.mail import send_mail
 from django.shortcuts import redirect
+import csv
 
 def user_reset_password(request):
     if request.method == "POST":
@@ -248,7 +250,7 @@ def user_edit(request, user_id):
                 group.user_set.add(user)
             elif request.POST['user_role'] == 'AD' and request.user.groups.filter(name="Administrator").exists():
                 user.groups.clear()
-                group = Group.objects.get(name=_("Administrator"))
+                group = Group.objects.get(name="Administrator")
                 group.user_set.add(user)
             
             profile.save()
@@ -370,3 +372,34 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect("/users/login/")
+
+# TODO: Define a apropriate permission
+@permission_required('users.delete_profile') 
+def user_export_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=users.csv'
+    
+    writer = csv.writer(response, quotechar="\"", quoting=csv.QUOTE_ALL, delimiter=";")
+    
+    fields = meta.get_fields_user()
+    fields.remove("$user.password")
+    fields.remove("$user.is_superuser")
+    fields.remove("$user.profile.id")
+    fields.remove("$user.profile.user_id")
+
+    writer.writerow(fields)
+
+    users = User.objects.all()
+
+    for user in users:
+        user_line = []
+        for field in fields:
+            if field.startswith("$user."):
+                if field.startswith("$user.profile."):
+                    user_line.append(str(user.profile.__dict__[field.replace("$user.profile.", "")]))
+                else:
+                    user_line.append(str(user.__dict__[field.replace("$user.", "")]))
+
+        writer.writerow(user_line)
+
+    return response

@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import redirect
+import csv
+from event_management_system.meta import meta
 
 
 @permission_required("events.view_event")
@@ -468,3 +470,56 @@ def disable_call_for_papers(request, event_id):
     event.save()
     return HttpResponseRedirect(f"/events/{event_id}/lecture/overview/")
     
+# TODO: Define a apropriate permission
+@permission_required('users.delete_profile') 
+def lecture_export_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=lectures.csv'
+    
+    csv.QUOTE_ALL
+    writer = csv.writer(response, quotechar="\"", quoting=csv.QUOTE_ALL, delimiter=";")
+    
+    
+    fields = meta.get_all_fields()
+
+    fields.remove("$user.password")
+    fields.remove("$user.is_superuser")
+    fields.remove("$user.profile.id")
+    fields.remove("$user.profile.user_id")
+
+    fields.remove("$attendant.password")
+    fields.remove("$attendant.is_superuser")
+    fields.remove("$attendant.profile.id")
+    fields.remove("$attendant.profile.user_id")
+
+    writer.writerow(fields)
+
+    lectures = Lecture.objects.all()
+
+    for lecture in lectures:
+        user = lecture.presentator
+        attendant = lecture.attendant
+        room = lecture.scheduled_in_room
+        event = lecture.event
+        lecture_line = []
+        for field in fields:
+            if field.startswith("$user."):
+                if field.startswith("$user.profile."):
+                    lecture_line.append(str(user.profile.__dict__[field.replace("$user.profile.", "")]))
+                else:
+                    lecture_line.append(str(user.__dict__[field.replace("$user.", "")]))
+            if field.startswith("$lecture."):
+                lecture_line.append(str(lecture.__dict__[field.replace("$lecture.", "")]))
+            if field.startswith("$attendant."):
+                if field.startswith("$attendant.profile."):
+                    lecture_line.append(str(user.profile.__dict__[field.replace("$attendant.profile.", "")]))
+                else:
+                    lecture_line.append(str(user.__dict__[field.replace("$attendant.", "")]))
+            if field.startswith("$room.") and room:
+                lecture_line.append(str(room.__dict__[field.replace("$room.", "")]))
+            if field.startswith("$event."):
+                lecture_line.append(str(event.__dict__[field.replace("$event.", "")]))
+            
+        writer.writerow(lecture_line)
+
+    return response

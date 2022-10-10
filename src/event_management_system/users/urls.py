@@ -14,6 +14,7 @@ urlpatterns = [
     path('reset_password/', views.user_reset_password, name='user_reset_password'),
     path('change_password/', views.user_change_password, name='user_change_password'),
     path('edit_profile/', views.user_edit_profile, name='user_edit_profile'),
+    path('export_csv/', views.user_export_csv, name='user_export_csv'),
 
     
 ]

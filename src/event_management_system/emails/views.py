@@ -1,15 +1,13 @@
 from ast import keyword
 import os
-import re
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect, Http404, HttpResponseBadRequest
-from users.models import Profile
-
-from events.models import Event, Lecture, Room
+from events.models import Lecture
 from .forms import EmailForm, EmailSendMassFormLecture, EmailSendMassFormUser
 from .models import Email, MAIL_RECEIVER
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
+from event_management_system.meta import meta
 
 from django.core.mail import send_mail
 
@@ -40,11 +38,11 @@ def email_create(request):
     else:
         form = EmailForm()
         keywords = {}
-        keywords['user'] = get_keywords_user()
-        keywords['lecture'] = get_keywords_lecture()
-        keywords['attendant'] = get_keywords_attendant()
-        keywords['event'] = get_keywords_event()
-        keywords['room'] = get_keywords_room()
+        keywords['user'] = meta.get_fields_user()
+        keywords['lecture'] = meta.get_fields_lecture()
+        keywords['attendant'] = meta.get_fields_attendant()
+        keywords['event'] = meta.get_fields_event()
+        keywords['room'] = meta.get_fields_room()
         return render(request, 'emails/create.html', {'request_user': request.user, 'form': form, 'keywords': keywords})
 
 
@@ -74,11 +72,11 @@ def email_edit(request, email_id):
         email = Email.objects.get(id=email_id)
         form = EmailForm(initial=email.__dict__)
         keywords = {}
-        keywords['user'] = get_keywords_user()
-        keywords['lecture'] = get_keywords_lecture()
-        keywords['attendant'] = get_keywords_attendant()
-        keywords['event'] = get_keywords_event()
-        keywords['room'] = get_keywords_room()
+        keywords['user'] = meta.get_fields_user()
+        keywords['lecture'] = meta.get_fields_lecture()
+        keywords['attendant'] = meta.get_fields_attendant()
+        keywords['event'] = meta.get_fields_event()
+        keywords['room'] = meta.get_fields_room()
         return render(request, 'emails/edit.html', {'request_user': request.user, 'form': form, 'email': email, 'keywords': keywords})
 
 
@@ -239,64 +237,8 @@ def email_send_mass_lecture_deselect_all(request, event_id):
 
 
 
-## Variable handling (keywords)
-def get_all_keywords():
-    return_value = []
-    for string in get_keywords_user():
-        return_value.append(string)
-    for string in get_keywords_lecture():
-        return_value.append(string)
-    for string in get_keywords_attendant():
-        return_value.append(string)
-    for string in get_keywords_event():
-        return_value.append(string)
-    for string in get_keywords_room():
-        return_value.append(string)
-    return return_value
-
-
-def get_keywords_user():
-    return_value = []
-    for field in User._meta.fields:
-        return_value.append(f"$user.{field.attname}")
-    for field in Profile._meta.fields:
-        return_value.append(f"$user.profile.{field.attname}")
-        
-    return return_value
-
-
-def get_keywords_lecture():
-    return_value = []
-    for field in Lecture._meta.fields:
-        return_value.append(f"$lecture.{field.attname}")
-    return return_value
-
-
-def get_keywords_attendant():
-    return_value = []
-    for field in User._meta.fields:
-        return_value.append(f"$attendant.{field.attname}")
-    for field in Profile._meta.fields:
-        return_value.append(f"$attendant.profile.{field.attname}")
-    return return_value
-
-
-def get_keywords_room():
-    return_value = []
-    for field in Room._meta.fields:
-        return_value.append(f"$room.{field.attname}")
-    return return_value
-
-
-def get_keywords_event():
-    return_value = []
-    for field in Event._meta.fields:
-        return_value.append(f"$event.{field.attname}")
-    return return_value
-
-
 def get_converted_string_user(string, user):
-    for keyword in get_all_keywords():
+    for keyword in meta.get_all_fields():
         if keyword.startswith("$user."):
             if keyword.startswith("$user.profile."):
                 string = string.replace(keyword, str(user.profile.__dict__[keyword.replace("$user.profile.", "")]))
@@ -310,7 +252,7 @@ def get_converted_string_lecture(string, lecture):
     room = lecture.scheduled_in_room
     event = lecture.event
 
-    for keyword in get_all_keywords():
+    for keyword in meta.get_all_fields():
         if keyword.startswith("$user."):
             if keyword.startswith("$user.profile."):
                 string = string.replace(keyword, str(user.profile.__dict__[keyword.replace("$user.profile.", "")]))
