@@ -4,8 +4,8 @@
 <h1>{% trans "Users" %}</h1>
 <br>
 <a href="{% url 'user_create' %}"><button type="button" class="btn btn-success">{% trans "Create" %}</button></a>
-<a href="{% url 'email_send_mass_user' %}"><button type="button" class="btn btn-warning">{% trans "Mass Mail Users" %}</button></a>
-<a href="{% url 'user_export_csv' %}"><button type="button" class="btn btn-info">{% trans "Export csv" %}</button></a>
+<a href="{% url 'email_send_mass_user' %}"><button type="button" class="btn btn-outline-secondary">{% trans "Mass Mail Users" %}</button></a>
+<a href="{% url 'user_export_csv' %}"><button type="button" class="btn btn-outline-secondary">{% trans "Export csv" %}</button></a>
 <br>
 <br>
 <table class="table table-hover">
@@ -30,11 +30,11 @@
                 <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>{{user.user_role}}</td>
                 
-                <td><a href="{% url 'user_view' user.id%}"><button type="button" class="btn btn-info">{% trans "View" %}</button></a></td>
-                <td><a href="{% url 'user_edit' user.id%}"><button type="button" class="btn btn-primary">{% trans "Edit" %}</button></a></td>
+                <td><a href="{% url 'user_view' user.id%}"><button type="button" class="btn btn-outline-secondary btn-sm">{% trans "View" %}</button></a></td>
+                <td><a href="{% url 'user_edit' user.id%}"><button type="button" class="btn btn-outline-secondary btn-sm">{% trans "Edit" %}</button></a></td>
 
                 {% comment %} Delete Button {% endcomment %}
-                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{user.id}}">{% trans "Delete" %}</button></td>
+                <td><button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{user.id}}">{% trans "Delete" %}</button></td>
 
                 {% comment %} Delete Popup {% endcomment %}
                 <div class="modal fade" id="deleteModal{{user.id}}" tabindex="-1" aria-labelledby="deleteModal{{user.id}}Label" aria-hidden="true">
@@ -48,7 +48,7 @@
                         {% trans "delete.question.part1" %} {{user.first_name}} {{user.last_name}} {% trans "delete.question.part2" %}
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
                         <a href="{% url 'user_delete' user.id%}"><button type="button" class="btn btn-danger">{% trans "Delete" %}</button></a>
                       </div>
                     </div>
