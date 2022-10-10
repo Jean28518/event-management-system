@@ -1,4 +1,5 @@
 from ast import keyword
+import os
 import re
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect, Http404, HttpResponseBadRequest
@@ -129,7 +130,7 @@ def _handle_email_send_mass_user_post_request(request):
     for user in users:
         send_mail(get_converted_string_user(email_to_send.subject, user),
         get_converted_string_user(email_to_send.body, user),
-        '',
+        os.getenv("EMAIL_HOST_USER"),
         [user.email],
         fail_silently=False,)   
     
@@ -212,7 +213,7 @@ def email_send_mass_lecture(request, event_id, select_all=False):
         for email_adress_with_lecture in email_adresses_with_lectures:
             send_mail(get_converted_string_lecture(email_to_send.subject, email_adress_with_lecture[1]),
             get_converted_string_lecture(email_to_send.body, email_adress_with_lecture[1]),
-            '',
+            os.getenv("EMAIL_HOST_USER"),
             [email_adress_with_lecture[0]],
             fail_silently=False,)   
         return HttpResponseRedirect(f"/events/{event_id}/lecture/overview/")
