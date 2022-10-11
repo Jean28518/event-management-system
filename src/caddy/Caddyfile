@@ -1,6 +1,8 @@
 http:// {
-    root * /static/
-    file_server
-    encode zstd gzip
+    handle_path /static* {
+	root * /static/
+	file_server
+      	encode zstd gzip
+    }
     reverse_proxy django_gunicorn:8000
 }
