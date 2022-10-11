@@ -68,7 +68,7 @@ class LectureForm(forms.Form):
     additional_information_by_presentator = forms.CharField(label=_('Additional information (max. 2048 signs)'), max_length=2048, widget=forms.Textarea(attrs={'class': "form-control"}), required=False)
     related_website = forms.CharField(label=_('Lecture related Website'), max_length=100, widget=forms.URLInput(attrs={'class': "form-control"}), required=False)
     scheduled_in_room = forms.ModelChoiceField(label=_("Scheduled in Room"), queryset=Room.objects.all(), widget=forms.Select(attrs={'class': "form-select"}), required=False)
-    scheduled_presentation_time = forms.DateTimeField(label=_("Scheduled Time Format: YYYY-MM-DD HH:MM"), required=False, widget=forms.DateTimeInput(attrs={'class': "form-select"}))
+    scheduled_presentation_time = forms.CharField(label=_("Scheduled Time Format: YYYY-MM-DD HH:MM"), required=False, widget=forms.TextInput(attrs={'class': "form-select"}))
     scheduled_presentation_length = forms.IntegerField(label=_('Scheduled Length (in minutes)'), widget=forms.NumberInput(attrs={'class': "form-control"}), required=False)
     scheduled_presentation_style = forms.CharField(label=_('Scheduled presentation style'), widget=forms.Select(choices=PRESENTATION_STYLE, attrs={'class': "form-select"}), required=False)
     further_information = forms.CharField(label=_('Further private information (max. 2048 signs) (Presentator can\'t see this)'), max_length=2048, widget=forms.Textarea(attrs={'class': "form-control"}), required=False)

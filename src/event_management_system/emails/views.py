@@ -8,6 +8,7 @@ from .models import Email, MAIL_RECEIVER
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 from event_management_system.meta import meta
+from django.template.defaultfilters import date as _date
 
 from django.core.mail import send_mail
 
@@ -259,6 +260,8 @@ def get_converted_string_lecture(string, lecture):
             else:
                 string = string.replace(keyword, str(user.__dict__[keyword.replace("$user.", "")]))
         if keyword.startswith("$lecture."):
+            if keyword == "$lecture.scheduled_presentation_time":
+                string = string.replace(keyword, _date(lecture.__dict__[keyword.replace("$lecture.", "")], "l, j. F o, H:i"))
             string = string.replace(keyword, str(lecture.__dict__[keyword.replace("$lecture.", "")]))
         if keyword.startswith("$attendant.") and attendant:
             if keyword.startswith("$attendant.profile."):

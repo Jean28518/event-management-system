@@ -270,7 +270,6 @@ def lecture_edit(request, lecture_id):
         if lecture.scheduled_in_room:
             data['scheduled_in_room'] = lecture.scheduled_in_room.id
         form = LectureForm(data=data)
-        print(lecture.available_timeslots)
         all_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
         available_timeslots = _get_timeslots_of_string(lecture.available_timeslots)
         for timeslot in available_timeslots: 
