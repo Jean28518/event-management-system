@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 20:13+0000\n"
-"PO-Revision-Date: 2022-10-10 22:15+0200\n"
+"POT-Creation-Date: 2022-10-11 23:20+0000\n"
+"PO-Revision-Date: 2022-10-12 01:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -51,8 +51,8 @@ msgstr ""
 #: events/templates/events/event/overview.html:50
 #: events/templates/events/lecture/contact/edit.html:29
 #: events/templates/events/lecture/contact/overview.html:44
-#: events/templates/events/lecture/edit.html:33
-#: events/templates/events/lecture/overview.html:65
+#: events/templates/events/lecture/edit.html:69
+#: events/templates/events/lecture/overview.html:66
 #: events/templates/events/room/create.html:11
 #: events/templates/events/room/edit.html:10
 #: events/templates/events/room/overview.html:43
@@ -83,7 +83,7 @@ msgstr ""
 
 #: emails/templates/emails/create.html:42 emails/templates/emails/edit.html:42
 #: events/templates/events/lecture/contact/overview.html:12
-#: events/templates/events/lecture/overview.html:32
+#: events/templates/events/lecture/overview.html:33
 msgid "Lecture"
 msgstr ""
 
@@ -106,7 +106,7 @@ msgstr ""
 
 #: emails/templates/emails/edit.html:8
 #: events/templates/events/event/edit.html:6
-#: events/templates/events/lecture/edit.html:6
+#: events/templates/events/lecture/edit.html:16
 #: events/templates/events/room/edit.html:6 users/templates/users/edit.html:6
 #: users/templates/users/edit_profile.html:6
 msgid "Edit.heading"
@@ -115,7 +115,7 @@ msgstr "Edit"
 #: emails/templates/emails/edit.html:13
 #: events/templates/events/event/edit.html:12
 #: events/templates/events/lecture/contact/edit.html:30
-#: events/templates/events/lecture/edit.html:34
+#: events/templates/events/lecture/edit.html:70
 #: events/templates/events/room/edit.html:11
 msgid "Save"
 msgstr ""
@@ -129,7 +129,7 @@ msgstr ""
 #: emails/templates/emails/overview.html:23
 #: events/templates/events/event/overview.html:31
 #: events/templates/events/lecture/contact/overview.html:25
-#: events/templates/events/lecture/overview.html:46
+#: events/templates/events/lecture/overview.html:47
 #: events/templates/events/room/overview.html:23
 #: users/templates/users/overview.html:34
 msgid "Edit"
@@ -142,8 +142,8 @@ msgstr ""
 #: events/templates/events/event/timeslot.html:20
 #: events/templates/events/lecture/contact/overview.html:29
 #: events/templates/events/lecture/contact/overview.html:45
-#: events/templates/events/lecture/overview.html:50
-#: events/templates/events/lecture/overview.html:66
+#: events/templates/events/lecture/overview.html:51
+#: events/templates/events/lecture/overview.html:67
 #: events/templates/events/room/overview.html:28
 #: events/templates/events/room/overview.html:44
 #: users/templates/users/overview.html:38
@@ -154,7 +154,7 @@ msgstr ""
 #: emails/templates/emails/overview.html:35
 #: events/templates/events/event/overview.html:43
 #: events/templates/events/lecture/contact/overview.html:37
-#: events/templates/events/lecture/overview.html:58
+#: events/templates/events/lecture/overview.html:59
 #: events/templates/events/room/overview.html:36
 #: users/templates/users/overview.html:46
 msgid "Delete.heading"
@@ -163,7 +163,7 @@ msgstr "Delete"
 #: emails/templates/emails/overview.html:39
 #: events/templates/events/event/overview.html:47
 #: events/templates/events/lecture/contact/overview.html:41
-#: events/templates/events/lecture/overview.html:62
+#: events/templates/events/lecture/overview.html:63
 #: events/templates/events/room/overview.html:40
 #: users/templates/users/overview.html:50
 msgid "delete.question.part1"
@@ -172,7 +172,7 @@ msgstr "Do you really want to delete"
 #: emails/templates/emails/overview.html:39
 #: events/templates/events/event/overview.html:47
 #: events/templates/events/lecture/contact/overview.html:41
-#: events/templates/events/lecture/overview.html:62
+#: events/templates/events/lecture/overview.html:63
 #: events/templates/events/room/overview.html:40
 #: users/templates/users/overview.html:50
 msgid "delete.question.part2"
@@ -203,11 +203,11 @@ msgstr ""
 
 #: event_management_system/settings.py:129
 msgid "language.en"
-msgstr ""
+msgstr "English"
 
 #: event_management_system/settings.py:130
 msgid "language.de"
-msgstr ""
+msgstr "German"
 
 #: event_management_system/templates/global/base.html:7
 msgid "Event Management System"
@@ -247,7 +247,8 @@ msgid "Year"
 msgstr ""
 
 #: events/forms.py:14 events/forms.py:22
-#: events/templates/events/event/overview.html:17 users/forms.py:18
+#: events/templates/events/event/overview.html:17
+#: events/templates/events/lecture/timetable.html:56 users/forms.py:18
 #: users/forms.py:29 users/forms.py:49
 msgid "Website"
 msgstr ""
@@ -261,6 +262,7 @@ msgid "Password"
 msgstr ""
 
 #: events/forms.py:41 events/forms.py:59
+#: events/templates/events/lecture/timetable.html:20
 msgid "Title"
 msgstr ""
 
@@ -304,7 +306,7 @@ msgstr ""
 msgid "Lecture related Website"
 msgstr ""
 
-#: events/forms.py:57 events/templates/events/lecture/overview.html:33
+#: events/forms.py:57 events/templates/events/lecture/overview.html:34
 msgid "Presentator"
 msgstr ""
 
@@ -384,7 +386,7 @@ msgstr ""
 
 #: events/templates/events/event/timeslot.html:33
 #: events/templates/events/lecture/contact/view.html:29
-#: events/templates/events/lecture/overview.html:76
+#: events/templates/events/lecture/overview.html:77
 #: events/templates/events/lecture/view.html:33
 #: users/templates/users/view.html:18
 msgid "Back"
@@ -414,7 +416,7 @@ msgid "Submit"
 msgstr ""
 
 #: events/templates/events/lecture/contact/overview.html:24
-#: events/templates/events/lecture/overview.html:45
+#: events/templates/events/lecture/overview.html:46
 #: users/templates/users/overview.html:33
 msgid "View"
 msgstr ""
@@ -431,7 +433,7 @@ msgstr ""
 msgid "Create Lecture"
 msgstr ""
 
-#: events/templates/events/lecture/edit.html:21
+#: events/templates/events/lecture/edit.html:57
 #: events/templates/events/lecture/view.html:21
 msgid "Presentator is available at these timeslots"
 msgstr ""
@@ -460,6 +462,10 @@ msgstr ""
 
 #: events/templates/events/lecture/overview.html:24
 msgid "Call For Paper Link"
+msgstr ""
+
+#: events/templates/events/lecture/overview.html:26
+msgid "Timetable (Public)"
 msgstr ""
 
 #: events/templates/events/lecture/public/create.html:6
@@ -508,6 +514,26 @@ msgstr ""
 
 #: events/templates/events/lecture/public/create_successful.html:11
 msgid "Go to overview"
+msgstr ""
+
+#: events/templates/events/lecture/timetable.html:19
+msgid "Time"
+msgstr ""
+
+#: events/templates/events/lecture/timetable.html:26
+msgid "timetable.time.appendix"
+msgstr " "
+
+#: events/templates/events/lecture/timetable.html:61
+msgid "Material"
+msgstr ""
+
+#: events/templates/events/lecture/timetable.html:66
+msgid "Recording"
+msgstr ""
+
+#: events/templates/events/lecture/timetable.html:72
+msgid "Close"
 msgstr ""
 
 #: events/templates/events/room/create.html:6

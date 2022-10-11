@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import permission_required
 from django.shortcuts import redirect
 import csv
 from event_management_system.meta import meta
+from django.template.defaultfilters import date as _date
 
 
 @permission_required("events.view_event")
@@ -522,3 +523,43 @@ def lecture_export_csv(request):
         writer.writerow(lecture_line)
 
     return response
+
+def timetable(request, event_id):
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+        return HttpResponseBadRequest()
+    event = event[0]
+    lectures = Lecture.objects.filter(event_id=event.id)
+
+    # Generate days
+    days = []
+    for lecture in lectures:
+        # (lecture.__dict__[keyword.replace("$lecture.", "")], "l, j. F o, H:i")
+        day = { "title": _date(lecture.scheduled_presentation_time, "l, j. F o"), "date":str(lecture.scheduled_presentation_time).split(" ")[0] }
+        # day = { "date": _date(str(lecture.scheduled_presentation_time).split(" ")[0], "l, j. F o")}
+        if not day in days:
+            days.append(day)
+
+    # Generate rooms
+    for day in days:
+        day["rooms"] = []
+        for lecture in lectures:
+            if str(lecture.scheduled_presentation_time).split(" ")[0] == day["date"] and lecture.scheduled_in_room:
+                
+ 
+                
+                # Add lecture to room:
+                found_room = {}
+                for room in day["rooms"]:
+                    if room["name"] == lecture.scheduled_in_room.name:
+                        found_room = room
+                        break
+                if found_room == {}:
+                    found_room = {"name": lecture.scheduled_in_room.name, "lectures": []}
+                    day["rooms"].append(found_room)
+                lecture.nice_time = _date(lecture.scheduled_presentation_time, "H:i")
+                found_room["lectures"].append(lecture)
+                found_room["lectures"].sort(key=lambda d: str(d.scheduled_presentation_time))
+    
+    return render(request, 'events/lecture/timetable.html',
+                      {'request_user': request.user, 'event': event, 'days': days})

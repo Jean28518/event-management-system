@@ -21,8 +21,9 @@
   <a href="{% url 'enable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">{% trans "Call For Papers:" %} {% trans "Disabled" %}</button></a>
   {% else %}
   <a href="{% url 'disable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">{% trans "Call For Papers:" %} {% trans "Enabled" %}</button></a>
-    <a href="{% url 'lecture_public_create_entry' event.id %}">{% trans "Call For Paper Link" %}</a>
-{% endif %}
+  <a href="{% url 'lecture_public_create_entry' event.id %}">{% trans "Call For Paper Link" %}</a>
+  {% endif %}
+<a href="{% url 'timetable' event.id %}">{% trans "Timetable (Public)" %}</a>
 <br>
 <br>
 <table class="table table-hover">
