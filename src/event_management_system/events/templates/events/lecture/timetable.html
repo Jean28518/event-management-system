@@ -3,8 +3,16 @@
 {% block content %}
 <h1>{{event.name}}</h1>
 
-<br/>
 
+    
+{% if event.website != "" %}
+    <div class="d-flex justify-content-center">
+        <a href={{event.website}}><button type="button" class="btn btn-primary btn-lg">{% trans "Back to website" %}</button></a>
+    </div>
+{% endif %}
+    
+<br>
+<br>
 
 <div class="container text-center">
     {% for day in days %}
@@ -12,7 +20,11 @@
         <div class="row">
             {% for room in day.rooms %}
                 <div class="col">
-                    <h3>{{room.name}}</h3>
+                    {% if room.website != "" %}
+                        <a href="{{room.website}}"><button type="button" class="btn btn-light btn-lg"><h3>{{room.name}}</h3></button></a>
+                    {% else %}
+                        <h3>{{room.name}}</h3>
+                    {% endif %}
                     <table class="table">
                         <thead>
                           <tr>
@@ -91,4 +103,14 @@
         <br>
     {% endfor %}
 </div>
+
+<br>
+<br>
+{% if event.website != "" %}
+    <div class="d-flex justify-content-center">
+        <a href={{event.website}}><button type="button" class="btn btn-primary btn-lg">{% trans "Back to website" %}</button></a>
+    </div>
+    <br>
+    <br>
+{% endif %}
 {% endblock %}

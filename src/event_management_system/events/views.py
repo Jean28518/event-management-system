@@ -555,7 +555,7 @@ def timetable(request, event_id):
                         found_room = room
                         break
                 if found_room == {}:
-                    found_room = {"name": lecture.scheduled_in_room.name, "lectures": []}
+                    found_room = {"name": lecture.scheduled_in_room.name, "lectures": [], "website": lecture.scheduled_in_room.website}
                     day["rooms"].append(found_room)
                 lecture.nice_time = _date(lecture.scheduled_presentation_time, "H:i")
                 found_room["lectures"].append(lecture)
