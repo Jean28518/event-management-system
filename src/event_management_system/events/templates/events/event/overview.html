@@ -4,7 +4,7 @@
 <h1>{% trans "Events" %}</h1>
 <br>
 <a href="{% url 'event_create' %}"><button type="button" class="btn btn-success">{% trans "Create" %}</button></a>
-<a href="{% url 'lecture_export_csv' %}"><button type="button" class="btn btn-info">{% trans "Export csv" %}</button></a>
+<a href="{% url 'lecture_export_csv' %}"><button type="button" class="btn btn-outline-secondary">{% trans "Export csv" %}</button></a>
 
 <br>
 <br>
@@ -27,11 +27,12 @@
                 <td>{{event.name}}</td>
                 <td>{{event.year}}</td>
                 <td><a href="{{event.website}}">{{event.website}}</a></td>
-                <td><a href="{% url 'lecture_overview' event.id%}"><button type="button" class="btn btn-info">{% trans "Lectures" %}</button></a></td>
-                <td><a href="{% url 'event_edit' event.id%}"><button type="button" class="btn btn-primary">{% trans "Edit" %}</button></a></td>
+                <td><a href="{% url 'lecture_overview' event.id%}"><button type="button" class="btn btn-outline-secondary">{% trans "Lectures" %}</button></a></td>
+                <td class="text-center"><a href="{% url 'event_edit' event.id%}"><button type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button></a></td>
+
 
                 {% comment %} Delete Button {% endcomment %}
-                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{event.id}}">{% trans "Delete" %}</button></td>
+                <td class="text-center"><button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{event.id}}"><i class="bi bi-trash"></i></button></td>
 
                 {% comment %} Delete Popup {% endcomment %}
                 <div class="modal fade" id="deleteModal{{event.id}}" tabindex="-1" aria-labelledby="deleteModal{{event.id}}Label" aria-hidden="true">

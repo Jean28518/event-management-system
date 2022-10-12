@@ -30,11 +30,11 @@
                 <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>{{user.user_role}}</td>
                 
-                <td><a href="{% url 'user_view' user.id%}"><button type="button" class="btn btn-outline-secondary btn-sm">{% trans "View" %}</button></a></td>
-                <td><a href="{% url 'user_edit' user.id%}"><button type="button" class="btn btn-outline-secondary btn-sm">{% trans "Edit" %}</button></a></td>
+                <td class="text-center" ><a href="{% url 'user_view' user.id%}"><button type="button" class="btn btn-sm btn-outline-info"><i class="bi bi-file-text"></i></button></a></td>
+                <td class="text-center" ><a href="{% url 'user_edit' user.id%}"><button type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button></a></td>
 
                 {% comment %} Delete Button {% endcomment %}
-                <td><button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{user.id}}">{% trans "Delete" %}</button></td>
+                <td class="text-center" ><button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{user.id}}"><i class="bi bi-trash"></i></button></td>
 
                 {% comment %} Delete Popup {% endcomment %}
                 <div class="modal fade" id="deleteModal{{user.id}}" tabindex="-1" aria-labelledby="deleteModal{{user.id}}Label" aria-hidden="true">

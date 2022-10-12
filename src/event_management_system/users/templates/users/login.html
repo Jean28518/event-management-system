@@ -1,20 +1,54 @@
 {% extends "global/base.html" %}
 {% load i18n %}
 {% block content %}
-<h1>{% trans "Login" %}</h1>
-<p>{% trans "Welcome! If you already have a user account, please login. Otherwise please register first." %}</p>
-<a href="{% url 'user_register' %}"><button type="button" class="btn btn-secondary">{% trans "Register" %}</button></a>
-{% if login_failed %}
-<div class="alert alert-danger" role="alert">
-    {% trans "Login failed! Try again." %}
-</div>
-{% endif %}
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <h1>{% trans "Login" %}</h1>
+            <p>{% trans "Welcome! If you already have a user account, please login. Otherwise please register first." %}</p>
+            {% if login_failed %}
+            <br>
+            <div class="alert alert-danger" role="alert">
+                {% trans "Login failed! Try again." %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="col"></div>
+
+    </div>
+  </div>
 <form action="" method="post">
     {% csrf_token %}
     <br/>
-    {{ form }}
-    <br/>
-    <a href="{% url 'user_reset_password' %}"><button type="button" class="btn btn-warning">{% trans "Reset Password" %}</button></a>
-    <input type="submit" value="Login" class="btn btn-primary">
+    
+    
+    
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+            </div>
+            <div class="col-6">
+                {{ form }}
+                <br/>
+                <input type="submit" value="Login" class="btn btn-primary w-100">
+                
+            </div>
+            <div class="col text-center">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+            </div>
+            <div class="col-6 text-center">
+                <hr>
+                <a href="{% url 'user_reset_password' %}"><button type="button" class="btn btn-warning">{% trans "Reset Password" %}</button></a>
+                <a href="{% url 'user_register' %}"><button type="button" class="btn btn-secondary">{% trans "Register" %}</button></a>
+            </div>
+            <div class="col text-center">
+            </div>
+        </div>
+    </div>
 </form>
 {% endblock %}

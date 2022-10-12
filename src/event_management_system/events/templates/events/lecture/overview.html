@@ -11,19 +11,19 @@
 <a href="{% url 'lecture_create' event.id %}"><button type="button" class="btn btn-success">{% trans "Create" %}</button></a>
 
 {% if lectures_empty %}
-  <button type="button" class="btn btn-warning" disabled>{% trans "Mass Mail Lectures" %}</button>
+  <button type="button" class="btn btn-outline-secondary" disabled>{% trans "Mass Mail Lectures" %}</button>
 {% else %}
-  <a href="{% url 'email_send_mass_lecture' event.id%}"><button type="button" class="btn btn-warning">{% trans "Mass Mail Lectures" %}</button></a>
+  <a href="{% url 'email_send_mass_lecture' event.id%}"><button type="button" class="btn btn-outline-secondary">{% trans "Mass Mail Lectures" %}</button></a>
 {% endif %}
 
 
 {% if event.call_for_papers == False %}
-  <a href="{% url 'enable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">{% trans "Call For Papers:" %} {% trans "Disabled" %}</button></a>
+  <a href="{% url 'enable_call_for_papers' event.id %}"><button type="button" class="btn btn-outline-secondary">{% trans "Call For Papers:" %} {% trans "Disabled" %}</button></a>
   {% else %}
-  <a href="{% url 'disable_call_for_papers' event.id %}"><button type="button" class="btn btn-dark">{% trans "Call For Papers:" %} {% trans "Enabled" %}</button></a>
+  <a href="{% url 'disable_call_for_papers' event.id %}"><button type="button" class="btn btn-outline-secondary">{% trans "Call For Papers:" %} {% trans "Enabled" %}</button></a>
   <a href="{% url 'lecture_public_create_entry' event.id %}">{% trans "Call For Paper Link" %}</a>
   {% endif %}
-<a href="{% url 'timetable' event.id %}">{% trans "Timetable (Public)" %}</a>
+<a href="{% url 'timetable' event.id %}"><button type="button" class="btn btn-outline-secondary">{% trans "Timetable (Public)" %}</button></a>
 <br>
 <br>
 <table class="table table-hover">
@@ -43,11 +43,11 @@
                 <th scope="row">{{lecture.id}}</th>
                 <td>{{lecture.title}}</td>
                 <td>{{lecture.presentator.first_name}} {{lecture.presentator.last_name}} {% if lecture.presentator.profile.company %} ({{lecture.presentator.profile.company}}) {% endif %} </td>
-                <td><a href="{% url 'lecture_view' lecture.id%}"><button type="button" class="btn btn-info">{% trans "View" %}</button></a></td>
-                <td><a href="{% url 'lecture_edit' lecture.id%}"><button type="button" class="btn btn-primary">{% trans "Edit" %}</button></a></td>
+                <td class="text-center"><a href="{% url 'lecture_view' lecture.id%}"><button type="button" class="btn btn-sm btn-outline-info"><i class="bi bi-file-text"></i></button></a></td>
+                <td class="text-center"><a href="{% url 'lecture_edit' lecture.id%}"><button type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button></a></td>
 
                 {% comment %} Delete Button {% endcomment %}
-                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{lecture.id}}">{% trans "Delete" %}</button></td>
+                <td class="text-center"><button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{lecture.id}}"><i class="bi bi-trash"></i></button></td>
 
                 {% comment %} Delete Popup {% endcomment %}
                 <div class="modal fade" id="deleteModal{{lecture.id}}" tabindex="-1" aria-labelledby="deleteModal{{lecture.id}}Label" aria-hidden="true">

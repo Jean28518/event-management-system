@@ -11,8 +11,8 @@
       <tr>
         <th scope="col" style="width:10%">#</th>
         <th scope="col" style="width:80%">{% trans "Emails" %}</th>
-        <th scope="col" style="width:5%"></th>
-        <th scope="col" style="width:5%"></th>
+        <td scope="col" style="width:5%"></td>
+        <td scope="col" style="width:5%"></td>
       </tr>
     </thead>
     <tbody>
@@ -20,10 +20,10 @@
             <tr>
                 <th scope="row">{{email.id}}</th>
                 <td>{{email.name}}</td>
-                <td><a href="{% url 'email_edit' email.id%}"><button type="button" class="btn btn-primary">{% trans "Edit" %}</button></a></td>
+                <td class="text-center"><a href="{% url 'email_edit' email.id%}"><button type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button></a></td>
 
                 {% comment %} Delete Button {% endcomment %}
-                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{email.id}}">{% trans "Delete" %}</button></td>
+                <td class="text-center"><button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{email.id}}"><i class="bi bi-trash"></i></button></td>
 
                 {% comment %} Delete Popup {% endcomment %}
                 <div class="modal fade" id="deleteModal{{email.id}}" tabindex="-1" aria-labelledby="deleteModal{{email.id}}Label" aria-hidden="true">
