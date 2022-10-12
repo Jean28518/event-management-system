@@ -434,8 +434,8 @@ def _save_lecture_from_full_edit(request, lecture):
     lecture.preferred_presentation_style = request.POST.get('preferred_presentation_style', "")
     lecture.questions_during_lecture = (request.POST.get('questions_during_lecture', "off") == "on")
     lecture.questions_after_lecture = (request.POST.get('questions_after_lecture', "off") == "on")
-    lecture.minimal_lecture_length = int(request.POST.get('minimal_lecture_length', ""))
-    lecture.maximal_lecture_length = int(request.POST.get('maximal_lecture_length', ""))
+    lecture.minimal_lecture_length = int(request.POST.get('minimal_lecture_length', "0"))
+    lecture.maximal_lecture_length = int(request.POST.get('maximal_lecture_length', "0"))
     lecture.additional_information_by_presentator = request.POST.get('additional_information_by_presentator', "")
     lecture.related_website = request.POST.get('related_website', "")
     if request.POST.get('scheduled_presentation_time', "") != "":
@@ -457,17 +457,17 @@ def _save_lecture_from_full_edit(request, lecture):
     lecture.save()
 
 def _save_lecture_from_presentator_edit(request, lecture):
-    lecture.title = request.POST['title']
-    lecture.description = request.POST['description']
-    lecture.target_group = request.POST['target_group']
-    lecture.qualification_for_lecture = request.POST['qualification_for_lecture']
-    lecture.preferred_presentation_style = request.POST['preferred_presentation_style']
+    lecture.title = request.POST.get('title', "")
+    lecture.description = request.POST.get('description', "")
+    lecture.target_group = request.POST.get('target_group', "")
+    lecture.qualification_for_lecture = request.POST.get('qualification_for_lecture', "")
+    lecture.preferred_presentation_style = request.POST.get('preferred_presentation_style', "")
     lecture.questions_during_lecture = (request.POST.get('questions_during_lecture', "off") == "on")
     lecture.questions_after_lecture = (request.POST.get('questions_after_lecture', "off") == "on")
-    lecture.minimal_lecture_length = int(request.POST['minimal_lecture_length'])
-    lecture.maximal_lecture_length = int(request.POST['maximal_lecture_length'])
-    lecture.additional_information_by_presentator = request.POST['additional_information_by_presentator']
-    lecture.related_website = request.POST['related_website']
+    lecture.minimal_lecture_length = int(request.POST.get('minimal_lecture_length', "0"))
+    lecture.maximal_lecture_length = int(request.POST.get('maximal_lecture_length', "0"))
+    lecture.additional_information_by_presentator = request.POST.get('additional_information_by_presentator', "")
+    lecture.related_website = request.POST.get('related_website', "")
 
     event_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
     available_timeslots = []
@@ -596,12 +596,12 @@ def timetable(request, event_id):
                         found_room = room
                         break
                 if found_room == {}:
-                    found_room = {"name": lecture.scheduled_in_room.name, "lectures": [], "website": lecture.scheduled_in_room.website}
+                    found_room = {"name": lecture.scheduled_in_room.name, "lectures": [], "website": lecture.scheduled_in_room.website, "id": lecture.scheduled_in_room.id}
                     day["rooms"].append(found_room)
+                    day["rooms"].sort(key=lambda d: str(d["id"]))
                 lecture.nice_time = _date(lecture.scheduled_presentation_time, "H:i")
                 found_room["lectures"].append(lecture)
                 found_room["lectures"].sort(key=lambda d: str(d.scheduled_presentation_time))
-    
     return render(request, 'events/lecture/timetable.html',
                       {'request_user': request.user, 'event': event, 'days': days})
 
