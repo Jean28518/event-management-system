@@ -1,7 +1,7 @@
 # event-management-system
 Open Source Event Management System written in django
 
-# Run with docker (Production or Development): 
+# Run with docker
 ```bash
 sudo apt install docker docker-compose git # Or similar for your linux distribution
 git clone https://github.com/Jean28518/event-management-system.git
