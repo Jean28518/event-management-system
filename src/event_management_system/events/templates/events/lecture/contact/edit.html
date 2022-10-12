@@ -15,36 +15,10 @@
         {% endif %}
     {% endfor %}
     <br/>
-    <label class="form-label">{% trans "I am available at these timeslots" %}</label>
-    {% for timeslot in timeslots %}
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" {% if timeslot.checked %}checked="true"{% endif %} id="timeslot_{{timeslot.id}}" name="timeslot_{{timeslot.id}}">
-            <label class="form-check-label" for="flexCheckDefault">
-            {{timeslot.text}}
-            </label>
-        </div>
-    {% endfor %}
-    <br>
+    
+    {% include "events/modules/timeslot_module.html" %}
 
-    {% comment %} Custom fields: {% endcomment %}
-    {% for custom_question_answer_pair in custom_question_answer_pairs %}
-        {% comment %} Text-Field {% endcomment %}
-        {% if custom_question_answer_pair.type == "t" %}
-            <label class="form-label">{{custom_question_answer_pair.text}}</label>
-            <input type="text" class="form-control" id="custom_question_{{custom_question_answer_pair.id}}" name="custom_question_{{custom_question_answer_pair.id}}" value="{{custom_question_answer_pair.value}}">
-        
-        {% comment %} Checkbox {% endcomment %}
-        {% else %} 
-            <br>
-            <input class="form-check-input" type="checkbox" value="" {% if custom_question_answer_pair.value == "1" %}checked="true"{% endif %} id="custom_question_{{custom_question_answer_pair.id}}" name="custom_question_{{custom_question_answer_pair.id}}">
-            <label class="form-check-label" for="custom_question_{{custom_question_answer_pair.id}}">
-                {{custom_question_answer_pair.text}}
-            </label>
-            <br>
-            <br>
-        {% endif %}
-    {% endfor %}
-    <br>
+    {% include "events/modules/additional_questions_module.html" %}
     
     <a href="{% url 'lecture_contact_overview' %}"><button type="button" class="btn btn-secondary">{% trans "Cancel" %}</button></a>
     <input type="submit" value="{% trans "Save" %}" class="btn btn-primary">

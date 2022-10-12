@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-12 11:34+0000\n"
+"POT-Creation-Date: 2022-10-12 14:50+0000\n"
 "PO-Revision-Date: 2022-10-12 01:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -56,11 +56,11 @@ msgstr ""
 #: src/event_management_system/emails/templates/emails/edit.html:12
 #: src/event_management_system/emails/templates/emails/overview.html:42
 #: src/event_management_system/events/templates/events/event/create.html:10
-#: src/event_management_system/events/templates/events/event/edit.html:13
+#: src/event_management_system/events/templates/events/event/edit.html:14
 #: src/event_management_system/events/templates/events/event/overview.html:50
-#: src/event_management_system/events/templates/events/lecture/contact/edit.html:52
+#: src/event_management_system/events/templates/events/lecture/contact/edit.html:23
 #: src/event_management_system/events/templates/events/lecture/contact/overview.html:44
-#: src/event_management_system/events/templates/events/lecture/edit.html:91
+#: src/event_management_system/events/templates/events/lecture/edit.html:61
 #: src/event_management_system/events/templates/events/lecture/overview.html:66
 #: src/event_management_system/events/templates/events/room/create.html:11
 #: src/event_management_system/events/templates/events/room/edit.html:10
@@ -132,9 +132,9 @@ msgid "Edit.heading"
 msgstr "Edit"
 
 #: src/event_management_system/emails/templates/emails/edit.html:13
-#: src/event_management_system/events/templates/events/event/edit.html:14
-#: src/event_management_system/events/templates/events/lecture/contact/edit.html:53
-#: src/event_management_system/events/templates/events/lecture/edit.html:92
+#: src/event_management_system/events/templates/events/event/edit.html:15
+#: src/event_management_system/events/templates/events/lecture/contact/edit.html:24
+#: src/event_management_system/events/templates/events/lecture/edit.html:62
 #: src/event_management_system/events/templates/events/room/edit.html:11
 msgid "Save"
 msgstr ""
@@ -431,9 +431,9 @@ msgstr ""
 
 #: src/event_management_system/events/templates/events/event/custom_fields.html:41
 #: src/event_management_system/events/templates/events/event/timeslot.html:33
-#: src/event_management_system/events/templates/events/lecture/contact/view.html:52
+#: src/event_management_system/events/templates/events/lecture/contact/view.html:23
 #: src/event_management_system/events/templates/events/lecture/overview.html:77
-#: src/event_management_system/events/templates/events/lecture/view.html:55
+#: src/event_management_system/events/templates/events/lecture/view.html:25
 #: src/event_management_system/users/templates/users/view.html:18
 msgid "Back"
 msgstr ""
@@ -448,6 +448,22 @@ msgstr ""
 
 #: src/event_management_system/events/templates/events/event/edit.html:6
 msgid "Custom questions"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/edit.html:7
+msgid "Question activation"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/field_activation.html:4
+msgid "Field activation for"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/field_activation.html:5
+msgid "If a field is checked, then it will be active."
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/field_activation.html:19
+msgid "Save current field selection"
 msgstr ""
 
 #: src/event_management_system/events/templates/events/event/overview.html:7
@@ -475,18 +491,12 @@ msgstr ""
 msgid "Edit Lecture"
 msgstr ""
 
-#: src/event_management_system/events/templates/events/lecture/contact/edit.html:18
-#: src/event_management_system/events/templates/events/lecture/contact/view.html:18
-#: src/event_management_system/events/templates/events/lecture/public/create.html:20
-msgid "I am available at these timeslots"
-msgstr ""
-
 #: src/event_management_system/events/templates/events/lecture/contact/overview.html:4
 msgid "My Lectures"
 msgstr ""
 
 #: src/event_management_system/events/templates/events/lecture/contact/overview.html:6
-#: src/event_management_system/events/templates/events/lecture/public/create.html:54
+#: src/event_management_system/events/templates/events/lecture/public/create.html:25
 msgid "Submit"
 msgstr ""
 
@@ -506,11 +516,6 @@ msgstr ""
 
 #: src/event_management_system/events/templates/events/lecture/create.html:16
 msgid "Create Lecture"
-msgstr ""
-
-#: src/event_management_system/events/templates/events/lecture/edit.html:57
-#: src/event_management_system/events/templates/events/lecture/view.html:21
-msgid "Presentator is available at these timeslots"
 msgstr ""
 
 #: src/event_management_system/events/templates/events/lecture/overview.html:4
@@ -614,6 +619,10 @@ msgstr ""
 
 #: src/event_management_system/events/templates/events/lecture/timetable.html:84
 msgid "Close"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/modules/timeslot_module.html:3
+msgid "I am available at these timeslots:"
 msgstr ""
 
 #: src/event_management_system/events/templates/events/room/create.html:6

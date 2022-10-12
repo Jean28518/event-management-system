@@ -1,0 +1,22 @@
+{% extends "global/base.html" %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans "Field activation for" %} {{event.name}}</h1>
+{% trans "If a field is checked, then it will be active." %}
+<br>
+
+<br>
+  <form action="" method="post">
+    {% csrf_token %}
+        {% for field in fields %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" {% if field.checked %} checked="true" {% endif %}  id="field_{{field.id}}" name="field_{{field.id}}">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{field.id}}
+                </label>
+            </div>
+        {% endfor %}
+    <button type="submit" class="btn btn-primary">{% trans "Save current field selection" %}</button>
+  </form>
+  
+{% endblock %}

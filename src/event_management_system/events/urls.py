@@ -21,6 +21,9 @@ urlpatterns = [
     path('event/<int:event_id>/custom_questions/add/', views.event_custom_questions_add, name='event_custom_questions_add'),
     path('event/<int:event_id>/custom_questions/remove/<int:id>', views.event_custom_questions_remove, name='event_custom_questions_remove'),
 
+    # Field Activation
+    path('event/<int:event_id>/field_activation/', views.event_field_activation, name='event_field_activation'),
+
     # Rooms
     path('room/', views.room_overview, name='room_overview'),
     path('room/create/', views.room_create, name='room_create'),

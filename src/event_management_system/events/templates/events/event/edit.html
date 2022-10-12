@@ -4,6 +4,7 @@
 <h1>{% trans "Edit.heading" %} {{event.name}}</h1>
 <a href="{% url 'event_timeslot' event.id%}"><button type="button" class="btn btn-info">{% trans "Timeslots" %}</button></a>
 <a href="{% url 'event_custom_questions' event.id%}"><button type="button" class="btn btn-info">{% trans "Custom questions" %}</button></a>
+<a href="{% url 'event_field_activation' event.id%}"><button type="button" class="btn btn-info">{% trans "Question activation" %}</button></a>
 
 <form action="" method="post">
     {% csrf_token %}

@@ -10,6 +10,7 @@ import csv
 from event_management_system.meta import meta
 from django.template.defaultfilters import date as _date
 from .custom_question import string2custom_questions, custom_question, add_custom_question_to_array, custom_questions2string, remove_custom_question_from_array, post_answer2custom_answers_string, string2question_answer_pairs
+from .field_activation import post_answer2string_disabled_entries, string_disabled_entries2field_activation_entries
 
 
 @permission_required("events.view_event")
@@ -184,33 +185,41 @@ def lecture_public_create_entry(request, event_id):
 
 @permission_required("events.add_lecture")
 def lecture_public_create(request, event_id):
+    event = Event.objects.filter(id=event_id)[0]
     if request.method == 'POST':
-        event = Event.objects.filter(id=event_id)[0]
         form = LectureSubmitForm(request.POST)
-        if form.is_valid():
-            lecture = Lecture()
-            lecture.presentator = request.user
-            lecture.event = event
-            lecture.title = request.POST['title']
-            lecture.description = request.POST['description']
-            lecture.target_group = request.POST['target_group']
-            lecture.qualification_for_lecture = request.POST['qualification_for_lecture']
-            lecture.preferred_presentation_style = request.POST['preferred_presentation_style']
-            lecture.questions_during_lecture = (request.POST.get('questions_during_lecture', "off") == "on")
-            lecture.questions_after_lecture = (request.POST.get('questions_after_lecture', "off") == "on")
-            lecture.minimal_lecture_length = int(request.POST['minimal_lecture_length'])
-            lecture.maximal_lecture_length = int(request.POST['maximal_lecture_length'])
-            lecture.additional_information_by_presentator = request.POST['additional_information_by_presentator']
-            lecture.related_website = request.POST['related_website']
+        lecture = Lecture()
+        lecture.presentator = request.user
+        lecture.event = event
+        _save_lecture_from_presentator_edit(request, lecture)
+        return redirect('lecture_public_created_successfully', event_id)
+    # if request.method == 'POST':
+    #     event = Event.objects.filter(id=event_id)[0]
+    #     form = LectureSubmitForm(request.POST)
+    #     if form.is_valid():
+    #         lecture = Lecture()
+    #         lecture.presentator = request.user
+    #         lecture.event = event
+    #         lecture.title = request.POST['title']
+    #         lecture.description = request.POST['description']
+    #         lecture.target_group = request.POST['target_group']
+    #         lecture.qualification_for_lecture = request.POST['qualification_for_lecture']
+    #         lecture.preferred_presentation_style = request.POST['preferred_presentation_style']
+    #         lecture.questions_during_lecture = (request.POST.get('questions_during_lecture', "off") == "on")
+    #         lecture.questions_after_lecture = (request.POST.get('questions_after_lecture', "off") == "on")
+    #         lecture.minimal_lecture_length = int(request.POST['minimal_lecture_length'])
+    #         lecture.maximal_lecture_length = int(request.POST['maximal_lecture_length'])
+    #         lecture.additional_information_by_presentator = request.POST['additional_information_by_presentator']
+    #         lecture.related_website = request.POST['related_website']
 
-            event_timeslots = _get_timeslots_of_string(event.available_timeslots)
-            available_timeslots = []
-            for event_timeslot in event_timeslots:
-                if (request.POST.get(f"timeslot_{event_timeslot.id}", "off") == ""):
-                    available_timeslots.append(event_timeslot)
-            lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
-            lecture.save()
-            return HttpResponseRedirect(f'/events/{event_id}/lecture/public/created_success')
+    #         event_timeslots = _get_timeslots_of_string(event.available_timeslots)
+    #         available_timeslots = []
+    #         for event_timeslot in event_timeslots:
+    #             if (request.POST.get(f"timeslot_{event_timeslot.id}", "off") == ""):
+    #                 available_timeslots.append(event_timeslot)
+    #         lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
+    #         lecture.save()
+    #         return HttpResponseRedirect(f'/events/{event_id}/lecture/public/created_success')
     else:
         form = LectureSubmitForm()
         event = Event.objects.filter(id=event_id)[0]
@@ -253,6 +262,7 @@ def lecture_create(request, event_id):
         form = LectureForm({'event': event_id})
         event = Event.objects.filter(id=event_id)[0]
         custom_question_answer_pairs = string2question_answer_pairs("", event.custom_questions)
+        form = _remove_disabled_fields(form, event)
         return render(request, 'events/lecture/create.html', 
                 {'form': form, 
                 'timeslots': _get_timeslots_of_string(Event.objects.get(id=event_id).available_timeslots), 
@@ -265,9 +275,8 @@ def lecture_edit(request, lecture_id):
     lecture = Lecture.objects.filter(id=lecture_id).select_related('event').select_related('presentator').select_related('attendant').select_related('scheduled_in_room')[0]
     if request.method == 'POST':
         form = LectureForm(request.POST)
-        if form.is_valid():
-            _save_lecture_from_full_edit(request, lecture)
-            return HttpResponseRedirect(f'/events/{lecture.event.id}/lecture/overview/')
+        _save_lecture_from_full_edit(request, lecture)
+        return HttpResponseRedirect(f'/events/{lecture.event.id}/lecture/overview/')
     else:
         data = lecture.__dict__
         data['event'] = lecture.event.id
@@ -284,9 +293,22 @@ def lecture_edit(request, lecture_id):
                 if all_timeslot.text == timeslot.text:     
                     all_timeslot.checked = True
         custom_question_answer_pairs = string2question_answer_pairs(lecture.custom_question_answers, lecture.event.custom_questions)
+
+        form = _remove_disabled_fields(form, lecture.event)
+
         return render(request, 'events/lecture/edit.html',
                       {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots, "custom_question_answer_pairs": custom_question_answer_pairs})
 
+
+def _remove_disabled_fields(form, event):
+    for disabled_field in event.disabled_fields.split(";"):
+        if disabled_field == "":
+            continue
+        if disabled_field.endswith("_id"):
+            disabled_field = disabled_field.replace("_id", "")
+        if disabled_field in form.fields.keys():
+            del form.fields[disabled_field]
+    return form
 
 @permission_required("events.view_lecture")
 def lecture_view(request, lecture_id):
@@ -309,9 +331,12 @@ def lecture_view(request, lecture_id):
     # Disable Form Field because of view
     for field in form.fields:
         form.fields[field].disabled = True
+
+    form = _remove_disabled_fields(form, lecture.event)
+
     return render(request, 'events/lecture/view.html',
                     {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots,
-                    'custom_question_answer_pairs': custom_question_answer_pairs})
+                    'custom_question_answer_pairs': custom_question_answer_pairs, "disabled": True})
 
 def lecture_contact_overview(request):
     lectures = Lecture.objects.filter(presentator=request.user.id)
@@ -331,9 +356,8 @@ def lecture_contact_edit(request, lecture_id):
         return HttpResponseNotAllowed()
     if request.method == 'POST':
         form = LectureSubmitForm(request.POST)
-        if form.is_valid():
-            _save_lecture_from_presentator_edit(request, lecture)
-            return redirect('lecture_contact_overview')
+        _save_lecture_from_presentator_edit(request, lecture)
+        return redirect('lecture_contact_overview')
     else:
         data = lecture.__dict__
         form = LectureSubmitForm(data=data)
@@ -344,6 +368,7 @@ def lecture_contact_edit(request, lecture_id):
                 if all_timeslot.text == timeslot.text:     
                     all_timeslot.checked = True
         custom_question_answer_pairs = string2question_answer_pairs(lecture.custom_question_answers, lecture.event.custom_questions)
+        form = _remove_disabled_fields(form, lecture.event)
         return render(request, 'events/lecture/contact/edit.html',
                       {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots,
                     'custom_question_answer_pairs': custom_question_answer_pairs})
@@ -379,12 +404,13 @@ def lecture_contact_view(request, lecture_id):
             if all_timeslot.text == timeslot.text:     
                 all_timeslot.checked = True
     custom_question_answer_pairs = string2question_answer_pairs(lecture.custom_question_answers, lecture.event.custom_questions)
+    form = _remove_disabled_fields(form, lecture.event)
     # Disable Form Field because of view
     for field in form.fields:
         form.fields[field].disabled = True
     return render(request, 'events/lecture/contact/view.html',
                     {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots,
-                    'custom_question_answer_pairs': custom_question_answer_pairs})
+                    'custom_question_answer_pairs': custom_question_answer_pairs, "disabled": True})
 
 @permission_required("events.change_lecture")
 def _save_lecture_from_full_edit(request, lecture):
@@ -401,25 +427,25 @@ def _save_lecture_from_full_edit(request, lecture):
     else:
         lecture.scheduled_in_room = None
     # TODO: (duplicate) - globalize
-    lecture.title = request.POST['title']
-    lecture.description = request.POST['description']
-    lecture.target_group = request.POST['target_group']
-    lecture.qualification_for_lecture = request.POST['qualification_for_lecture']
-    lecture.preferred_presentation_style = request.POST['preferred_presentation_style']
+    lecture.title = request.POST.get('title', "")
+    lecture.description = request.POST.get('description', "")
+    lecture.target_group = request.POST.get('target_group', "")
+    lecture.qualification_for_lecture = request.POST.get('qualification_for_lecture', "")
+    lecture.preferred_presentation_style = request.POST.get('preferred_presentation_style', "")
     lecture.questions_during_lecture = (request.POST.get('questions_during_lecture', "off") == "on")
     lecture.questions_after_lecture = (request.POST.get('questions_after_lecture', "off") == "on")
-    lecture.minimal_lecture_length = int(request.POST['minimal_lecture_length'])
-    lecture.maximal_lecture_length = int(request.POST['maximal_lecture_length'])
-    lecture.additional_information_by_presentator = request.POST['additional_information_by_presentator']
-    lecture.related_website = request.POST['related_website']
-    if request.POST['scheduled_presentation_time'] != "":
-        lecture.scheduled_presentation_time = request.POST['scheduled_presentation_time']
-    if request.POST['scheduled_presentation_length'] != "":
-        lecture.scheduled_presentation_length = int(request.POST['scheduled_presentation_length'])
-    lecture.scheduled_presentation_style = request.POST['scheduled_presentation_style']
-    lecture.further_information = request.POST['further_information']
-    lecture.link_to_material = request.POST['link_to_material']
-    lecture.link_to_recording = request.POST['link_to_recording']
+    lecture.minimal_lecture_length = int(request.POST.get('minimal_lecture_length', ""))
+    lecture.maximal_lecture_length = int(request.POST.get('maximal_lecture_length', ""))
+    lecture.additional_information_by_presentator = request.POST.get('additional_information_by_presentator', "")
+    lecture.related_website = request.POST.get('related_website', "")
+    if request.POST.get('scheduled_presentation_time', "") != "":
+        lecture.scheduled_presentation_time = request.POST.get('scheduled_presentation_time', "")
+    if request.POST.get('scheduled_presentation_length', "") != "":
+        lecture.scheduled_presentation_length = int(request.POST.get('scheduled_presentation_length', ""))
+    lecture.scheduled_presentation_style = request.POST.get('scheduled_presentation_style', "")
+    lecture.further_information = request.POST.get('further_information', "")
+    lecture.link_to_material = request.POST.get('link_to_material', "")
+    lecture.link_to_recording = request.POST.get('link_to_recording', "")
 
     event_timeslots = _get_timeslots_of_string(lecture.event.available_timeslots)
     available_timeslots = []
@@ -613,3 +639,16 @@ def event_custom_questions_remove(request, event_id, id):
     event.save()
     return redirect("event_custom_questions", event_id)
         
+
+def event_field_activation(request, event_id):
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+        return HttpResponseBadRequest()
+    event = event[0]
+    if request.method == "POST":
+        event.disabled_fields = post_answer2string_disabled_entries(request)
+        event.save()
+        return redirect("event_overview")
+    fields = string_disabled_entries2field_activation_entries(event.disabled_fields)
+    return render(request, "events/event/field_activation.html", 
+            {'request_user': request.user, 'event': event, 'fields': fields})

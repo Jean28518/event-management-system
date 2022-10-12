@@ -21,6 +21,7 @@ class Event(models.Model):
     available_timeslots = models.CharField(max_length=2048, default="")
     call_for_papers = models.BooleanField(default=False)
     custom_questions = models.CharField(max_length=4096, default="")
+    disabled_fields = models.CharField(max_length=1024, default="")
 
     def __str__(self) -> str:
         return f"{self.name}"
