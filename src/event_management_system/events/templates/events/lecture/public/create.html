@@ -27,6 +27,25 @@
     {% endfor %}
     <br>
 
+    {% comment %} Custom fields: {% endcomment %}
+    {% for custom_question_answer_pair in custom_question_answer_pairs %}
+        {% comment %} Text-Field {% endcomment %}
+        {% if custom_question_answer_pair.type == "t" %}
+            <label class="form-label">{{custom_question_answer_pair.text}}</label>
+            <input type="text" class="form-control" id="custom_question_{{custom_question_answer_pair.id}}" name="custom_question_{{custom_question_answer_pair.id}}" value="{{custom_question_answer_pair.value}}">
+        
+        {% comment %} Checkbox {% endcomment %}
+        {% else %} 
+            <br>
+            <input class="form-check-input" type="checkbox" value="" {% if custom_question_answer_pair.value == "1" %}checked="true"{% endif %} id="custom_question_{{custom_question_answer_pair.id}}" name="custom_question_{{custom_question_answer_pair.id}}">
+            <label class="form-check-label" for="custom_question_{{custom_question_answer_pair.id}}">
+                {{custom_question_answer_pair.text}}
+            </label>
+            <br>
+            <br>
+        {% endif %}
+    {% endfor %}
+    <br>
 
     <input type="submit" value="{% trans "Submit" %}" class="btn btn-primary">
 </form>

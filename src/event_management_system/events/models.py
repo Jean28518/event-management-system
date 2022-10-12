@@ -20,6 +20,7 @@ class Event(models.Model):
     website = models.URLField()
     available_timeslots = models.CharField(max_length=2048, default="")
     call_for_papers = models.BooleanField(default=False)
+    custom_questions = models.CharField(max_length=4096, default="")
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -60,6 +61,7 @@ class Lecture(models.Model):
     related_website = models.URLField()
     link_to_material = models.URLField()
     link_to_recording = models.URLField()
+    custom_question_answers = models.CharField(max_length=4096, default="")
 
     def __str__(self):
         return f"{self.title}"

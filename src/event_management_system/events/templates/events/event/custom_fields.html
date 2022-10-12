@@ -1,0 +1,45 @@
+{% extends "global/base.html" %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans "Custom fields for" %} {{event.name}}</h1>
+<br>
+
+<br>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="width:20%">{% trans "Type" %}</th>
+        <th scope="col" style="width:70%">{% trans "Question" %}</th>
+        <th scope="col" style="width:10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for custom_question in custom_questions%}
+            <tr>
+                <td scope="row">{% if custom_question.type == "t" %}{% trans "Text" %}{% else %}{% trans "Checkbox" %}{% endif %}</td>
+                <td scope="row">{{custom_question.text}}</td>
+                <td><a href="{% url 'event_custom_questions_remove' event.id custom_question.id %}"><button type="button" class="btn btn-danger">{% trans "Delete" %}</button></a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+  <form action="add/" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+
+        <label class="form-label">{% trans "Type" %}</label>
+        <select class="form-select" name="type" id="type">
+            <option value="t">{% trans "Text" %}</option>
+            <option value="c">{% trans "Checkbox" %}</option>
+        </select>
+
+        <label class="form-label">{% trans "New question" %}</label>
+        <input type="text" class="form-control" id="text" name="text">
+    </div>
+    <a href="{% url 'event_edit' event.id %}"><button type="button" class="btn btn-secondary">{% trans "Back" %}</button></a>
+    <button type="submit" class="btn btn-primary">{% trans "Add new question" %}</button>
+  </form>
+  
+{% endblock %}

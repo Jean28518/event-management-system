@@ -16,6 +16,11 @@ urlpatterns = [
     path('event/<int:event_id>/timeslot/add/', views.event_timeslot_add, name='event_timeslot_add'),
     path('event/<int:event_id>/timeslot/remove/<int:index>/', views.event_timeslot_remove, name='event_timeslot_remove'),
 
+    # Custom Questions
+    path('event/<int:event_id>/custom_questions/', views.event_custom_questions, name='event_custom_questions'),
+    path('event/<int:event_id>/custom_questions/add/', views.event_custom_questions_add, name='event_custom_questions_add'),
+    path('event/<int:event_id>/custom_questions/remove/<int:id>', views.event_custom_questions_remove, name='event_custom_questions_remove'),
+
     # Rooms
     path('room/', views.room_overview, name='room_overview'),
     path('room/create/', views.room_create, name='room_create'),

@@ -9,6 +9,7 @@ from django.shortcuts import redirect
 import csv
 from event_management_system.meta import meta
 from django.template.defaultfilters import date as _date
+from .custom_question import string2custom_questions, custom_question, add_custom_question_to_array, custom_questions2string, remove_custom_question_from_array, post_answer2custom_answers_string, string2question_answer_pairs
 
 
 @permission_required("events.view_event")
@@ -213,8 +214,10 @@ def lecture_public_create(request, event_id):
     else:
         form = LectureSubmitForm()
         event = Event.objects.filter(id=event_id)[0]
+        custom_question_answer_pairs = string2question_answer_pairs("", event.custom_questions)
         return render(request, 'events/lecture/public/create.html',
-                      {'request_user': request.user, 'form': form, 'event': event, 'timeslots': _get_timeslots_of_string(event.available_timeslots)})
+                {'request_user': request.user, 'form': form, 'event': event, 'timeslots': _get_timeslots_of_string(event.available_timeslots),
+                'custom_question_answer_pairs': custom_question_answer_pairs})
 
 def lecture_public_created_successfully(request, event_id):
     return render(request, 'events/lecture/public/create_successful.html', {'event_id': event_id})
@@ -248,10 +251,13 @@ def lecture_create(request, event_id):
             return HttpResponseRedirect(f'/events/{lecture.event.id}/lecture/overview/')
     else:
         form = LectureForm({'event': event_id})
+        event = Event.objects.filter(id=event_id)[0]
+        custom_question_answer_pairs = string2question_answer_pairs("", event.custom_questions)
         return render(request, 'events/lecture/create.html', 
                 {'form': form, 
                 'timeslots': _get_timeslots_of_string(Event.objects.get(id=event_id).available_timeslots), 
-                'event_id': event_id})
+                'event_id': event_id,
+                'custom_question_answer_pairs': custom_question_answer_pairs})
 
 
 @permission_required("events.change_lecture")
@@ -277,8 +283,9 @@ def lecture_edit(request, lecture_id):
             for all_timeslot in all_timeslots:
                 if all_timeslot.text == timeslot.text:     
                     all_timeslot.checked = True
+        custom_question_answer_pairs = string2question_answer_pairs(lecture.custom_question_answers, lecture.event.custom_questions)
         return render(request, 'events/lecture/edit.html',
-                      {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
+                      {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots, "custom_question_answer_pairs": custom_question_answer_pairs})
 
 
 @permission_required("events.view_lecture")
@@ -298,11 +305,13 @@ def lecture_view(request, lecture_id):
         for all_timeslot in all_timeslots:
             if all_timeslot.text == timeslot.text:     
                 all_timeslot.checked = True
+    custom_question_answer_pairs = string2question_answer_pairs(lecture.custom_question_answers, lecture.event.custom_questions)
     # Disable Form Field because of view
     for field in form.fields:
         form.fields[field].disabled = True
     return render(request, 'events/lecture/view.html',
-                    {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
+                    {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots,
+                    'custom_question_answer_pairs': custom_question_answer_pairs})
 
 def lecture_contact_overview(request):
     lectures = Lecture.objects.filter(presentator=request.user.id)
@@ -334,8 +343,10 @@ def lecture_contact_edit(request, lecture_id):
             for all_timeslot in all_timeslots:
                 if all_timeslot.text == timeslot.text:     
                     all_timeslot.checked = True
+        custom_question_answer_pairs = string2question_answer_pairs(lecture.custom_question_answers, lecture.event.custom_questions)
         return render(request, 'events/lecture/contact/edit.html',
-                      {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
+                      {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots,
+                    'custom_question_answer_pairs': custom_question_answer_pairs})
 
 # If This is a contact user, which has access
 def _does_contact_user_has_access_to_lecture(user, lecture):
@@ -367,11 +378,13 @@ def lecture_contact_view(request, lecture_id):
         for all_timeslot in all_timeslots:
             if all_timeslot.text == timeslot.text:     
                 all_timeslot.checked = True
+    custom_question_answer_pairs = string2question_answer_pairs(lecture.custom_question_answers, lecture.event.custom_questions)
     # Disable Form Field because of view
     for field in form.fields:
         form.fields[field].disabled = True
     return render(request, 'events/lecture/contact/view.html',
-                    {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots})
+                    {'request_user': request.user, 'form': form, 'lecture': lecture, 'timeslots': all_timeslots,
+                    'custom_question_answer_pairs': custom_question_answer_pairs})
 
 @permission_required("events.change_lecture")
 def _save_lecture_from_full_edit(request, lecture):
@@ -414,6 +427,7 @@ def _save_lecture_from_full_edit(request, lecture):
         if (request.POST.get(f"timeslot_{event_timeslot.id}", "off") == ""):
             available_timeslots.append(event_timeslot)
     lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
+    lecture.custom_question_answers = post_answer2custom_answers_string(request, lecture.event.custom_questions)
     lecture.save()
 
 def _save_lecture_from_presentator_edit(request, lecture):
@@ -435,6 +449,7 @@ def _save_lecture_from_presentator_edit(request, lecture):
         if (request.POST.get(f"timeslot_{event_timeslot.id}", "off") == ""):
             available_timeslots.append(event_timeslot)
     lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
+    lecture.custom_question_answers = post_answer2custom_answers_string(request, lecture.event.custom_questions)
     lecture.save()
 
 
@@ -563,3 +578,38 @@ def timetable(request, event_id):
     
     return render(request, 'events/lecture/timetable.html',
                       {'request_user': request.user, 'event': event, 'days': days})
+
+def event_custom_questions(request, event_id):
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+        return HttpResponseBadRequest()
+    event = event[0]
+    qustom_questions = string2custom_questions(event.custom_questions)
+    return render(request, "events/event/custom_fields.html", 
+            {'request_user': request.user, 'event': event, 'custom_questions': qustom_questions})
+
+def event_custom_questions_add(request, event_id):
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+        return HttpResponseBadRequest()
+    event = event[0]
+    if request.method == "POST":
+        custom_questions = string2custom_questions(event.custom_questions)
+        add_custom_question_to_array(custom_questions, request.POST["type"], request.POST["text"])
+        event.custom_questions = custom_questions2string(custom_questions)
+        event.save()
+        return redirect("event_custom_questions", event_id)
+    else:
+        return HttpResponseBadRequest()
+
+def event_custom_questions_remove(request, event_id, id):
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+        return HttpResponseBadRequest()
+    event = event[0]
+    custom_questions = string2custom_questions(event.custom_questions)
+    custom_questions = remove_custom_question_from_array(custom_questions, id)
+    event.custom_questions = custom_questions2string(custom_questions)
+    event.save()
+    return redirect("event_custom_questions", event_id)
+        

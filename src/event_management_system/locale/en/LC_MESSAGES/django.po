@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-11 23:20+0000\n"
+"POT-Creation-Date: 2022-10-12 11:34+0000\n"
 "PO-Revision-Date: 2022-10-12 01:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,618 +18,708 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: emails/forms.py:7 events/forms.py:11 events/forms.py:20
+#: src/event_management_system/emails/forms.py:7
+#: src/event_management_system/events/forms.py:11
+#: src/event_management_system/events/forms.py:20
 msgid "Name"
 msgstr ""
 
-#: emails/forms.py:8
+#: src/event_management_system/emails/forms.py:8
 msgid "Subject"
 msgstr ""
 
-#: emails/forms.py:10
+#: src/event_management_system/emails/forms.py:10
 msgid "Body"
 msgstr ""
 
-#: emails/forms.py:13 emails/forms.py:16 events/forms.py:33 users/forms.py:14
-#: users/forms.py:25 users/forms.py:34 users/forms.py:38 users/forms.py:46
-#: users/templates/users/overview.html:17
+#: src/event_management_system/emails/forms.py:13
+#: src/event_management_system/emails/forms.py:16
+#: src/event_management_system/events/forms.py:33
+#: src/event_management_system/users/forms.py:14
+#: src/event_management_system/users/forms.py:25
+#: src/event_management_system/users/forms.py:34
+#: src/event_management_system/users/forms.py:38
+#: src/event_management_system/users/forms.py:46
+#: src/event_management_system/users/templates/users/overview.html:17
 msgid "Email"
 msgstr ""
 
-#: emails/forms.py:17
+#: src/event_management_system/emails/forms.py:17
 msgid "Mail Receivers"
 msgstr ""
 
-#: emails/templates/emails/create.html:8
+#: src/event_management_system/emails/templates/emails/create.html:8
 msgid "Create email"
 msgstr ""
 
-#: emails/templates/emails/create.html:12 emails/templates/emails/edit.html:12
-#: emails/templates/emails/overview.html:42
-#: events/templates/events/event/create.html:10
-#: events/templates/events/event/edit.html:10
-#: events/templates/events/event/overview.html:50
-#: events/templates/events/lecture/contact/edit.html:29
-#: events/templates/events/lecture/contact/overview.html:44
-#: events/templates/events/lecture/edit.html:69
-#: events/templates/events/lecture/overview.html:66
-#: events/templates/events/room/create.html:11
-#: events/templates/events/room/edit.html:10
-#: events/templates/events/room/overview.html:43
-#: users/templates/users/create.html:23 users/templates/users/edit.html:18
-#: users/templates/users/edit_profile.html:18
-#: users/templates/users/overview.html:53
+#: src/event_management_system/emails/templates/emails/create.html:12
+#: src/event_management_system/emails/templates/emails/edit.html:12
+#: src/event_management_system/emails/templates/emails/overview.html:42
+#: src/event_management_system/events/templates/events/event/create.html:10
+#: src/event_management_system/events/templates/events/event/edit.html:13
+#: src/event_management_system/events/templates/events/event/overview.html:50
+#: src/event_management_system/events/templates/events/lecture/contact/edit.html:52
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:44
+#: src/event_management_system/events/templates/events/lecture/edit.html:91
+#: src/event_management_system/events/templates/events/lecture/overview.html:66
+#: src/event_management_system/events/templates/events/room/create.html:11
+#: src/event_management_system/events/templates/events/room/edit.html:10
+#: src/event_management_system/events/templates/events/room/overview.html:43
+#: src/event_management_system/users/templates/users/create.html:23
+#: src/event_management_system/users/templates/users/edit.html:18
+#: src/event_management_system/users/templates/users/edit_profile.html:18
+#: src/event_management_system/users/templates/users/overview.html:53
 msgid "Cancel"
 msgstr ""
 
-#: emails/templates/emails/create.html:13
-#: emails/templates/emails/overview.html:6
-#: events/templates/events/event/create.html:11
-#: events/templates/events/event/overview.html:6
-#: events/templates/events/lecture/overview.html:11
-#: events/templates/events/room/create.html:12
-#: events/templates/events/room/overview.html:6
-#: users/templates/users/overview.html:6
+#: src/event_management_system/emails/templates/emails/create.html:13
+#: src/event_management_system/emails/templates/emails/overview.html:6
+#: src/event_management_system/events/templates/events/event/create.html:11
+#: src/event_management_system/events/templates/events/event/overview.html:6
+#: src/event_management_system/events/templates/events/lecture/overview.html:11
+#: src/event_management_system/events/templates/events/room/create.html:12
+#: src/event_management_system/events/templates/events/room/overview.html:6
+#: src/event_management_system/users/templates/users/overview.html:6
 msgid "Create"
 msgstr ""
 
-#: emails/templates/emails/create.html:17 emails/templates/emails/edit.html:17
+#: src/event_management_system/emails/templates/emails/create.html:17
+#: src/event_management_system/emails/templates/emails/edit.html:17
 msgid "Legend of variables:"
 msgstr ""
 
-#: emails/templates/emails/create.html:24 emails/templates/emails/edit.html:24
+#: src/event_management_system/emails/templates/emails/create.html:24
+#: src/event_management_system/emails/templates/emails/edit.html:24
 msgid "User"
 msgstr ""
 
-#: emails/templates/emails/create.html:42 emails/templates/emails/edit.html:42
-#: events/templates/events/lecture/contact/overview.html:12
-#: events/templates/events/lecture/overview.html:33
+#: src/event_management_system/emails/templates/emails/create.html:42
+#: src/event_management_system/emails/templates/emails/edit.html:42
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:12
+#: src/event_management_system/events/templates/events/lecture/overview.html:33
 msgid "Lecture"
 msgstr ""
 
-#: emails/templates/emails/create.html:60 emails/templates/emails/edit.html:60
-#: events/forms.py:58 users/forms.py:7
+#: src/event_management_system/emails/templates/emails/create.html:60
+#: src/event_management_system/emails/templates/emails/edit.html:60
+#: src/event_management_system/events/forms.py:58
+#: src/event_management_system/users/forms.py:7
 msgid "Attendant"
 msgstr ""
 
-#: emails/templates/emails/create.html:78 emails/templates/emails/edit.html:78
-#: events/forms.py:56 events/templates/events/event/overview.html:15
-#: events/templates/events/lecture/contact/overview.html:13
-#: events/templates/events/lecture/contact/select_event_for_submit.html:8
+#: src/event_management_system/emails/templates/emails/create.html:78
+#: src/event_management_system/emails/templates/emails/edit.html:78
+#: src/event_management_system/events/forms.py:56
+#: src/event_management_system/events/templates/events/event/overview.html:15
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:13
+#: src/event_management_system/events/templates/events/lecture/contact/select_event_for_submit.html:8
 msgid "Event"
 msgstr ""
 
-#: emails/templates/emails/create.html:96 emails/templates/emails/edit.html:96
-#: events/templates/events/room/overview.html:13
+#: src/event_management_system/emails/templates/emails/create.html:96
+#: src/event_management_system/emails/templates/emails/edit.html:96
+#: src/event_management_system/events/templates/events/room/overview.html:13
 msgid "Room"
 msgstr ""
 
-#: emails/templates/emails/edit.html:8
-#: events/templates/events/event/edit.html:6
-#: events/templates/events/lecture/edit.html:16
-#: events/templates/events/room/edit.html:6 users/templates/users/edit.html:6
-#: users/templates/users/edit_profile.html:6
+#: src/event_management_system/emails/templates/emails/edit.html:8
+#: src/event_management_system/events/templates/events/event/edit.html:4
+#: src/event_management_system/events/templates/events/lecture/edit.html:16
+#: src/event_management_system/events/templates/events/room/edit.html:6
+#: src/event_management_system/users/templates/users/edit.html:6
+#: src/event_management_system/users/templates/users/edit_profile.html:6
 msgid "Edit.heading"
 msgstr "Edit"
 
-#: emails/templates/emails/edit.html:13
-#: events/templates/events/event/edit.html:12
-#: events/templates/events/lecture/contact/edit.html:30
-#: events/templates/events/lecture/edit.html:70
-#: events/templates/events/room/edit.html:11
+#: src/event_management_system/emails/templates/emails/edit.html:13
+#: src/event_management_system/events/templates/events/event/edit.html:14
+#: src/event_management_system/events/templates/events/lecture/contact/edit.html:53
+#: src/event_management_system/events/templates/events/lecture/edit.html:92
+#: src/event_management_system/events/templates/events/room/edit.html:11
 msgid "Save"
 msgstr ""
 
-#: emails/templates/emails/overview.html:4
-#: emails/templates/emails/overview.html:13
-#: event_management_system/templates/global/navbar.html:27
+#: src/event_management_system/emails/templates/emails/overview.html:4
+#: src/event_management_system/emails/templates/emails/overview.html:13
+#: src/event_management_system/event_management_system/templates/global/navbar.html:27
 msgid "Emails"
 msgstr ""
 
-#: emails/templates/emails/overview.html:23
-#: events/templates/events/event/overview.html:31
-#: events/templates/events/lecture/contact/overview.html:25
-#: events/templates/events/lecture/overview.html:47
-#: events/templates/events/room/overview.html:23
-#: users/templates/users/overview.html:34
+#: src/event_management_system/emails/templates/emails/overview.html:23
+#: src/event_management_system/events/templates/events/event/overview.html:31
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:25
+#: src/event_management_system/events/templates/events/lecture/overview.html:47
+#: src/event_management_system/events/templates/events/room/overview.html:23
+#: src/event_management_system/users/templates/users/overview.html:34
 msgid "Edit"
 msgstr ""
 
-#: emails/templates/emails/overview.html:27
-#: emails/templates/emails/overview.html:43
-#: events/templates/events/event/overview.html:35
-#: events/templates/events/event/overview.html:51
-#: events/templates/events/event/timeslot.html:20
-#: events/templates/events/lecture/contact/overview.html:29
-#: events/templates/events/lecture/contact/overview.html:45
-#: events/templates/events/lecture/overview.html:51
-#: events/templates/events/lecture/overview.html:67
-#: events/templates/events/room/overview.html:28
-#: events/templates/events/room/overview.html:44
-#: users/templates/users/overview.html:38
-#: users/templates/users/overview.html:54
+#: src/event_management_system/emails/templates/emails/overview.html:27
+#: src/event_management_system/emails/templates/emails/overview.html:43
+#: src/event_management_system/events/templates/events/event/custom_fields.html:22
+#: src/event_management_system/events/templates/events/event/overview.html:35
+#: src/event_management_system/events/templates/events/event/overview.html:51
+#: src/event_management_system/events/templates/events/event/timeslot.html:20
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:29
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:45
+#: src/event_management_system/events/templates/events/lecture/overview.html:51
+#: src/event_management_system/events/templates/events/lecture/overview.html:67
+#: src/event_management_system/events/templates/events/room/overview.html:28
+#: src/event_management_system/events/templates/events/room/overview.html:44
+#: src/event_management_system/users/templates/users/overview.html:38
+#: src/event_management_system/users/templates/users/overview.html:54
 msgid "Delete"
 msgstr ""
 
-#: emails/templates/emails/overview.html:35
-#: events/templates/events/event/overview.html:43
-#: events/templates/events/lecture/contact/overview.html:37
-#: events/templates/events/lecture/overview.html:59
-#: events/templates/events/room/overview.html:36
-#: users/templates/users/overview.html:46
+#: src/event_management_system/emails/templates/emails/overview.html:35
+#: src/event_management_system/events/templates/events/event/overview.html:43
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:37
+#: src/event_management_system/events/templates/events/lecture/overview.html:59
+#: src/event_management_system/events/templates/events/room/overview.html:36
+#: src/event_management_system/users/templates/users/overview.html:46
 msgid "Delete.heading"
 msgstr "Delete"
 
-#: emails/templates/emails/overview.html:39
-#: events/templates/events/event/overview.html:47
-#: events/templates/events/lecture/contact/overview.html:41
-#: events/templates/events/lecture/overview.html:63
-#: events/templates/events/room/overview.html:40
-#: users/templates/users/overview.html:50
+#: src/event_management_system/emails/templates/emails/overview.html:39
+#: src/event_management_system/events/templates/events/event/overview.html:47
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:41
+#: src/event_management_system/events/templates/events/lecture/overview.html:63
+#: src/event_management_system/events/templates/events/room/overview.html:40
+#: src/event_management_system/users/templates/users/overview.html:50
 msgid "delete.question.part1"
 msgstr "Do you really want to delete"
 
-#: emails/templates/emails/overview.html:39
-#: events/templates/events/event/overview.html:47
-#: events/templates/events/lecture/contact/overview.html:41
-#: events/templates/events/lecture/overview.html:63
-#: events/templates/events/room/overview.html:40
-#: users/templates/users/overview.html:50
+#: src/event_management_system/emails/templates/emails/overview.html:39
+#: src/event_management_system/events/templates/events/event/overview.html:47
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:41
+#: src/event_management_system/events/templates/events/lecture/overview.html:63
+#: src/event_management_system/events/templates/events/room/overview.html:40
+#: src/event_management_system/users/templates/users/overview.html:50
 msgid "delete.question.part2"
 msgstr "?"
 
-#: emails/templates/emails/send_mass_lecture.html:4
+#: src/event_management_system/emails/templates/emails/send_mass_lecture.html:4
 msgid "Send mass emails depending at lectures"
 msgstr ""
 
-#: emails/templates/emails/send_mass_lecture.html:6
-#: emails/templates/emails/send_mass_user.html:6
+#: src/event_management_system/emails/templates/emails/send_mass_lecture.html:6
+#: src/event_management_system/emails/templates/emails/send_mass_user.html:6
 msgid "Select all"
 msgstr ""
 
-#: emails/templates/emails/send_mass_lecture.html:7
-#: emails/templates/emails/send_mass_user.html:7
+#: src/event_management_system/emails/templates/emails/send_mass_lecture.html:7
+#: src/event_management_system/emails/templates/emails/send_mass_user.html:7
 msgid "Deselect all"
 msgstr ""
 
-#: emails/templates/emails/send_mass_lecture.html:23
-#: emails/templates/emails/send_mass_user.html:23
+#: src/event_management_system/emails/templates/emails/send_mass_lecture.html:23
+#: src/event_management_system/emails/templates/emails/send_mass_user.html:23
 msgid "Send Mails"
 msgstr ""
 
-#: emails/templates/emails/send_mass_user.html:4
+#: src/event_management_system/emails/templates/emails/send_mass_user.html:4
 msgid "Send mass emails depending at users"
 msgstr ""
 
-#: event_management_system/settings.py:129
+#: src/event_management_system/event_management_system/settings.py:129
 msgid "language.en"
 msgstr "English"
 
-#: event_management_system/settings.py:130
+#: src/event_management_system/event_management_system/settings.py:130
 msgid "language.de"
 msgstr "German"
 
-#: event_management_system/templates/global/base.html:7
+#: src/event_management_system/event_management_system/templates/global/base.html:7
 msgid "Event Management System"
 msgstr ""
 
-#: event_management_system/templates/global/navbar.html:12
-#: users/templates/users/overview.html:4
+#: src/event_management_system/event_management_system/templates/global/navbar.html:12
+#: src/event_management_system/users/templates/users/overview.html:4
 msgid "Users"
 msgstr ""
 
-#: event_management_system/templates/global/navbar.html:17
-#: events/templates/events/event/overview.html:4
+#: src/event_management_system/event_management_system/templates/global/navbar.html:17
+#: src/event_management_system/events/templates/events/event/overview.html:4
 msgid "Events"
 msgstr ""
 
-#: event_management_system/templates/global/navbar.html:22
-#: events/templates/events/room/overview.html:4
+#: src/event_management_system/event_management_system/templates/global/navbar.html:22
+#: src/event_management_system/events/templates/events/room/overview.html:4
 msgid "Rooms"
 msgstr ""
 
-#: event_management_system/templates/global/navbar.html:38
+#: src/event_management_system/event_management_system/templates/global/navbar.html:38
 msgid "Edit Profile"
 msgstr ""
 
-#: event_management_system/templates/global/navbar.html:39
-#: users/templates/users/change_password.html:4
-#: users/templates/users/change_password.html:34
+#: src/event_management_system/event_management_system/templates/global/navbar.html:39
+#: src/event_management_system/users/templates/users/change_password.html:4
+#: src/event_management_system/users/templates/users/change_password.html:34
 msgid "Change Password"
 msgstr ""
 
-#: event_management_system/templates/global/navbar.html:41
+#: src/event_management_system/event_management_system/templates/global/navbar.html:41
 msgid "Logout"
 msgstr ""
 
-#: events/forms.py:12 events/templates/events/event/overview.html:16
+#: src/event_management_system/events/forms.py:12
+#: src/event_management_system/events/templates/events/event/overview.html:16
 msgid "Year"
 msgstr ""
 
-#: events/forms.py:14 events/forms.py:22
-#: events/templates/events/event/overview.html:17
-#: events/templates/events/lecture/timetable.html:56 users/forms.py:18
-#: users/forms.py:29 users/forms.py:49
+#: src/event_management_system/events/forms.py:14
+#: src/event_management_system/events/forms.py:22
+#: src/event_management_system/events/templates/events/event/overview.html:17
+#: src/event_management_system/events/templates/events/lecture/timetable.html:68
+#: src/event_management_system/users/forms.py:18
+#: src/event_management_system/users/forms.py:29
+#: src/event_management_system/users/forms.py:49
 msgid "Website"
 msgstr ""
 
-#: events/forms.py:27
+#: src/event_management_system/events/forms.py:27
 msgid "Coordinates"
 msgstr ""
 
-#: events/forms.py:35 users/forms.py:17 users/forms.py:28 users/forms.py:35
+#: src/event_management_system/events/forms.py:35
+#: src/event_management_system/users/forms.py:17
+#: src/event_management_system/users/forms.py:28
+#: src/event_management_system/users/forms.py:35
 msgid "Password"
 msgstr ""
 
-#: events/forms.py:41 events/forms.py:59
-#: events/templates/events/lecture/timetable.html:20
+#: src/event_management_system/events/forms.py:41
+#: src/event_management_system/events/forms.py:59
+#: src/event_management_system/events/templates/events/lecture/timetable.html:32
 msgid "Title"
 msgstr ""
 
-#: events/forms.py:42 events/forms.py:60
+#: src/event_management_system/events/forms.py:42
+#: src/event_management_system/events/forms.py:60
 msgid "Description (max. 2048 signs)"
 msgstr ""
 
-#: events/forms.py:43 events/forms.py:61
+#: src/event_management_system/events/forms.py:43
+#: src/event_management_system/events/forms.py:61
 msgid "Target Group"
 msgstr ""
 
-#: events/forms.py:44 events/forms.py:62
+#: src/event_management_system/events/forms.py:44
+#: src/event_management_system/events/forms.py:62
 msgid "I am qualified for the presentation because..."
 msgstr ""
 
-#: events/forms.py:45 events/forms.py:63
+#: src/event_management_system/events/forms.py:45
+#: src/event_management_system/events/forms.py:63
 msgid "Preferred presentation style"
 msgstr ""
 
-#: events/forms.py:46 events/forms.py:64
+#: src/event_management_system/events/forms.py:46
+#: src/event_management_system/events/forms.py:64
 msgid "Should questions during lectures been asked?"
 msgstr ""
 
-#: events/forms.py:47 events/forms.py:65
+#: src/event_management_system/events/forms.py:47
+#: src/event_management_system/events/forms.py:65
 msgid "Should questions after lectures been asked?"
 msgstr ""
 
-#: events/forms.py:48 events/forms.py:66
+#: src/event_management_system/events/forms.py:48
+#: src/event_management_system/events/forms.py:66
 msgid "Minimal Lecture Length (in minutes)"
 msgstr ""
 
-#: events/forms.py:49 events/forms.py:67
+#: src/event_management_system/events/forms.py:49
+#: src/event_management_system/events/forms.py:67
 msgid "Maximal Lecture Length (in minutes)"
 msgstr ""
 
-#: events/forms.py:50 events/forms.py:68
+#: src/event_management_system/events/forms.py:50
+#: src/event_management_system/events/forms.py:68
 msgid "Additional information (max. 2048 signs)"
 msgstr ""
 
-#: events/forms.py:51 events/forms.py:69
+#: src/event_management_system/events/forms.py:51
+#: src/event_management_system/events/forms.py:69
 msgid "Lecture related Website"
 msgstr ""
 
-#: events/forms.py:57 events/templates/events/lecture/overview.html:34
+#: src/event_management_system/events/forms.py:57
+#: src/event_management_system/events/templates/events/lecture/overview.html:34
 msgid "Presentator"
 msgstr ""
 
-#: events/forms.py:70
+#: src/event_management_system/events/forms.py:70
 msgid "Scheduled in Room"
 msgstr ""
 
-#: events/forms.py:71
+#: src/event_management_system/events/forms.py:71
 msgid "Scheduled Time Format: YYYY-MM-DD HH:MM"
 msgstr ""
 
-#: events/forms.py:72
+#: src/event_management_system/events/forms.py:72
 msgid "Scheduled Length (in minutes)"
 msgstr ""
 
-#: events/forms.py:73
+#: src/event_management_system/events/forms.py:73
 msgid "Scheduled presentation style"
 msgstr ""
 
-#: events/forms.py:74
+#: src/event_management_system/events/forms.py:74
 msgid ""
 "Further private information (max. 2048 signs) (Presentator can't see this)"
 msgstr ""
 
-#: events/forms.py:75
+#: src/event_management_system/events/forms.py:75
 msgid "Link to Material"
 msgstr ""
 
-#: events/forms.py:76
+#: src/event_management_system/events/forms.py:76
 msgid "Link to Recording"
 msgstr ""
 
-#: events/models.py:6
+#: src/event_management_system/events/models.py:6
 msgid "Beginner"
 msgstr ""
 
-#: events/models.py:7
+#: src/event_management_system/events/models.py:7
 msgid "Intermediate"
 msgstr ""
 
-#: events/models.py:8
+#: src/event_management_system/events/models.py:8
 msgid "Professional"
 msgstr ""
 
-#: events/models.py:12
+#: src/event_management_system/events/models.py:12
 msgid "Recorded"
 msgstr ""
 
-#: events/models.py:13
+#: src/event_management_system/events/models.py:13
 msgid "Live"
 msgstr ""
 
-#: events/templates/events/event/create.html:6
+#: src/event_management_system/events/templates/events/event/create.html:6
 msgid "Create event"
 msgstr ""
 
-#: events/templates/events/event/edit.html:11
-msgid "Timeslots"
+#: src/event_management_system/events/templates/events/event/custom_fields.html:4
+msgid "Custom fields for"
 msgstr ""
 
-#: events/templates/events/event/overview.html:7
-#: users/templates/users/overview.html:8
-msgid "Export csv"
+#: src/event_management_system/events/templates/events/event/custom_fields.html:12
+#: src/event_management_system/events/templates/events/event/custom_fields.html:32
+msgid "Type"
 msgstr ""
 
-#: events/templates/events/event/overview.html:30
-msgid "Lectures"
+#: src/event_management_system/events/templates/events/event/custom_fields.html:13
+msgid "Question"
 msgstr ""
 
-#: events/templates/events/event/timeslot.html:4
-msgid "Timeslots for"
+#: src/event_management_system/events/templates/events/event/custom_fields.html:20
+#: src/event_management_system/events/templates/events/event/custom_fields.html:34
+msgid "Text"
 msgstr ""
 
-#: events/templates/events/event/timeslot.html:30
-msgid "New timeslot"
+#: src/event_management_system/events/templates/events/event/custom_fields.html:20
+#: src/event_management_system/events/templates/events/event/custom_fields.html:35
+msgid "Checkbox"
 msgstr ""
 
-#: events/templates/events/event/timeslot.html:33
-#: events/templates/events/lecture/contact/view.html:29
-#: events/templates/events/lecture/overview.html:77
-#: events/templates/events/lecture/view.html:33
-#: users/templates/users/view.html:18
+#: src/event_management_system/events/templates/events/event/custom_fields.html:38
+msgid "New question"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/custom_fields.html:41
+#: src/event_management_system/events/templates/events/event/timeslot.html:33
+#: src/event_management_system/events/templates/events/lecture/contact/view.html:52
+#: src/event_management_system/events/templates/events/lecture/overview.html:77
+#: src/event_management_system/events/templates/events/lecture/view.html:55
+#: src/event_management_system/users/templates/users/view.html:18
 msgid "Back"
 msgstr ""
 
-#: events/templates/events/event/timeslot.html:34
+#: src/event_management_system/events/templates/events/event/custom_fields.html:42
+msgid "Add new question"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/edit.html:5
+msgid "Timeslots"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/edit.html:6
+msgid "Custom questions"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/overview.html:7
+#: src/event_management_system/users/templates/users/overview.html:8
+msgid "Export csv"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/overview.html:30
+msgid "Lectures"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/timeslot.html:4
+msgid "Timeslots for"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/timeslot.html:30
+msgid "New timeslot"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/event/timeslot.html:34
 msgid "Add new timeslot"
 msgstr ""
 
-#: events/templates/events/lecture/contact/edit.html:6
+#: src/event_management_system/events/templates/events/lecture/contact/edit.html:6
 msgid "Edit Lecture"
 msgstr ""
 
-#: events/templates/events/lecture/contact/edit.html:18
-#: events/templates/events/lecture/contact/view.html:18
-#: events/templates/events/lecture/public/create.html:20
+#: src/event_management_system/events/templates/events/lecture/contact/edit.html:18
+#: src/event_management_system/events/templates/events/lecture/contact/view.html:18
+#: src/event_management_system/events/templates/events/lecture/public/create.html:20
 msgid "I am available at these timeslots"
 msgstr ""
 
-#: events/templates/events/lecture/contact/overview.html:4
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:4
 msgid "My Lectures"
 msgstr ""
 
-#: events/templates/events/lecture/contact/overview.html:6
-#: events/templates/events/lecture/public/create.html:32
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:6
+#: src/event_management_system/events/templates/events/lecture/public/create.html:54
 msgid "Submit"
 msgstr ""
 
-#: events/templates/events/lecture/contact/overview.html:24
-#: events/templates/events/lecture/overview.html:46
-#: users/templates/users/overview.html:33
+#: src/event_management_system/events/templates/events/lecture/contact/overview.html:24
+#: src/event_management_system/events/templates/events/lecture/overview.html:46
+#: src/event_management_system/users/templates/users/overview.html:33
 msgid "View"
 msgstr ""
 
-#: events/templates/events/lecture/contact/select_event_for_submit.html:4
+#: src/event_management_system/events/templates/events/lecture/contact/select_event_for_submit.html:4
 msgid "Select Event"
 msgstr ""
 
-#: events/templates/events/lecture/contact/select_event_for_submit.html:16
+#: src/event_management_system/events/templates/events/lecture/contact/select_event_for_submit.html:16
 msgid "Select"
 msgstr ""
 
-#: events/templates/events/lecture/create.html:6
+#: src/event_management_system/events/templates/events/lecture/create.html:16
 msgid "Create Lecture"
 msgstr ""
 
-#: events/templates/events/lecture/edit.html:57
-#: events/templates/events/lecture/view.html:21
+#: src/event_management_system/events/templates/events/lecture/edit.html:57
+#: src/event_management_system/events/templates/events/lecture/view.html:21
 msgid "Presentator is available at these timeslots"
 msgstr ""
 
-#: events/templates/events/lecture/overview.html:4
+#: src/event_management_system/events/templates/events/lecture/overview.html:4
 msgid "Lectures from"
 msgstr ""
 
-#: events/templates/events/lecture/overview.html:14
-#: events/templates/events/lecture/overview.html:16
+#: src/event_management_system/events/templates/events/lecture/overview.html:14
+#: src/event_management_system/events/templates/events/lecture/overview.html:16
 msgid "Mass Mail Lectures"
 msgstr ""
 
-#: events/templates/events/lecture/overview.html:21
-#: events/templates/events/lecture/overview.html:23
+#: src/event_management_system/events/templates/events/lecture/overview.html:21
+#: src/event_management_system/events/templates/events/lecture/overview.html:23
 msgid "Call For Papers:"
 msgstr ""
 
-#: events/templates/events/lecture/overview.html:21
+#: src/event_management_system/events/templates/events/lecture/overview.html:21
 msgid "Disabled"
 msgstr ""
 
-#: events/templates/events/lecture/overview.html:23
+#: src/event_management_system/events/templates/events/lecture/overview.html:23
 msgid "Enabled"
 msgstr ""
 
-#: events/templates/events/lecture/overview.html:24
+#: src/event_management_system/events/templates/events/lecture/overview.html:24
 msgid "Call For Paper Link"
 msgstr ""
 
-#: events/templates/events/lecture/overview.html:26
+#: src/event_management_system/events/templates/events/lecture/overview.html:26
 msgid "Timetable (Public)"
 msgstr ""
 
-#: events/templates/events/lecture/public/create.html:6
-#: events/templates/events/lecture/public/create_entry.html:4
+#: src/event_management_system/events/templates/events/lecture/public/create.html:6
+#: src/event_management_system/events/templates/events/lecture/public/create_entry.html:4
 msgid "Submit Lecture"
 msgstr ""
 
-#: events/templates/events/lecture/public/create_entry.html:5
-#: users/templates/users/login.html:5
+#: src/event_management_system/events/templates/events/lecture/public/create_entry.html:5
+#: src/event_management_system/users/templates/users/login.html:5
 msgid ""
 "Welcome! If you already have a user account, please login. Otherwise please "
 "register first."
 msgstr ""
 
-#: events/templates/events/lecture/public/create_entry.html:6
-#: users/templates/users/create_public.html:6
-#: users/templates/users/create_public.html:15
-#: users/templates/users/login.html:6
+#: src/event_management_system/events/templates/events/lecture/public/create_entry.html:6
+#: src/event_management_system/users/templates/users/create_public.html:6
+#: src/event_management_system/users/templates/users/create_public.html:15
+#: src/event_management_system/users/templates/users/login.html:6
 msgid "Register"
 msgstr ""
 
-#: events/templates/events/lecture/public/create_entry.html:10
-#: users/templates/users/login.html:9
+#: src/event_management_system/events/templates/events/lecture/public/create_entry.html:10
+#: src/event_management_system/users/templates/users/login.html:9
 msgid "Login failed! Try again."
 msgstr ""
 
-#: events/templates/events/lecture/public/create_entry.html:18
-#: users/templates/users/login.html:17
-#: users/templates/users/reset_password.html:4
-#: users/templates/users/reset_password.html:15
+#: src/event_management_system/events/templates/events/lecture/public/create_entry.html:18
+#: src/event_management_system/users/templates/users/login.html:17
+#: src/event_management_system/users/templates/users/reset_password.html:4
+#: src/event_management_system/users/templates/users/reset_password.html:15
 msgid "Reset Password"
 msgstr ""
 
-#: events/templates/events/lecture/public/create_entry.html:19
-#: users/templates/users/login.html:4
+#: src/event_management_system/events/templates/events/lecture/public/create_entry.html:19
+#: src/event_management_system/users/templates/users/login.html:4
 msgid "Login"
 msgstr ""
 
-#: events/templates/events/lecture/public/create_successful.html:5
+#: src/event_management_system/events/templates/events/lecture/public/create_successful.html:5
 msgid "Submitting Lecture successful!"
 msgstr ""
 
-#: events/templates/events/lecture/public/create_successful.html:8
+#: src/event_management_system/events/templates/events/lecture/public/create_successful.html:8
 msgid "Submit another lecture"
 msgstr ""
 
-#: events/templates/events/lecture/public/create_successful.html:11
+#: src/event_management_system/events/templates/events/lecture/public/create_successful.html:11
 msgid "Go to overview"
 msgstr ""
 
-#: events/templates/events/lecture/timetable.html:19
+#: src/event_management_system/events/templates/events/lecture/timetable.html:10
+#: src/event_management_system/events/templates/events/lecture/timetable.html:113
+msgid "Back to website"
+msgstr ""
+
+#: src/event_management_system/events/templates/events/lecture/timetable.html:31
 msgid "Time"
 msgstr ""
 
-#: events/templates/events/lecture/timetable.html:26
+#: src/event_management_system/events/templates/events/lecture/timetable.html:38
 msgid "timetable.time.appendix"
 msgstr " "
 
-#: events/templates/events/lecture/timetable.html:61
+#: src/event_management_system/events/templates/events/lecture/timetable.html:73
 msgid "Material"
 msgstr ""
 
-#: events/templates/events/lecture/timetable.html:66
+#: src/event_management_system/events/templates/events/lecture/timetable.html:78
 msgid "Recording"
 msgstr ""
 
-#: events/templates/events/lecture/timetable.html:72
+#: src/event_management_system/events/templates/events/lecture/timetable.html:84
 msgid "Close"
 msgstr ""
 
-#: events/templates/events/room/create.html:6
+#: src/event_management_system/events/templates/events/room/create.html:6
 msgid "Create room"
 msgstr ""
 
-#: users/forms.py:6
+#: src/event_management_system/users/forms.py:6
 msgid "Contact"
 msgstr ""
 
-#: users/forms.py:8
+#: src/event_management_system/users/forms.py:8
 msgid "Organisator"
 msgstr ""
 
-#: users/forms.py:9
+#: src/event_management_system/users/forms.py:9
 msgid "Administrator"
 msgstr ""
 
-#: users/forms.py:13 users/templates/users/overview.html:18
+#: src/event_management_system/users/forms.py:13
+#: src/event_management_system/users/templates/users/overview.html:18
 msgid "Role"
 msgstr ""
 
-#: users/forms.py:15 users/forms.py:26 users/forms.py:47
+#: src/event_management_system/users/forms.py:15
+#: src/event_management_system/users/forms.py:26
+#: src/event_management_system/users/forms.py:47
 msgid "First name"
 msgstr ""
 
-#: users/forms.py:16 users/forms.py:27 users/forms.py:48
+#: src/event_management_system/users/forms.py:16
+#: src/event_management_system/users/forms.py:27
+#: src/event_management_system/users/forms.py:48
 msgid "Last name"
 msgstr ""
 
-#: users/forms.py:19 users/forms.py:30 users/forms.py:50
+#: src/event_management_system/users/forms.py:19
+#: src/event_management_system/users/forms.py:30
+#: src/event_management_system/users/forms.py:50
 msgid "Company"
 msgstr ""
 
-#: users/forms.py:20 users/forms.py:31 users/forms.py:51
+#: src/event_management_system/users/forms.py:20
+#: src/event_management_system/users/forms.py:31
+#: src/event_management_system/users/forms.py:51
 msgid "Over 18"
 msgstr ""
 
-#: users/forms.py:21 users/forms.py:52
+#: src/event_management_system/users/forms.py:21
+#: src/event_management_system/users/forms.py:52
 msgid "Private Pin"
 msgstr ""
 
-#: users/forms.py:41
+#: src/event_management_system/users/forms.py:41
 msgid "Old Password"
 msgstr ""
 
-#: users/forms.py:42
+#: src/event_management_system/users/forms.py:42
 msgid "New Password"
 msgstr ""
 
-#: users/forms.py:43
+#: src/event_management_system/users/forms.py:43
 msgid "New Password (repeated)"
 msgstr ""
 
-#: users/templates/users/change_password.html:9
+#: src/event_management_system/users/templates/users/change_password.html:9
 msgid "Your old password is wrong!"
 msgstr ""
 
-#: users/templates/users/change_password.html:15
+#: src/event_management_system/users/templates/users/change_password.html:15
 msgid "Your new passwords differ!"
 msgstr ""
 
-#: users/templates/users/change_password.html:21
+#: src/event_management_system/users/templates/users/change_password.html:21
 msgid "Your password must be at least 8 characters long!"
 msgstr ""
 
-#: users/templates/users/change_password.html:27
+#: src/event_management_system/users/templates/users/change_password.html:27
 msgid "Password successfully changed!"
 msgstr ""
 
-#: users/templates/users/create.html:6
+#: src/event_management_system/users/templates/users/create.html:6
 msgid "Create user"
 msgstr ""
 
-#: users/templates/users/create.html:10
-#: users/templates/users/create_public.html:10
+#: src/event_management_system/users/templates/users/create.html:10
+#: src/event_management_system/users/templates/users/create_public.html:10
 msgid "E-Mail already exists!"
 msgstr ""
 
-#: users/templates/users/edit_profile.html:6
+#: src/event_management_system/users/templates/users/edit_profile.html:6
 msgid "Profile"
 msgstr ""
 
-#: users/templates/users/overview.html:7
+#: src/event_management_system/users/templates/users/overview.html:7
 msgid "Mass Mail Users"
 msgstr ""
 
-#: users/templates/users/overview.html:15
+#: src/event_management_system/users/templates/users/overview.html:15
 msgid "First.name"
 msgstr "First"
 
-#: users/templates/users/overview.html:16
+#: src/event_management_system/users/templates/users/overview.html:16
 msgid "Last.name"
 msgstr "Last"
 
-#: users/templates/users/reset_password.html:8
+#: src/event_management_system/users/templates/users/reset_password.html:8
 msgid ""
 "If this mail is registered at this instance, a mail with a new password was "
 "sent."
