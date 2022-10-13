@@ -1,4 +1,4 @@
-# event-management-system
+# Event Management System
 
 ## Organize. Communicate. Automate.
 **Manage your summits, conferences, seminar days or similar with your team and speakers.**
