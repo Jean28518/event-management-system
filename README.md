@@ -1,5 +1,10 @@
 # event-management-system
-Open Source Event Management System written in django
+
+## Organize. Communicate. Automate.
+**Manage your summits, conferences, seminar days or similar with your team and speakers.**
+**Keep control of lectures, rooms, events, call for papers and communicate fast with speakers via automated and easy mass mail integration.**
+
+Homepage: https://event-management-system.org/
 
 # Run with docker
 ```bash
