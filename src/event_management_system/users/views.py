@@ -15,6 +15,7 @@ import random
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 import csv
+import os
 
 def user_reset_password(request):
     if request.method == "POST":
@@ -24,7 +25,7 @@ def user_reset_password(request):
             if User.objects.filter(email=email).exists():
                 user = User.objects.get(email=email)      
                 password = user.profile.reset_password()
-                send_mail(subject="New Password", from_email="", message=f"Your new password is:\n\n{password}", recipient_list=[user.email])
+                send_mail(subject="New Password", from_email=os.getenv("EMAIL_HOST_USER"), message=f"Your new password is:\n\n{password}", recipient_list=[user.email])
             return render(request, "users/reset_password.html", {'mail_sent': True, 'form': form})
     else:
         form = PasswordForgot()
