@@ -11,7 +11,7 @@ Homepage: https://event-management-system.org/
 sudo apt install docker docker-compose git # Or similar for your linux distribution
 git clone https://github.com/Jean28518/event-management-system.git
 cd event-management-system
-nano .env
+nano .env # Create environment file
 ```
 
 Insert the following content and change it to your needs:
