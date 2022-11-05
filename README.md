@@ -39,11 +39,14 @@ EMAIL_HOST_PASSWORD=xhdsajshds
 ```
 
 If you want to activate https://, change http:// to your server domain (e.g. www.example.com) in ``src/caddy/Caddyfile``.
+If you don't change this file the event managment system will be reachable under `localhost`.
 
 ```bash
 sudo docker-compose up -d --build
 sudo docker-compose up --build # For debugging, if something goes wrong.
 ```
+
+You are done! You can reach now your event management system at Port 80.
 
 ## Update running production instance:
 Because the sql data is stored in a separate docker volume we can easily rebuild our docker image. A stop of the containers is not needed.
