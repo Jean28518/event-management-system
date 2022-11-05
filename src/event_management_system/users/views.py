@@ -42,6 +42,7 @@ def user_change_password(request):
                 if len(request.POST['new_password']) >= 8:
                     if request.POST['new_password'] == request.POST['new_password_repeated']:
                         user.set_password(request.POST['new_password'])
+                        user.save()
                         return render(request, "users/change_password.html", 
                             {
                                 'request_user': request.user,
