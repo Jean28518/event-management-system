@@ -41,7 +41,8 @@
                                             <button type="button" class="btn btn-light width-100" data-bs-toggle="modal" data-bs-target="#infoModal{{lecture.id}}">
                                                 <b>{{lecture.title}}</b> 
                                                 <br> 
-                                                {{lecture.presentator.first_name|make_list|first}}. {{lecture.presentator.last_name}} {% if lecture.presentator.profile.company != "" %}({{lecture.presentator.profile.company}}){% endif %}
+                                                {% if lecture.presentator.first_name != "" %} {{lecture.presentator.first_name|make_list|first}}. {% endif %}
+                                                 {{lecture.presentator.last_name}} {% if lecture.presentator.profile.company != "" %}({{lecture.presentator.profile.company}}){% endif %}
                                             </button>
                                         </div>
                                     </td>
@@ -57,24 +58,44 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancel"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <h4>{{lecture.presentator.first_name|make_list|first}}. {{lecture.presentator.last_name}} {% if lecture.presentator.profile.company != "" %}({{lecture.presentator.profile.company}}){% endif %} </h4>
+                                                <h4>{% if lecture.presentator.first_name != "" %} {{lecture.presentator.first_name|make_list|first}}. {% endif %} 
+                                                    
+                                                    {{lecture.presentator.last_name}} 
+                                                    
+                                                    {% comment %} Company and Link {% endcomment %}
+
+                                                    {% comment %} Company without link {% endcomment %}
+                                                    {% if lecture.presentator.profile.company  != "" and lecture.presentator.profile.website == ""%} 
+                                                    ({{lecture.presentator.profile.company}})
+
+
+                                                    {% comment %} Company with link {% endcomment %}:
+                                                    {% elif lecture.presentator.profile.company != "" and lecture.presentator.profile.website != "" %}
+                                                    (<a href="{{lecture.presentator.profile.website}}" target = "_blank">{{lecture.presentator.profile.company}}</a>)
+                                                    
+                                                    {% comment %} No company but website {% endcomment %}
+                                                    {% elif lecture.presentator.profile.company == "" and lecture.presentator.profile.website != "" %}
+                                                    (<a href="{{lecture.presentator.profile.website}}" target = "_blank">{% trans "Website" %}</a>)
+
+                                                    
+                                                    {% endif %} </h4>
                                                 {{lecture.description|safe}}
                                                 <br>
                                                 <br>
                                                 <div class="row">
                                                     {% if lecture.related_website != "" %}
                                                         <div class="col">
-                                                            <a href="{{lecture.related_website}}"><button type="button" class="btn btn-secondary"><i class="bi bi-globe"></i> {% trans "Website" %}</button></a>
+                                                            <a href="{{lecture.related_website}}" target="_blank"><button type="button" class="btn btn-secondary"><i class="bi bi-globe"></i> {% trans "Website" %}</button></a>
                                                         </div>
                                                     {% endif %}
                                                     {% if lecture.link_to_material != "" %}
                                                         <div class="col">
-                                                            <a href="{{lecture.link_to_material}}"><button type="button" class="btn btn-secondary"><i class="bi bi-file-earmark"></i> {% trans "Material" %}</button></a>
+                                                            <a href="{{lecture.link_to_material}}" target="_blank"><button type="button" class="btn btn-secondary"><i class="bi bi-file-earmark"></i> {% trans "Material" %}</button></a>
                                                         </div>
                                                     {% endif %}
                                                     {% if lecture.link_to_recording != "" %}
                                                         <div class="col">
-                                                            <a href="{{lecture.link_to_recording}}"><button type="button" class="btn btn-secondary"> <i class="bi bi-camera-reels-fill"></i> {% trans "Recording" %}</button></a>
+                                                            <a href="{{lecture.link_to_recording}}" target="_blank"><button type="button" class="btn btn-secondary"> <i class="bi bi-camera-reels-fill"></i> {% trans "Recording" %}</button></a>
                                                         </div>
                                                     {% endif %}
  
