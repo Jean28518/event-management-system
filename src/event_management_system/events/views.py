@@ -11,6 +11,7 @@ from event_management_system.meta import meta
 from django.template.defaultfilters import date as _date
 from .custom_question import string2custom_questions, custom_question, add_custom_question_to_array, custom_questions2string, remove_custom_question_from_array, post_answer2custom_answers_string, string2question_answer_pairs
 from .field_activation import post_answer2string_disabled_entries, string_disabled_entries2field_activation_entries
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 @permission_required("events.view_event")
@@ -565,6 +566,7 @@ def lecture_export_csv(request):
 
     return response
 
+@xframe_options_exempt
 def timetable(request, event_id):
     event = Event.objects.filter(id=event_id)
     if not event.exists():
