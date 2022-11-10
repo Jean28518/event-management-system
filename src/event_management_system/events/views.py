@@ -33,6 +33,7 @@ def event_create(request):
             event.name = request.POST['name']
             event.year = int(request.POST['year'])
             event.website = request.POST['website']
+            event.live_board_default = request.POST['live_board_default']
             event.save()
             return HttpResponseRedirect('/events/event/')
     else:
@@ -48,6 +49,7 @@ def event_edit(request, event_id):
             event.name = request.POST['name']
             event.year = int(request.POST['year'])
             event.website = request.POST['website']
+            event.live_board_default = request.POST['live_board_default']
             event.save()
             return HttpResponseRedirect('/events/event/')
         return HttpResponseServerError()
@@ -661,7 +663,7 @@ def event_field_activation(request, event_id):
             {'request_user': request.user, 'event': event, 'fields': fields})
 
 
-@cache_page(15) # Hold view in cache for 15 seconds
+@cache_page(10) # Hold view in cache for 15 seconds
 @xframe_options_exempt
 def lecture_current_running(request, event_id, room_id):
     event = Event.objects.filter(id=event_id)
@@ -690,4 +692,4 @@ def lecture_current_running(request, event_id, room_id):
             found_lecture = lecture
             break
 
-    return render(request, "events/lecture/public/current_running.html", {'lecture': found_lecture, 'automatic_refresh': 45})
+    return render(request, "events/lecture/public/current_running.html", {'lecture': found_lecture, 'event': event, 'automatic_refresh': 10})

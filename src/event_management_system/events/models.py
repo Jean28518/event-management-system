@@ -22,6 +22,7 @@ class Event(models.Model):
     call_for_papers = models.BooleanField(default=False)
     custom_questions = models.CharField(max_length=4096, default="")
     disabled_fields = models.CharField(max_length=1024, default="")
+    live_board_default = models.CharField(max_length=4096, default="")
 
     def __str__(self) -> str:
         return f"{self.name}"

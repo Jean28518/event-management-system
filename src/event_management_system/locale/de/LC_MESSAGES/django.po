@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-10 20:30+0100\n"
-"PO-Revision-Date: 2022-11-10 20:31+0100\n"
+"POT-Creation-Date: 2022-11-10 21:09+0000\n"
+"PO-Revision-Date: 2022-11-10 22:09+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: emails/forms.py:7 events/forms.py:11 events/forms.py:20
+#: emails/forms.py:7 events/forms.py:11 events/forms.py:21
 msgid "Name"
 msgstr "Name"
 
@@ -30,7 +30,7 @@ msgstr "Betreff"
 msgid "Body"
 msgstr "Nachrichtenkörper"
 
-#: emails/forms.py:13 emails/forms.py:16 events/forms.py:33 users/forms.py:14
+#: emails/forms.py:13 emails/forms.py:16 events/forms.py:34 users/forms.py:14
 #: users/forms.py:25 users/forms.py:34 users/forms.py:38 users/forms.py:46
 #: users/templates/users/overview.html:17
 msgid "Email"
@@ -88,12 +88,12 @@ msgid "Lecture"
 msgstr "Vortrag"
 
 #: emails/templates/emails/create.html:60 emails/templates/emails/edit.html:60
-#: events/forms.py:58 users/forms.py:7
+#: events/forms.py:59 users/forms.py:7
 msgid "Attendant"
 msgstr "Helfer"
 
 #: emails/templates/emails/create.html:78 emails/templates/emails/edit.html:78
-#: events/forms.py:56 events/templates/events/event/overview.html:15
+#: events/forms.py:57 events/templates/events/event/overview.html:15
 #: events/templates/events/lecture/contact/overview.html:13
 #: events/templates/events/lecture/contact/select_event_for_submit.html:8
 msgid "Event"
@@ -247,99 +247,103 @@ msgstr "Ausloggen"
 msgid "Year"
 msgstr "Jahr"
 
-#: events/forms.py:14 events/forms.py:22
+#: events/forms.py:14 events/forms.py:23
 #: events/templates/events/event/overview.html:17
-#: events/templates/events/lecture/public/lecture_content.html:24
-#: events/templates/events/lecture/public/lecture_content.html:34
+#: events/templates/events/lecture/public/lecture_content.html:25
+#: events/templates/events/lecture/public/lecture_content.html:35
 #: users/forms.py:18 users/forms.py:29 users/forms.py:49
 msgid "Website"
 msgstr "Webseite"
 
-#: events/forms.py:27
+#: events/forms.py:18
+msgid "Live board default text (supports html, max. 4098 signs)"
+msgstr "Live Board Standard Text (unterstützt html, max. 4096 Zeichen)"
+
+#: events/forms.py:28
 msgid "Coordinates"
 msgstr "Koordinaten"
 
-#: events/forms.py:35 users/forms.py:17 users/forms.py:28 users/forms.py:35
+#: events/forms.py:36 users/forms.py:17 users/forms.py:28 users/forms.py:35
 msgid "Password"
 msgstr "Passwort"
 
-#: events/forms.py:41 events/forms.py:59
+#: events/forms.py:42 events/forms.py:60
 #: events/templates/events/lecture/public/timetable.html:32
 msgid "Title"
 msgstr "Titel"
 
-#: events/forms.py:42 events/forms.py:60
+#: events/forms.py:43 events/forms.py:61
 msgid "Description (max. 2048 signs)"
 msgstr "Beschreibung (max. 2048 Zeichen)"
 
-#: events/forms.py:43 events/forms.py:61
+#: events/forms.py:44 events/forms.py:62
 msgid "Target Group"
 msgstr "Zielgruppe"
 
-#: events/forms.py:44 events/forms.py:62
+#: events/forms.py:45 events/forms.py:63
 msgid "I am qualified for the presentation because..."
 msgstr "Ich bin für den Vortrag qualifiziert, weil..."
 
-#: events/forms.py:45 events/forms.py:63
+#: events/forms.py:46 events/forms.py:64
 msgid "Preferred presentation style"
 msgstr "Bevorzugter Präsentationsstil"
 
-#: events/forms.py:46 events/forms.py:64
+#: events/forms.py:47 events/forms.py:65
 msgid "Should questions during lectures been asked?"
 msgstr "Dürfen Fragen während des Vortrags gestellt werden?"
 
-#: events/forms.py:47 events/forms.py:65
+#: events/forms.py:48 events/forms.py:66
 msgid "Should questions after lectures been asked?"
 msgstr "Dürfen Fragen nach dem Vortrag gestellt werden?"
 
-#: events/forms.py:48 events/forms.py:66
+#: events/forms.py:49 events/forms.py:67
 msgid "Minimal Lecture Length (in minutes)"
 msgstr "Minimale Vortragslänge (in Minuten)"
 
-#: events/forms.py:49 events/forms.py:67
+#: events/forms.py:50 events/forms.py:68
 msgid "Maximal Lecture Length (in minutes)"
 msgstr "Maximale Vortragslänge (in Minuten)"
 
-#: events/forms.py:50 events/forms.py:68
+#: events/forms.py:51 events/forms.py:69
 msgid "Additional information (max. 2048 signs)"
 msgstr "Zusätzliche Information (max. 2048 Zeichen)"
 
-#: events/forms.py:51 events/forms.py:69
+#: events/forms.py:52 events/forms.py:70
 msgid "Lecture related Website"
 msgstr "Vortragsbezogene Webseite"
 
-#: events/forms.py:57 events/templates/events/lecture/overview.html:34
+#: events/forms.py:58 events/templates/events/lecture/overview.html:34
 msgid "Presentator"
 msgstr "Präsentator"
 
-#: events/forms.py:70
+#: events/forms.py:71
 msgid "Scheduled in Room"
 msgstr "Geplant im Raum"
 
-#: events/forms.py:71
+#: events/forms.py:72
 msgid "Scheduled Time Format: YYYY-MM-DD HH:MM"
 msgstr "Geplanter Beginn (Format: YYYY-MM-DD HH:MM)"
 
-#: events/forms.py:72
+#: events/forms.py:73
 msgid "Scheduled Length (in minutes)"
 msgstr "Geplante Vortragslänge"
 
-#: events/forms.py:73
+#: events/forms.py:74
 msgid "Scheduled presentation style"
 msgstr "Geplanter Vortragsstil"
 
-#: events/forms.py:74
+#: events/forms.py:75
 msgid ""
 "Further private information (max. 2048 signs) (Presentator can't see this)"
 msgstr ""
 "Weitere private Notizen (max. 2048 Zeichen) (Präsentator kann diese "
 "Informationen nicht sehen)"
 
-#: events/forms.py:75
+#: events/forms.py:76
 msgid "Link to Material"
 msgstr "Link zum Material"
 
-#: events/forms.py:76
+#: events/forms.py:77
 msgid "Link to Recording"
 msgstr "Link zur Aufzeichnung"
 
@@ -567,11 +571,11 @@ msgstr "Gehe zur Übersicht"
 msgid "Current running:"
 msgstr "Aktuell läuft:"
 
-#: events/templates/events/lecture/public/lecture_content.html:39
+#: events/templates/events/lecture/public/lecture_content.html:40
 msgid "Material"
 msgstr "Material"
 
-#: events/templates/events/lecture/public/lecture_content.html:44
+#: events/templates/events/lecture/public/lecture_content.html:45
 msgid "Recording"
 msgstr "Aufzeichung"
 

@@ -15,6 +15,7 @@ class EventForm(forms.Form):
         widget=forms.URLInput(attrs={'class': "form-control"}),
         required=False
     )
+    live_board_default = forms.CharField(label=_('Live board default text (supports html, max. 4098 signs)'), max_length=4096, widget=forms.Textarea(attrs={'class': "form-control"}))
 
 class RoomFrom(forms.Form):
     name = forms.CharField(label=_('Name'), max_length=100, widget=forms.TextInput(attrs={'class': "form-control"}))

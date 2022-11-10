@@ -5,6 +5,8 @@
 {% if lecture %}
     <h3>{% trans "Current running:" %} {{lecture.title}}</h3>
     {% include "events/lecture/public/lecture_content.html" %}
+{% else %}
+    {{event.live_board_default|safe}}
 {% endif %}
 
 {% endblock %}
