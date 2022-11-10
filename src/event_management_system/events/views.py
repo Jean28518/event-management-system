@@ -14,6 +14,7 @@ from .field_activation import post_answer2string_disabled_entries, string_disabl
 from django.views.decorators.clickjacking import xframe_options_exempt
 from datetime import timedelta
 from django.utils import timezone
+from django.views.decorators.cache import cache_page
 
 
 @permission_required("events.view_event")
@@ -568,6 +569,7 @@ def lecture_export_csv(request):
 
     return response
 
+@cache_page(5) # Hold view in cache for 60 seconds
 @xframe_options_exempt
 def timetable(request, event_id):
     event = Event.objects.filter(id=event_id)
@@ -658,6 +660,8 @@ def event_field_activation(request, event_id):
     return render(request, "events/event/field_activation.html", 
             {'request_user': request.user, 'event': event, 'fields': fields})
 
+
+@cache_page(15) # Hold view in cache for 15 seconds
 @xframe_options_exempt
 def lecture_current_running(request, event_id, room_id):
     event = Event.objects.filter(id=event_id)
