@@ -569,7 +569,7 @@ def lecture_export_csv(request):
 
     return response
 
-@cache_page(5) # Hold view in cache for 60 seconds
+@cache_page(15) # Hold view in cache for 15 seconds
 @xframe_options_exempt
 def timetable(request, event_id):
     event = Event.objects.filter(id=event_id)
