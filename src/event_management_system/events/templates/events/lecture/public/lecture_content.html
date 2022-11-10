@@ -24,21 +24,23 @@
 {{lecture.description|safe}}
 <br>
 <br>
-<div class="row">
-    {% if lecture.related_website != "" %}
-        <div class="col">
-            <a href="{{lecture.related_website}}" target="_blank"><button type="button" class="btn btn-secondary"><i class="bi bi-globe"></i> {% trans "Website" %}</button></a>
-        </div>
-    {% endif %}
-    {% if lecture.link_to_material != "" %}
-        <div class="col">
-            <a href="{{lecture.link_to_material}}" target="_blank"><button type="button" class="btn btn-secondary"><i class="bi bi-file-earmark"></i> {% trans "Material" %}</button></a>
-        </div>
-    {% endif %}
-    {% if lecture.link_to_recording != "" %}
-        <div class="col">
-            <a href="{{lecture.link_to_recording}}" target="_blank"><button type="button" class="btn btn-secondary"> <i class="bi bi-camera-reels-fill"></i> {% trans "Recording" %}</button></a>
-        </div>
-    {% endif %}
+<div class="container text-center">
+    <div class="row">
+        {% if lecture.related_website != "" %}
+            <div class="col">
+                <a href="{{lecture.related_website}}" target="_blank"><button type="button" class="btn btn-secondary"><i class="bi bi-globe"></i> {% trans "Website" %}</button></a>
+            </div>
+        {% endif %}
+        {% if lecture.link_to_material != "" %}
+            <div class="col">
+                <a href="{{lecture.link_to_material}}" target="_blank"><button type="button" class="btn btn-secondary"><i class="bi bi-file-earmark"></i> {% trans "Material" %}</button></a>
+            </div>
+        {% endif %}
+        {% if lecture.link_to_recording != "" %}
+            <div class="col">
+                <a href="{{lecture.link_to_recording}}" target="_blank"><button type="button" class="btn btn-secondary"> <i class="bi bi-camera-reels-fill"></i> {% trans "Recording" %}</button></a>
+            </div>
+        {% endif %}
 
+    </div>
 </div>

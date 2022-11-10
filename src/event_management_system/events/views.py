@@ -663,9 +663,10 @@ def event_field_activation(request, event_id):
             {'request_user': request.user, 'event': event, 'fields': fields})
 
 
-@cache_page(10) # Hold view in cache for 15 seconds
+@cache_page(30) # Hold view in cache for 30 seconds
 @xframe_options_exempt
 def lecture_current_running(request, event_id, room_id):
+    print("RUNNING!")
     event = Event.objects.filter(id=event_id)
     if not event.exists():
         return HttpResponseBadRequest()
@@ -684,6 +685,9 @@ def lecture_current_running(request, event_id, room_id):
     found_lecture = None
 
     for lecture in lectures:
+        if lecture.id == 3:
+            print(now)
+            print(lecture.scheduled_presentation_time)
         if lecture.scheduled_presentation_time == "" or lecture.scheduled_presentation_time == 0:
             continue
         start = lecture.scheduled_presentation_time
@@ -692,4 +696,4 @@ def lecture_current_running(request, event_id, room_id):
             found_lecture = lecture
             break
 
-    return render(request, "events/lecture/public/current_running.html", {'lecture': found_lecture, 'event': event, 'automatic_refresh': 10})
+    return render(request, "events/lecture/public/current_running.html", {'lecture': found_lecture, 'event': event, 'automatic_refresh': 60})
