@@ -580,6 +580,7 @@ def timetable(request, event_id):
         # day = { "date": _date(str(lecture.scheduled_presentation_time).split(" ")[0], "l, j. F o")}
         if not day in days:
             days.append(day)
+    days.sort(key=lambda d: str(d["date"]))
 
     # Generate rooms
     for day in days:
