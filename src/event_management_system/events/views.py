@@ -571,7 +571,7 @@ def lecture_export_csv(request):
 
     return response
 
-@cache_page(15) # Hold view in cache for 15 seconds
+@cache_page(10) # Hold view in cache for 10 seconds
 @xframe_options_exempt
 def timetable(request, event_id):
     event = Event.objects.filter(id=event_id)
@@ -663,7 +663,7 @@ def event_field_activation(request, event_id):
             {'request_user': request.user, 'event': event, 'fields': fields})
 
 
-@cache_page(30) # Hold view in cache for 30 seconds
+@cache_page(10) # Hold view in cache for 10 seconds
 @xframe_options_exempt
 def lecture_current_running(request, event_id, room_id):
     print("RUNNING!")
