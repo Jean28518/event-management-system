@@ -12,6 +12,8 @@ from django.template.defaultfilters import date as _date
 from .custom_question import string2custom_questions, custom_question, add_custom_question_to_array, custom_questions2string, remove_custom_question_from_array, post_answer2custom_answers_string, string2question_answer_pairs
 from .field_activation import post_answer2string_disabled_entries, string_disabled_entries2field_activation_entries
 from django.views.decorators.clickjacking import xframe_options_exempt
+from datetime import timedelta
+from django.utils import timezone
 
 
 @permission_required("events.view_event")
@@ -605,7 +607,7 @@ def timetable(request, event_id):
                 lecture.nice_time = _date(lecture.scheduled_presentation_time, "H:i")
                 found_room["lectures"].append(lecture)
                 found_room["lectures"].sort(key=lambda d: str(d.scheduled_presentation_time))
-    return render(request, 'events/lecture/timetable.html',
+    return render(request, 'events/lecture/public/timetable.html',
                       {'request_user': request.user, 'event': event, 'days': days})
 
 def event_custom_questions(request, event_id):
@@ -655,3 +657,33 @@ def event_field_activation(request, event_id):
     fields = string_disabled_entries2field_activation_entries(event.disabled_fields)
     return render(request, "events/event/field_activation.html", 
             {'request_user': request.user, 'event': event, 'fields': fields})
+
+@xframe_options_exempt
+def lecture_current_running(request, event_id, room_id):
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+        return HttpResponseBadRequest()
+    event = event[0]
+
+    room = Room.objects.filter(id=room_id)
+    if not room.exists():
+        return HttpResponseBadRequest()
+    room = room[0]
+
+
+    lectures = Lecture.objects.filter(event_id=event.id).filter(scheduled_in_room_id=room.id)
+
+    now = timezone.now()
+
+    found_lecture = None
+
+    for lecture in lectures:
+        if lecture.scheduled_presentation_time == "" or lecture.scheduled_presentation_time == 0:
+            continue
+        start = lecture.scheduled_presentation_time
+        end = lecture.scheduled_presentation_time + timedelta(minutes=lecture.scheduled_presentation_length)
+        if start <= now <= end:
+            found_lecture = lecture
+            break
+
+    return render(request, "events/lecture/public/current_running.html", {'lecture': found_lecture, 'automatic_refresh': 45})

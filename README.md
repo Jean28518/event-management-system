@@ -36,6 +36,9 @@ EMAIL_HOST_PASSWORD=xhdsajshds
 # only activate (uncomment) one of these:
 #EMAIL_USE_TLS=True
 #EMAIL_USE_SSL=True
+
+# To set a custom time zone uncomment this line and adjust it to your timezone:
+#TIME_ZONE=Europe/Berlin
 ```
 
 If you want to activate https://, change http:// to your server domain (e.g. www.example.com) in ``src/caddy/Caddyfile``.
@@ -100,6 +103,9 @@ export EMAIL_HOST_PASSWORD="xhdsajshds"
 # only activate (uncomment) one of these:
 #export EMAIL_USE_TLS=True
 #export EMAIL_USE_SSL=True
+
+# To set a custom time zone uncomment this line and adjust it to your timezone:
+#export TIME_ZONE="Europe/Berlin"
 ```
 
 **After changing the bashrc file you have to restart your terminal!**

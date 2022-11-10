@@ -1,0 +1,44 @@
+{% comment %} The title is not included with this template {% endcomment %}
+{% load i18n %}
+<h4>{% if lecture.presentator.first_name != "" %} {{lecture.presentator.first_name|make_list|first}}. {% endif %} 
+    
+    {{lecture.presentator.last_name}} 
+    
+    {% comment %} Company and Link {% endcomment %}
+
+    {% comment %} Company without link {% endcomment %}
+    {% if lecture.presentator.profile.company  != "" and lecture.presentator.profile.website == ""%} 
+    ({{lecture.presentator.profile.company}})
+
+
+    {% comment %} Company with link {% endcomment %}:
+    {% elif lecture.presentator.profile.company != "" and lecture.presentator.profile.website != "" %}
+    (<a href="{{lecture.presentator.profile.website}}" target = "_blank">{{lecture.presentator.profile.company}}</a>)
+    
+    {% comment %} No company but website {% endcomment %}
+    {% elif lecture.presentator.profile.company == "" and lecture.presentator.profile.website != "" %}
+    (<a href="{{lecture.presentator.profile.website}}" target = "_blank">{% trans "Website" %}</a>)
+
+    
+    {% endif %} </h4>
+{{lecture.description|safe}}
+<br>
+<br>
+<div class="row">
+    {% if lecture.related_website != "" %}
+        <div class="col">
+            <a href="{{lecture.related_website}}" target="_blank"><button type="button" class="btn btn-secondary"><i class="bi bi-globe"></i> {% trans "Website" %}</button></a>
+        </div>
+    {% endif %}
+    {% if lecture.link_to_material != "" %}
+        <div class="col">
+            <a href="{{lecture.link_to_material}}" target="_blank"><button type="button" class="btn btn-secondary"><i class="bi bi-file-earmark"></i> {% trans "Material" %}</button></a>
+        </div>
+    {% endif %}
+    {% if lecture.link_to_recording != "" %}
+        <div class="col">
+            <a href="{{lecture.link_to_recording}}" target="_blank"><button type="button" class="btn btn-secondary"> <i class="bi bi-camera-reels-fill"></i> {% trans "Recording" %}</button></a>
+        </div>
+    {% endif %}
+
+</div>

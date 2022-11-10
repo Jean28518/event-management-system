@@ -1,0 +1,10 @@
+{% extends "global/base_public.html" %}
+{% load i18n %}
+{% block content %}
+
+{% if lecture %}
+    <h3>{% trans "Current running:" %} {{lecture.title}}</h3>
+    {% include "events/lecture/public/lecture_content.html" %}
+{% endif %}
+
+{% endblock %}
