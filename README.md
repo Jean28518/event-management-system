@@ -11,6 +11,7 @@ Homepage: https://event-management-system.org/
 sudo apt install docker docker-compose git # Or similar for your linux distribution
 git clone https://github.com/Jean28518/event-management-system.git
 cd event-management-system
+bash build_flutter.sh
 nano .env # Create environment file
 ```
 
@@ -75,6 +76,11 @@ sudo apt install libpq-dev python3-tk gettext
 ### arch based
 ```bash
 sudo pacman -S tk gettext
+```
+
+## Build flutter parts
+```bash
+bash build_flutter.sh
 ```
 
 ## Setup
