@@ -85,6 +85,12 @@
     {% endfor %}
 </div>
 
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <iframe style="width: 100vw;height: 100vh;position: relative;" src="/static/ems_timetable/index.html?id={{event.id}}" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
 <br>
 <br>
 {% if event.website != "" %}
