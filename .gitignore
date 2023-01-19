@@ -130,5 +130,5 @@ dmypy.json
 
 .idea
 
-/src/event_management_system/ems_timetable
+/src/event_management_system/static/ems_timetable
 /flutter/
