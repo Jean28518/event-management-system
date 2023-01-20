@@ -49,6 +49,8 @@ urlpatterns = [
     path('lecture/contact/edit/<int:lecture_id>', views.lecture_contact_edit, name = 'lecture_contact_edit'),
     path('lecture/contact/view/<int:lecture_id>', views.lecture_contact_view, name = 'lecture_contact_view'),
 
+    # Get all Lectures of an event over api:
+    path('api/<int:event_id>/', views.api_event_data, name = "api_event_data"),
 
 
 ]

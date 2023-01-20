@@ -15,6 +15,9 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 from datetime import timedelta
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
+from django.http import JsonResponse
+from django.core import serializers
+
 
 
 @permission_required("events.view_event")
@@ -666,7 +669,6 @@ def event_field_activation(request, event_id):
 @cache_page(10) # Hold view in cache for 10 seconds
 @xframe_options_exempt
 def lecture_current_running(request, event_id, room_id):
-    print("RUNNING!")
     event = Event.objects.filter(id=event_id)
     if not event.exists():
         return HttpResponseBadRequest()
@@ -697,3 +699,25 @@ def lecture_current_running(request, event_id, room_id):
             break
 
     return render(request, "events/lecture/public/current_running.html", {'lecture': found_lecture, 'event': event, 'automatic_refresh': 60})
+
+def api_event_data(request, event_id):
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+        return HttpResponseBadRequest()
+    event = event[0]
+
+    data = {}
+    data["lectures"] = []
+    lectures = list(Lecture.objects.filter(event_id=event.id))
+    keywords = []
+    for field in Lecture._meta.fields:
+            keywords.append(field.attname)
+    print(keywords)
+    for lecture in lectures:
+        lectureData = {}
+        for key in keywords:
+            lectureData[key] = lecture.__dict__[key]
+        data["lectures"].append(lectureData)
+    # data = serializers.serialize('json', [ lectures, ])
+    return JsonResponse(data)
+
