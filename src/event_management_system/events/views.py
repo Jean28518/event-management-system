@@ -712,12 +712,52 @@ def api_event_data(request, event_id):
     keywords = []
     for field in Lecture._meta.fields:
             keywords.append(field.attname)
-    print(keywords)
     for lecture in lectures:
         lectureData = {}
         for key in keywords:
             lectureData[key] = lecture.__dict__[key]
+        presentator = lecture.presentator
+        lectureData["presentator_name"] = presentator.get_full_name()
         data["lectures"].append(lectureData)
     # data = serializers.serialize('json', [ lectures, ])
     return JsonResponse(data)
+
+@permission_required("events.change_event")
+def event_scheduler(request, event_id):
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+        return HttpResponseBadRequest()
+    event = event[0]
+    lectures = list(Lecture.objects.filter(event_id=event.id))
+    if request.method == 'POST':
+        form = request.POST
+        for lecture in lectures:
+            if f"scheduled_in_room{lecture.id}" in form.keys():
+                id = form[f"scheduled_in_room{lecture.id}"]
+                lecture.scheduled_in_room = Room.objects.filter(id=id)[0]
+            if f"scheduled_presentation_length{lecture.id}" in form.keys():
+                length = form[f"scheduled_presentation_length{lecture.id}"]
+                lecture.scheduled_presentation_length = length
+            if f"scheduled_presentation_time_time{lecture.id}" in form.keys():
+                time = form[f"scheduled_presentation_time_time{lecture.id}"]
+                if ":" in time:
+                     lecture.scheduled_presentation_time = lecture.scheduled_presentation_time.replace(hour=int(time.split(":")[0]), minute=int(time.split(":")[1]))
+            if f"scheduled_presentation_time_date{lecture.id}" in form.keys():
+                date = form[f"scheduled_presentation_time_date{lecture.id}"]
+                if len(date.split("-")) == 3 and len(date) == 10:
+                     lecture.scheduled_presentation_time = lecture.scheduled_presentation_time.replace(year=int(date.split("-")[0]), month=int(date.split("-")[1]), day=int(date.split("-")[2]))
+            lecture.save()
+            
+
+        # _save_lecture_from_presentator_edit(request, lecture)
+        return redirect('event_scheduler', event_id)
+    else:
+        
+        rooms = list(Room.objects.all())
+        for lecture in lectures:
+            lecture.scheduled_presentation_time_date = lecture.scheduled_presentation_time.strftime("%Y-%m-%d")
+            lecture.scheduled_presentation_time_time = lecture.scheduled_presentation_time.strftime("%H:%M")
+       
+        return render(request, 'events/event/scheduler.html',
+                      {'request_user': request.user, 'lectures': lectures, 'rooms': rooms, "event": event})
 

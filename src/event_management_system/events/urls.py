@@ -10,6 +10,7 @@ urlpatterns = [
     path('event/delete/<int:event_id>/', views.event_delete, name='event_delete'),
     path('event/enable_call_for_papers/<int:event_id>/', views.enable_call_for_papers, name='enable_call_for_papers'),
     path('event/disable_call_for_papers/<int:event_id>/', views.disable_call_for_papers, name='disable_call_for_papers'),
+    path('event/<int:event_id>/scheduler/', views.event_scheduler, name='event_scheduler'),
 
     # Timeslots
     path('event/<int:event_id>/timeslot/', views.event_timeslot, name='event_timeslot'),

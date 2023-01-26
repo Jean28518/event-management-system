@@ -209,19 +209,21 @@ class MintYPage extends StatelessWidget {
         key: UniqueKey(),
         child: Column(
           children: [
-            Container(
-              decoration: MintY.colorfulBackground,
-              padding: const EdgeInsets.all(26.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: MintY.heading2White,
+            title.length == 0
+                ? Container()
+                : Container(
+                    decoration: MintY.colorfulBackground,
+                    padding: const EdgeInsets.all(26.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: MintY.heading2White,
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
             Container(height: 8),
             contentElements.length != 0
                 ? Expanded(
