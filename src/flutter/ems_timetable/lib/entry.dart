@@ -21,6 +21,7 @@ class Entry extends StatelessWidget {
   late String websiteOfPresentation;
   late String linkToMaterial;
   late String linkToRecording;
+  bool displayError = false;
   Entry({
     super.key,
     this.length = 10,
@@ -179,7 +180,7 @@ class Entry extends StatelessWidget {
         // Entry Card
         child: Container(
             height: height,
-            color: Colors.grey,
+            color: displayError ? Colors.red : Colors.grey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

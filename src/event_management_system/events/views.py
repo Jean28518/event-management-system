@@ -263,10 +263,9 @@ def lecture_overview(request, event_id):
 def lecture_create(request, event_id):
     if request.method == 'POST':
         form = LectureForm(request.POST)
-        if form.is_valid():
-            lecture = Lecture()
-            _save_lecture_from_full_edit(request, lecture)
-            return HttpResponseRedirect(f'/events/{lecture.event.id}/lecture/overview/')
+        lecture = Lecture()
+        _save_lecture_from_full_edit(request, lecture)
+        return HttpResponseRedirect(f'/events/{lecture.event.id}/lecture/overview/')
     else:
         form = LectureForm({'event': event_id})
         event = Event.objects.filter(id=event_id)[0]
@@ -708,7 +707,7 @@ def api_event_data(request, event_id):
 
     data = {}
     data["lectures"] = []
-    lectures = list(Lecture.objects.filter(event_id=event.id))
+    lectures = list(Lecture.objects.filter(event_id=event.id).exclude(scheduled_presentation_time=None, scheduled_in_room=None))
     keywords = []
     for field in Lecture._meta.fields:
             keywords.append(field.attname)
@@ -736,18 +735,28 @@ def event_scheduler(request, event_id):
         for lecture in lectures:
             if f"scheduled_in_room{lecture.id}" in form.keys():
                 id = form[f"scheduled_in_room{lecture.id}"]
-                lecture.scheduled_in_room = Room.objects.filter(id=id)[0]
+                try:
+                    lecture.scheduled_in_room = Room.objects.filter(id=id)[0]
+                except:
+                    lecture.scheduled_in_room = None
             if f"scheduled_presentation_length{lecture.id}" in form.keys():
                 length = form[f"scheduled_presentation_length{lecture.id}"]
                 lecture.scheduled_presentation_length = length
             if f"scheduled_presentation_time_time{lecture.id}" in form.keys():
                 time = form[f"scheduled_presentation_time_time{lecture.id}"]
-                if ":" in time:
+                if ":" in time and lecture.scheduled_presentation_time != None:
                      lecture.scheduled_presentation_time = lecture.scheduled_presentation_time.replace(hour=int(time.split(":")[0]), minute=int(time.split(":")[1]))
             if f"scheduled_presentation_time_date{lecture.id}" in form.keys():
                 date = form[f"scheduled_presentation_time_date{lecture.id}"]
-                if len(date.split("-")) == 3 and len(date) == 10:
+                if len(date.split("-")) == 3 and len(date) == 10 and lecture.scheduled_presentation_time != None:
                      lecture.scheduled_presentation_time = lecture.scheduled_presentation_time.replace(year=int(date.split("-")[0]), month=int(date.split("-")[1]), day=int(date.split("-")[2]))
+            if lecture.scheduled_presentation_time == None:
+                try:
+                    dateString = form[f"scheduled_presentation_time_date{lecture.id}"]
+                    timeString = form[f"scheduled_presentation_time_time{lecture.id}"]
+                    lecture.scheduled_presentation_time = f"{dateString} {timeString}"
+                except:
+                    pass
             lecture.save()
             
 
@@ -757,8 +766,12 @@ def event_scheduler(request, event_id):
         
         rooms = list(Room.objects.all())
         for lecture in lectures:
-            lecture.scheduled_presentation_time_date = lecture.scheduled_presentation_time.strftime("%Y-%m-%d")
-            lecture.scheduled_presentation_time_time = lecture.scheduled_presentation_time.strftime("%H:%M")
+            if lecture.scheduled_presentation_time != None:
+                lecture.scheduled_presentation_time_date = lecture.scheduled_presentation_time.strftime("%Y-%m-%d")
+                lecture.scheduled_presentation_time_time = lecture.scheduled_presentation_time.strftime("%H:%M")
+            else:
+                lecture.scheduled_presentation_time_date = ""
+                lecture.scheduled_presentation_time_time = ""
        
         return render(request, 'events/event/scheduler.html',
                       {'request_user': request.user, 'lectures': lectures, 'rooms': rooms, "event": event})

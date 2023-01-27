@@ -44,12 +44,18 @@ class TimetableEMS extends StatelessWidget {
     for (int track in timetable.keys) {
       // Add single Column
       List<Widget> columnChildren = [];
-      DateTime time = earliestStart;
+      // We start always at XX:00
+      DateTime time =
+          earliestStart.subtract(Duration(minutes: earliestStart.minute));
+      bool error = false;
       for (Entry e in timetable[track]!) {
         int gapMinutes = e.start.difference(time).inMinutes;
         if (gapMinutes > 0) {
           columnChildren.add(Space(length: gapMinutes));
+        } else if (gapMinutes.isNegative) {
+          error = true;
         }
+        e.displayError = error;
         columnChildren.add(e);
         time = e.start.add(Duration(minutes: e.length));
         // print("Added ${e.title}");
