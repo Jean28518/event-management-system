@@ -32,6 +32,11 @@ class APIService {
         linkToRecording: entryJson["link_to_recording"],
       );
 
+      // Skip entries which aren't scheduled in any room.
+      if (entry.track <= 0) {
+        continue;
+      }
+
       // Add day to map if not existent
       DateTime day =
           DateTime(entry.start.year, entry.start.month, entry.start.day);
