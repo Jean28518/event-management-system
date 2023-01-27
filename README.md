@@ -47,6 +47,7 @@ If you don't change this file the event managment system will be reachable under
 
 ```bash
 sudo docker-compose up -d --build
+bash build_flutter.sh
 sudo docker-compose up --build # For debugging, if something goes wrong.
 ```
 
@@ -56,6 +57,7 @@ You are done! You can reach now your event management system at port 80.
 Because the sql data is stored in a separate docker volume we can easily rebuild our docker image. A stop of the containers is not needed.
 ```
 git pull
+
 sudo docker-compose up -d --build
 ```
 
