@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:ems_timetable/info_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
