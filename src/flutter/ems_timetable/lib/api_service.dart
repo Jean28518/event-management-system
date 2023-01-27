@@ -2,11 +2,15 @@ import 'dart:convert';
 
 import 'package:ems_timetable/entry.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 class APIService {
   /// Returns a Map of timetables per day.
   /// A timetable is divided in tracks.
   static Future<Map<DateTime, Map<int, List<Entry>>>> getTimetableData() async {
+    // await initializeDateFormatting('de_DE', null);
+
     String id = Uri.base.queryParameters["id"]!;
     http.Response response = await http
         .get(Uri.parse('/events/api/$id/'))
@@ -20,6 +24,12 @@ class APIService {
         title: entryJson["title"],
         presentator: entryJson["presentator_name"],
         length: entryJson["scheduled_presentation_length"],
+        description: entryJson["description"],
+        websiteOfAuthor: entryJson["presentator_link"],
+        organisation: entryJson["presentator_organisation"],
+        websiteOfPresentation: entryJson["related_website"],
+        linkToMaterial: entryJson["link_to_material"],
+        linkToRecording: entryJson["link_to_recording"],
       );
 
       // Add day to map if not existent
@@ -49,8 +59,15 @@ class APIService {
       for (int track in timetableForDay.keys) {
         timetableForDay[track]!.sort(((a, b) => a.start.compareTo(b.start)));
       }
+      // Sort rooms
+      timetableForDay = Map.fromEntries(timetableForDay.entries.toList()
+        ..sort((e1, e2) => e1.key.compareTo(e2.key)));
       returnValue[currentDay] = timetableForDay;
     }
+
+    // Sort days
+    returnValue = Map.fromEntries(returnValue.entries.toList()
+      ..sort((e1, e2) => e1.key.compareTo(e2.key)));
 
     return returnValue;
   }

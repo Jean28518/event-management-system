@@ -718,6 +718,8 @@ def api_event_data(request, event_id):
             lectureData[key] = lecture.__dict__[key]
         presentator = lecture.presentator
         lectureData["presentator_name"] = presentator.get_full_name()
+        lectureData["presentator_link"] = presentator.profile.website
+        lectureData["presentator_organisation"] = presentator.profile.company
         data["lectures"].append(lectureData)
     # data = serializers.serialize('json', [ lectures, ])
     return JsonResponse(data)

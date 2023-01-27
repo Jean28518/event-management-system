@@ -1,14 +1,9 @@
-import 'dart:convert';
-
 import 'package:ems_timetable/api_service.dart';
 import 'package:ems_timetable/timetable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ems_timetable/entry.dart';
-import 'package:ems_timetable/hour_label.dart';
 import 'package:ems_timetable/mintY.dart';
-import 'package:ems_timetable/space.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 void main() {
@@ -38,8 +33,7 @@ class _MyAppState extends State<MyApp> {
           for (DateTime day in snapshot.data!.keys) {
             Map<int, List<Entry>> timetable = snapshot.data![day]!;
             contentElements.add(Text(
-              DateFormat('EEEE, d. MMMM yyyy', Intl.getCurrentLocale())
-                  .format(day),
+              DateFormat('EEEE, d. MMMM yyyy').format(day),
               style: MintY.heading1,
               textAlign: TextAlign.center,
             ));
@@ -50,6 +44,14 @@ class _MyAppState extends State<MyApp> {
             home: MintYPage(
               contentElements: contentElements,
             ),
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('de'), // German
+            ],
           );
         } else if (snapshot.hasError) {
           return MaterialApp(
