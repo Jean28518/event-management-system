@@ -1,7 +1,23 @@
-<style>
+
+<html lang="de">
+<head>
+  <style>
     * {
         margin: 0;
         padding: 0;
       }
 </style>
-<iframe style="width: 100vw;height: 100vh;position: relative;" src="/static/ems_timetable/index.html?id={{event.id}}" frameborder="0" allowfullscreen></iframe>
+</head>
+
+<body>
+  <div id="js-notice">
+    Bitte aktivieren Sie JavaScript in Ihrem Browser, um diese Seite korrekt anzuzeigen.
+  </div>
+  <script>
+    // Prüfen, ob JavaScript aktiviert ist
+    javascriptEnabled = true;
+    document.getElementById("js-notice").style.display = "none";
+  </script>
+<iframe lang="de" style="width: 100vw;height: 100vh;position: relative;" src="/static/ems_timetable/index.html?id={{event.id}}" frameborder="0" allowfullscreen></iframe>
+</body>
+</html lang>
