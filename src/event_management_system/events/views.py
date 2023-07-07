@@ -70,6 +70,14 @@ def event_delete(request, event_id):
     return HttpResponseRedirect("/events/event/")
 
 @permission_required("events.change_event")
+def event_archive(request, event_id):
+    if Event.objects.filter(id=event_id).exists(): 
+        event = Event.objects.filter(id=event_id)[0]
+        event.archived = not event.archived
+        event.save()
+    return HttpResponseRedirect("/events/event/")
+
+@permission_required("events.change_event")
 def event_timeslot_add(request, event_id):
     if Event.objects.filter(id=event_id).exists(): 
         if request.method == 'POST':
@@ -359,6 +367,8 @@ def lecture_contact_edit(request, lecture_id):
     if not Lecture.objects.filter(id=lecture_id).exists():
         return HttpResponseNotFound()
     lecture = Lecture.objects.get(id=lecture_id)
+    if lecture.event.archived:
+        return HttpResponseNotAllowed([])
     user = request.user
     if not _does_contact_user_has_access_to_lecture(user, lecture):
         return HttpResponseNotAllowed()
@@ -494,6 +504,8 @@ def lecture_delete(request, lecture_id):
     user = request.user
     if not _does_contact_user_has_access_to_lecture(user, lecture) and not user.has_perm("events.delete_lecture"):
         return HttpResponseNotAllowed("")
+    if lecture.event.archived and not user.has_perm("events.edit_lecure"):
+        return HttpResponseNotAllowed([])
     event_id = 0
     if Lecture.objects.filter(id=lecture_id).exists(): 
         lecture = Lecture.objects.get(id=lecture_id)

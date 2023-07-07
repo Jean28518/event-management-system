@@ -10,41 +10,61 @@
     <thead>
       <tr>
         <th scope="col" style="width:55%">{% trans "Lecture" %}</th>
-        <th scope="col" style="width:30%">{% trans "Event" %}</th>
-        <th scope="col" style="width:5%"></th>
-        <th scope="col" style="width:5%"></th>
-        <th scope="col" style="width:5%"></th>
+        <th scope="col" style="width:30%">{% trans "Event" %}</th>      
+        
+        {% if not lecture.event.archived %}
+          <th scope="col" style="width:5%"></th>
+          <th scope="col" style="width:5%"></th>
+          <th scope="col" style="width:5%"></th>
+        {% else %}
+          <th scope="col" style="width:15%"></th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
         {% for lecture in lectures%}
             <tr>
                 <td>{{lecture.title}}</td>
-                <td>{{lecture.event}}</td>
+                
+                {% if lecture.event.archived %}
+                    <td style="color:grey">{{lecture.event.name}} (Archived)</td>
+                {% else %}
+                    <td>{{lecture.event.name}}</td>
+                {% endif %}
+
                 <td class="text-center"><a href="{% url 'lecture_contact_view' lecture.id%}"><button title="{% trans "View" %}" type="button" class="btn btn-sm btn-outline-info"><i class="bi bi-file-text"></i></button></a></td>
-                <td class="text-center"><a href="{% url 'lecture_contact_edit' lecture.id%}"><button title="{% trans "Edit" %}" type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button></a></td>
 
-                {% comment %} Delete Button {% endcomment %}
-                <td class="text-center"><button title="{% trans "Delete" %}" type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{lecture.id}}"><i class="bi bi-trash"></i></button></td>
+                {% if not lecture.event.archived %}
 
-                {% comment %} Delete Popup {% endcomment %}
-                <div class="modal fade" id="deleteModal{{lecture.id}}" tabindex="-1" aria-labelledby="deleteModal{{lecture.id}}Label" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="deleteModal{{lecture.id}}Label">{% trans "Delete.heading" %} {{lecture.title}}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancel"></button>
-                      </div>
-                      <div class="modal-body">
-                        {% trans "delete.question.part1" %} {{lecture.title}} {% trans "delete.question.part2" %}
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
-                          <a href="{% url 'lecture_delete' lecture.id%}"><button type="button" class="btn btn-danger">{% trans "Delete" %}</button></a>
+
+                  <td class="text-center"><a href="{% url 'lecture_contact_edit' lecture.id%}"><button title="{% trans "Edit" %}" type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button></a></td>
+
+                  {% comment %} Delete Button {% endcomment %}
+                  <td class="text-center"><button title="{% trans "Delete" %}" type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{lecture.id}}"><i class="bi bi-trash"></i></button></td>
+
+                  {% comment %} Delete Popup {% endcomment %}
+                  <div class="modal fade" id="deleteModal{{lecture.id}}" tabindex="-1" aria-labelledby="deleteModal{{lecture.id}}Label" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="deleteModal{{lecture.id}}Label">{% trans "Delete.heading" %} {{lecture.title}}</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancel"></button>
+                        </div>
+                        <div class="modal-body">
+                          {% trans "delete.question.part1" %} {{lecture.title}} {% trans "delete.question.part2" %}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                            <a href="{% url 'lecture_delete' lecture.id%}"><button type="button" class="btn btn-danger">{% trans "Delete" %}</button></a>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+
+                {% endif %}
+
+
+
 
             </tr>
         {% endfor %}

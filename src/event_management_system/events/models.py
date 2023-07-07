@@ -23,6 +23,7 @@ class Event(models.Model):
     custom_questions = models.CharField(max_length=4096, default="")
     disabled_fields = models.CharField(max_length=1024, default="")
     live_board_default = models.CharField(max_length=4096, default="")
+    archived = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"{self.name}"
