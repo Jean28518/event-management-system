@@ -25,6 +25,7 @@ class Timetable extends StatelessWidget {
               style: MintY.heading1,
               textAlign: TextAlign.center,
             ));
+            contentElements.add(const SizedBox(height: 20));
             contentElements
                 .add(TimetableOneDay(day: day, timetable: timetable));
           }

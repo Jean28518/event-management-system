@@ -186,9 +186,7 @@ class Entry extends StatelessWidget {
                         child: Text(
                           title,
                           textAlign: TextAlign.center,
-                          style: height > 20
-                              ? MintY.heading4White
-                              : MintY.paragraphWhite,
+                          style: MintY.paragraphWhite,
                           overflow: TextOverflow.clip,
                         ),
                       ),
