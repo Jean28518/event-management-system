@@ -60,101 +60,96 @@ class Entry extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(16),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Expanded(
-                            child: SingleChildScrollView(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  SelectableText(
-                                    title,
-                                    style: MintY.heading1,
-                                  ),
-                                  SelectableText(
-                                    presentator,
-                                    style: MintY.heading2,
-                                  ),
-                                  websiteOfAuthor == ""
-                                      ? Container()
-                                      : InkWell(
-                                          child: Text(
-                                            websiteOfAuthor,
-                                            style: MintY.heading4,
-                                          ),
-                                          onTap: () {
-                                            js.context.callMethod(
-                                                'open', [websiteOfAuthor]);
-                                          },
+                          SingleChildScrollView(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SelectableText(
+                                  title,
+                                  style: MintY.heading1,
+                                ),
+                                SelectableText(
+                                  presentator,
+                                  style: MintY.heading2,
+                                ),
+                                websiteOfAuthor == ""
+                                    ? Container()
+                                    : InkWell(
+                                        child: Text(
+                                          websiteOfAuthor,
+                                          style: MintY.heading4,
                                         ),
-                                  SizedBox(
-                                    height: 14,
-                                  ),
-                                  SelectableHtml(
-                                    data: description,
-                                    onLinkTap:
-                                        (url, context, attributes, element) {
-                                      js.context.callMethod('open', [url]);
-                                    },
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      websiteOfPresentation == ""
-                                          ? Container()
-                                          : Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: MintYButton(
-                                                text: const Text(
-                                                  "Webseite",
-                                                  style: MintY.heading3,
-                                                ),
-                                                onPressed: () {
-                                                  js.context.callMethod('open',
-                                                      [websiteOfPresentation]);
-                                                },
+                                        onTap: () {
+                                          js.context.callMethod(
+                                              'open', [websiteOfAuthor]);
+                                        },
+                                      ),
+                                const SizedBox(height: 20),
+                                SelectableHtml(
+                                  data: description,
+                                  onLinkTap:
+                                      (url, context, attributes, element) {
+                                    js.context.callMethod('open', [url]);
+                                  },
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    websiteOfPresentation == ""
+                                        ? Container()
+                                        : Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: MintYButton(
+                                              text: const Text(
+                                                "Webseite",
+                                                style: MintY.heading3,
                                               ),
+                                              onPressed: () {
+                                                js.context.callMethod('open',
+                                                    [websiteOfPresentation]);
+                                              },
                                             ),
-                                      linkToMaterial == ""
-                                          ? Container()
-                                          : Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: MintYButton(
-                                                text: const Text(
-                                                  "Material",
-                                                  style: MintY.heading3,
-                                                ),
-                                                onPressed: () {
-                                                  js.context.callMethod(
-                                                      'open', [linkToMaterial]);
-                                                },
+                                          ),
+                                    linkToMaterial == ""
+                                        ? Container()
+                                        : Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: MintYButton(
+                                              text: const Text(
+                                                "Material",
+                                                style: MintY.heading3,
                                               ),
+                                              onPressed: () {
+                                                js.context.callMethod(
+                                                    'open', [linkToMaterial]);
+                                              },
                                             ),
-                                      linkToRecording == ""
-                                          ? Container()
-                                          : Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: MintYButton(
-                                                text: const Text(
-                                                  "Aufzeichnung",
-                                                  style: MintY.heading3,
-                                                ),
-                                                onPressed: () {
-                                                  js.context.callMethod('open',
-                                                      [linkToRecording]);
-                                                },
+                                          ),
+                                    linkToRecording == ""
+                                        ? Container()
+                                        : Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: MintYButton(
+                                              text: const Text(
+                                                "Aufzeichnung",
+                                                style: MintY.heading3,
                                               ),
+                                              onPressed: () {
+                                                js.context.callMethod(
+                                                    'open', [linkToRecording]);
+                                              },
                                             ),
-                                    ],
-                                  )
-                                ],
-                              ),
+                                          ),
+                                  ],
+                                )
+                              ],
                             ),
                           ),
+                          const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -179,8 +174,12 @@ class Entry extends StatelessWidget {
         },
         // Entry Card
         child: Container(
+            // rouded corners
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: displayError ? Colors.red : MintY.currentColor,
+            ),
             height: height,
-            color: displayError ? Colors.red : Colors.grey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -193,7 +192,9 @@ class Entry extends StatelessWidget {
                         child: Text(
                           title,
                           textAlign: TextAlign.center,
-                          style: height > 20 ? MintY.heading4 : MintY.paragraph,
+                          style: height > 20
+                              ? MintY.heading4White
+                              : MintY.paragraphWhite,
                           overflow: TextOverflow.clip,
                         ),
                       ),
@@ -204,7 +205,7 @@ class Entry extends StatelessWidget {
                   child: Text(
                     presentator,
                     textAlign: TextAlign.center,
-                    style: MintY.paragraph,
+                    style: MintY.paragraphWhite,
                     overflow: TextOverflow.clip,
                   ),
                 ),
