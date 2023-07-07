@@ -1,12 +1,8 @@
 import 'dart:math';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:ems_timetable/mintY.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'dart:js' as js;
-
-import 'package:flutter_html/flutter_html.dart';
 
 class Entry extends StatelessWidget {
   /// Minutes
@@ -58,7 +54,7 @@ class Entry extends StatelessWidget {
                       horizontal: horizontalPadding, vertical: 32),
                   child: Dialog(
                     child: Padding(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -89,12 +85,10 @@ class Entry extends StatelessWidget {
                                         },
                                       ),
                                 const SizedBox(height: 20),
-                                SelectableHtml(
-                                  data: description,
-                                  onLinkTap:
-                                      (url, context, attributes, element) {
-                                    js.context.callMethod('open', [url]);
-                                  },
+                                HtmlWidget(
+                                  description,
+                                  onTapUrl: (url) =>
+                                      js.context.callMethod('open', [url]),
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
