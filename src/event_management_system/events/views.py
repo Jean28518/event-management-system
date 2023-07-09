@@ -744,6 +744,8 @@ def event_scheduler(request, event_id):
     lectures = list(Lecture.objects.filter(event_id=event.id))
     if request.method == 'POST':
         form = request.POST
+
+        # Save all fields to corresponding lectures if they are set and valid
         for lecture in lectures:
             if f"scheduled_in_room{lecture.id}" in form.keys():
                 id = form[f"scheduled_in_room{lecture.id}"]
@@ -752,8 +754,11 @@ def event_scheduler(request, event_id):
                 except:
                     lecture.scheduled_in_room = None
             if f"scheduled_presentation_length{lecture.id}" in form.keys():
-                length = form[f"scheduled_presentation_length{lecture.id}"]
-                lecture.scheduled_presentation_length = length
+                if form[f"scheduled_presentation_length{lecture.id}"].strip() != "":
+                    length = form[f"scheduled_presentation_length{lecture.id}"]
+                    lecture.scheduled_presentation_length = length
+
+            # Update time we have to do this in two steps because the time and date are in two different fields
             if f"scheduled_presentation_time_time{lecture.id}" in form.keys():
                 time = form[f"scheduled_presentation_time_time{lecture.id}"]
                 if ":" in time and lecture.scheduled_presentation_time != None:
@@ -762,13 +767,13 @@ def event_scheduler(request, event_id):
                 date = form[f"scheduled_presentation_time_date{lecture.id}"]
                 if len(date.split("-")) == 3 and len(date) == 10 and lecture.scheduled_presentation_time != None:
                      lecture.scheduled_presentation_time = lecture.scheduled_presentation_time.replace(year=int(date.split("-")[0]), month=int(date.split("-")[1]), day=int(date.split("-")[2]))
+            # If the time is not set yet, we have to set it correctly, but we also need the two blocks above to be executed
             if lecture.scheduled_presentation_time == None:
-                try:
-                    dateString = form[f"scheduled_presentation_time_date{lecture.id}"]
-                    timeString = form[f"scheduled_presentation_time_time{lecture.id}"]
+                dateString = form[f"scheduled_presentation_time_date{lecture.id}"]
+                timeString = form[f"scheduled_presentation_time_time{lecture.id}"]
+                if ":" in timeString and len(dateString.split("-")) == 3 and len(dateString) == 10:
                     lecture.scheduled_presentation_time = f"{dateString} {timeString}"
-                except:
-                    pass
+
             lecture.save()
             
 
