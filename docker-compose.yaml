@@ -6,6 +6,7 @@ services:
     volumes:
       - static:/static
       - sqlite-data:/app/db
+      - media:/app/media
     env_file:
       - .env
     build: 
@@ -27,6 +28,7 @@ services:
 
 volumes:
   static:
+  media:
   caddy_data:
   caddy_config:
   sqlite-data:

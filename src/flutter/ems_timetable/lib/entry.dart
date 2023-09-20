@@ -75,7 +75,7 @@ class Entry extends StatelessWidget {
                                         : Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Image.network(
-                                              thumbnailUrl,
+                                              "/media/$thumbnailUrl",
                                               height: 200,
                                             ),
                                           ),
