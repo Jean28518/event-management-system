@@ -17,6 +17,8 @@ from django.utils import timezone
 from django.views.decorators.cache import cache_page
 from django.http import JsonResponse
 from django.core import serializers
+from django.core.files.storage import FileSystemStorage
+
 
 
 
@@ -186,12 +188,12 @@ def room_delete(request, room_id):
 # @permission_required("events.add_lecture")
 def lecture_public_create_entry(request, event_id):
     if request.user.is_authenticated:
-        return HttpResponseRedirect(f"/events/{event_id}/lecture/public/create/?email={request.user.username}")
+        return HttpResponseRedirect(f"/events/{event_id}/lecture/contact/create/?email={request.user.username}")
     if request.method == 'POST':
         user = authenticate(username=request.POST['email'], password=request.POST['password'])
         if user.is_authenticated:
             login(request, user)
-            return HttpResponseRedirect(f"/events/{event_id}/lecture/public/create/?email={user.username}")
+            return HttpResponseRedirect(f"/events/{event_id}/lecture/contact/create/?email={user.username}")
         else:
             form = LoginForm()
             return render(request, 'events/lecture/public/create_entry.html', {'request_user': request.user, 'form': form, 'login_failed': True, 'event_id': event_id})
@@ -210,38 +212,11 @@ def lecture_public_create(request, event_id):
         lecture.event = event
         _save_lecture_from_presentator_edit(request, lecture)
         return redirect('lecture_public_created_successfully', event_id)
-    # if request.method == 'POST':
-    #     event = Event.objects.filter(id=event_id)[0]
-    #     form = LectureSubmitForm(request.POST)
-    #     if form.is_valid():
-    #         lecture = Lecture()
-    #         lecture.presentator = request.user
-    #         lecture.event = event
-    #         lecture.title = request.POST['title']
-    #         lecture.description = request.POST['description']
-    #         lecture.target_group = request.POST['target_group']
-    #         lecture.qualification_for_lecture = request.POST['qualification_for_lecture']
-    #         lecture.preferred_presentation_style = request.POST['preferred_presentation_style']
-    #         lecture.questions_during_lecture = (request.POST.get('questions_during_lecture', "off") == "on")
-    #         lecture.questions_after_lecture = (request.POST.get('questions_after_lecture', "off") == "on")
-    #         lecture.minimal_lecture_length = int(request.POST['minimal_lecture_length'])
-    #         lecture.maximal_lecture_length = int(request.POST['maximal_lecture_length'])
-    #         lecture.additional_information_by_presentator = request.POST['additional_information_by_presentator']
-    #         lecture.related_website = request.POST['related_website']
-
-    #         event_timeslots = _get_timeslots_of_string(event.available_timeslots)
-    #         available_timeslots = []
-    #         for event_timeslot in event_timeslots:
-    #             if (request.POST.get(f"timeslot_{event_timeslot.id}", "off") == ""):
-    #                 available_timeslots.append(event_timeslot)
-    #         lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
-    #         lecture.save()
-    #         return HttpResponseRedirect(f'/events/{event_id}/lecture/public/created_success')
     else:
         form = LectureSubmitForm()
         event = Event.objects.filter(id=event_id)[0]
         custom_question_answer_pairs = string2question_answer_pairs("", event.custom_questions)
-        return render(request, 'events/lecture/public/create.html',
+        return render(request, 'events/lecture/contact/create.html',
                 {'request_user': request.user, 'form': form, 'event': event, 'timeslots': _get_timeslots_of_string(event.available_timeslots),
                 'custom_question_answer_pairs': custom_question_answer_pairs})
 
@@ -472,6 +447,13 @@ def _save_lecture_from_full_edit(request, lecture):
             available_timeslots.append(event_timeslot)
     lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
     lecture.custom_question_answers = post_answer2custom_answers_string(request, lecture.event.custom_questions)
+
+    image_file = request.FILES.get('thumbnail', "")
+    if image_file != "":
+        fs = FileSystemStorage()
+        filename = fs.save(image_file.name, image_file)
+        lecture.thumbnail = filename
+    
     lecture.save()
 
 def _save_lecture_from_presentator_edit(request, lecture):
@@ -494,6 +476,15 @@ def _save_lecture_from_presentator_edit(request, lecture):
             available_timeslots.append(event_timeslot)
     lecture.available_timeslots = _get_string_of_timeslots(available_timeslots)
     lecture.custom_question_answers = post_answer2custom_answers_string(request, lecture.event.custom_questions)
+
+    image_file = request.FILES.get('thumbnail', "")
+    print("HUHU")
+    print(request.FILES)
+    if image_file != "":
+        fs = FileSystemStorage()
+        filename = fs.save(image_file.name, image_file)
+        lecture.thumbnail = filename
+    
     lecture.save()
 
 

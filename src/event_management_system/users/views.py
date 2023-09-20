@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import permission_required
 import random
 from django.core.mail import send_mail
 from django.shortcuts import redirect
+from django.core.files.storage import FileSystemStorage
 import csv
 import os
 
@@ -303,6 +304,12 @@ def user_edit_profile(request):
             profile.over_18 = (request.POST.get('over_18', "off") == "on")
             profile.private_pin = request.POST['private_pin']
 
+            image_file = request.FILES.get('image', "")
+            if image_file != "":
+                fs = FileSystemStorage()
+                filename = fs.save(image_file.name, image_file)
+                profile.image = filename
+
             profile.save()
             return redirect("user_overview")
         return HttpResponseServerError()
@@ -317,7 +324,7 @@ def user_edit_profile(request):
             'private_pin': user.profile.private_pin,
         }
         form = EditProfileForm(initial=dict)
-        return render(request, 'users/edit_profile.html', {'request_user': request.user, 'form': form, 'user': user})
+        return render(request, 'users/edit.html', {'request_user': request.user, 'form': form, 'user': user})
 
 
 @permission_required('users.view_profile') 

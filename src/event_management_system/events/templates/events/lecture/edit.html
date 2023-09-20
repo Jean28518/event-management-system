@@ -11,9 +11,15 @@ rel="stylesheet">
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="/static/events/js/bootstrap-datetimepicker.min.js"></script>
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h1>{% trans "Edit.heading" %} {{lecture.title}}</h1>
+    
+    {% comment %} Display thumbnail {% endcomment %}
+    {% if lecture.thumbnail %}
+        <img src="{{ lecture.thumbnail.url }}" class="rounded mx-auto d-block" alt="thumbnail" height="300">
+    {% endif %}
+
     <br/>
     {% comment %} {{ form }} {% endcomment %}
     {% for field in form %}
@@ -33,6 +39,12 @@ rel="stylesheet">
                     </div>
                 </div>
             </div>
+        </div>
+        {% elif field.name == "thumbnail" %}
+        <br>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="{{field.name}}">Thumbnail</label>
+            <input type="file" name="thumbnail" class="form-control" accept="image/*" id="id_thumbnail">
         </div>
         {% else %}
             {{ field.label_tag }} {{ field }}

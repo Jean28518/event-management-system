@@ -50,6 +50,7 @@ class LectureSubmitForm(forms.Form):
     maximal_lecture_length = forms.IntegerField(label=_('Maximal Lecture Length (in minutes)'), widget=forms.NumberInput(attrs={'class': "form-control"}),)
     additional_information_by_presentator = forms.CharField(label=_('Additional information (max. 2048 signs)'), max_length=2048, widget=forms.Textarea(attrs={'class': "form-control"}), required=False)
     related_website = forms.CharField(label=_('Lecture related Website'), max_length=100, widget=forms.URLInput(attrs={'class': "form-control"}), required=False)
+    thumbnail = forms.ImageField(label=_('Thumbnail'), required=False)
 
 
 # For edit and create:
@@ -75,3 +76,4 @@ class LectureForm(forms.Form):
     further_information = forms.CharField(label=_('Further private information (max. 2048 signs) (Presentator can\'t see this)'), max_length=2048, widget=forms.Textarea(attrs={'class': "form-control"}), required=False)
     link_to_material = forms.CharField(label=_('Link to Material'), max_length=100, widget=forms.URLInput(attrs={'class': "form-control"}), required=False)
     link_to_recording = forms.CharField(label=_('Link to Recording'), max_length=100, widget=forms.URLInput(attrs={'class': "form-control"}), required=False)
+    thumbnail = forms.ImageField(label=_('Thumbnail'), required=False)

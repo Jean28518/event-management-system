@@ -4,12 +4,20 @@
 <form action="" method="post">
     {% csrf_token %}
     <h1>{{lecture.title}}</h1>
+
+    {% comment %} Display thumbnail {% endcomment %}
+    {% if lecture.thumbnail %}
+        <img src="{{ lecture.thumbnail.url }}" class="rounded mx-auto d-block" alt="thumbnail" height="300">
+    {% endif %}
     <br/>
+
     {% for field in form %}
         {% if field.name == "questions_during_lecture" %}
         <br>  {{ field }} {{ field.label_tag }}  <br>
         {% elif field.name == "questions_after_lecture" %}
         <br>  {{ field }}  {{ field.label_tag }}  <br> <br>
+        {% elif field.name == "thumbnail" %}
+        {% comment %} Display nothing {% endcomment %}
         {% else %}
             {{ field.label_tag }} {{ field }}
         {% endif %}

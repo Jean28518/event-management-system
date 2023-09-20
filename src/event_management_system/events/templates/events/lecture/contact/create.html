@@ -1,7 +1,7 @@
-{% extends "global/base_public.html" %}
+{% extends "global/base.html" %}
 {% load i18n %}
 {% block content %}
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h1>{% trans "Submit Lecture" %}</h1>
     <br/>
@@ -11,6 +11,12 @@
         <br>  {{ field }} {{ field.label_tag }}  <br>
         {% elif field.name == "questions_after_lecture" %}
         <br>  {{ field }}  {{ field.label_tag }}  <br> <br>
+        {% elif field.name == "thumbnail" %}
+        <br>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="{{field.name}}">Thumbnail</label>
+            <input type="file" name="thumbnail" class="form-control" accept="image/*" id="id_thumbnail">
+        </div>
         {% else %}
             {{ field.label_tag }} {{ field }}
         {% endif %}

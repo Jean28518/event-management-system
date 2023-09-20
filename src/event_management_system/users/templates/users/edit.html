@@ -1,14 +1,24 @@
 {% extends "global/base.html" %}
 {% load i18n %}
 {% block content %}
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <h1>{% trans "Edit.heading" %} {{user.email}}</h1>
+    <h1>{% trans "Edit.heading" %} {% trans "Profile" %}</h1>
     <br/>
+    {% comment %} Display thumbnail {% endcomment %}
+    {% if user.profile.image %}
+        <img src="{{ user.profile.image.url }}" class="rounded mx-auto d-block" alt="image" height="300">
+    {% endif %}
     {% comment %} {{ form }} {% endcomment %}
     {% for field in form %}
         {% if field.name == "over_18" %}
         <br> {{ field }} {{ field.label_tag }}  <br> <br>
+        {% elif field.name == "image" %}
+        <br>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="{{field.name}}">Avatar</label>
+            <input type="file" name="image" class="form-control" accept="image/*" id="id_image">
+        </div>
         {% else %}
             {{ field.label_tag }} {{ field }}
         {% endif %}

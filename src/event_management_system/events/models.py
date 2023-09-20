@@ -65,6 +65,7 @@ class Lecture(models.Model):
     link_to_material = models.URLField()
     link_to_recording = models.URLField()
     custom_question_answers = models.CharField(max_length=4096, default="")
+    thumbnail = models.ImageField(upload_to="thumbnails/", null=True, blank=True)
 
 
     def __str__(self):

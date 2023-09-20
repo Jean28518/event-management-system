@@ -1,15 +1,27 @@
 {% extends "global/base.html" %}
 {% load i18n %}
 {% block content %}
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h1>{% trans "Edit Lecture" %}</h1>
+
+    {% comment %} Display thumbnail {% endcomment %}
+    {% if lecture.thumbnail %}
+        <img src="{{ lecture.thumbnail.url }}" class="rounded mx-auto d-block" alt="thumbnail" height="300">
+    {% endif %}
     <br/>
+    
     {% for field in form %}
         {% if field.name == "questions_during_lecture" %}
         <br>  {{ field }} {{ field.label_tag }}  <br>
         {% elif field.name == "questions_after_lecture" %}
         <br>  {{ field }}  {{ field.label_tag }}  <br> <br>
+        {% elif field.name == "thumbnail" %}
+        <br>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="{{field.name}}">Thumbnail</label>
+            <input type="file" name="thumbnail" class="form-control" accept="image/*" id="id_thumbnail">
+        </div>
         {% else %}
             {{ field.label_tag }} {{ field }}
         {% endif %}

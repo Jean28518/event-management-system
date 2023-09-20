@@ -13,6 +13,9 @@ class Profile(models.Model):
     over_18 = models.BooleanField()
     private_pin = models.CharField(max_length=100) # Second password/pin for e.g. doors or jitsi
 
+    image = models.ImageField(upload_to='profile_pics', blank=True, null=True)
+    vita = models.CharField(max_length=2048, blank=True, null=True)
+
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:

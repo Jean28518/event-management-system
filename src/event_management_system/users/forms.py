@@ -50,3 +50,5 @@ class EditProfileForm(forms.Form):
     company = forms.CharField(label=_('Company'), max_length=100, widget=forms.TextInput(attrs={'class': "form-control"}), required=False)
     over_18 = forms.BooleanField(label=_('Over 18'), widget=forms.CheckboxInput(attrs={'class': "form-check-input"}), required=False)
     private_pin = forms.CharField(label=_('Private Pin'), max_length=100, widget=forms.TextInput(attrs={'class': "form-control"}), required=False)
+    image = forms.ImageField(label=_('Image'), required=False)
+    vita = forms.CharField(label=_('Vita'), max_length=2048, widget=forms.Textarea(attrs={'class': "form-control"}), required=False)
