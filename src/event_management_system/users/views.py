@@ -303,6 +303,7 @@ def user_edit_profile(request):
             profile.company = request.POST['company']
             profile.over_18 = (request.POST.get('over_18', "off") == "on")
             profile.private_pin = request.POST['private_pin']
+            profile.vita = request.POST['vita']
 
             image_file = request.FILES.get('image', "")
             if image_file != "":
@@ -322,6 +323,7 @@ def user_edit_profile(request):
             'company': user.profile.company,
             'over_18': user.profile.over_18 == True,
             'private_pin': user.profile.private_pin,
+            'vita': user.profile.vita,
         }
         form = EditProfileForm(initial=dict)
         return render(request, 'users/edit.html', {'request_user': request.user, 'form': form, 'user': user})

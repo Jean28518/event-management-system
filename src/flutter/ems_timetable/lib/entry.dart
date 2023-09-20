@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ems_timetable/mintY.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'dart:js' as js;
+import 'package:intl/intl.dart';
 
 class Entry extends StatelessWidget {
   /// Minutes
@@ -17,6 +18,9 @@ class Entry extends StatelessWidget {
   late String websiteOfPresentation;
   late String linkToMaterial;
   late String linkToRecording;
+  late String vita;
+  late String thumbnailUrl;
+  late String profilePictureUrl;
   bool displayError = false;
   Entry({
     super.key,
@@ -31,6 +35,9 @@ class Entry extends StatelessWidget {
     this.websiteOfPresentation = "",
     this.linkToMaterial = "",
     this.linkToRecording = "",
+    this.vita = "",
+    this.thumbnailUrl = "",
+    this.profilePictureUrl = "",
   });
 
   @override
@@ -58,33 +65,35 @@ class Entry extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SingleChildScrollView(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
+                          Expanded(
+                            child: ListView(
                               children: [
-                                SelectableText(
-                                  title,
-                                  style: MintY.heading1,
-                                ),
-                                SelectableText(
-                                  presentator,
-                                  style: MintY.heading2,
-                                ),
-                                websiteOfAuthor == ""
-                                    ? Container()
-                                    : InkWell(
-                                        child: Text(
-                                          websiteOfAuthor,
-                                          style: MintY.heading4,
-                                        ),
-                                        onTap: () {
-                                          js.context.callMethod(
-                                              'open', [websiteOfAuthor]);
-                                        },
+                                Row(
+                                  children: [
+                                    thumbnailUrl == ""
+                                        ? Container()
+                                        : Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Image.network(
+                                              thumbnailUrl,
+                                              height: 200,
+                                            ),
+                                          ),
+                                    Expanded(
+                                      child: Column(
+                                        children: [
+                                          SelectableText(
+                                            title,
+                                            style: MintY.heading1,
+                                          ),
+                                          SelectableText(
+                                              "Beginn: ${DateFormat('kk:mm').format(start)} Uhr\t\tLänge: $length Minuten"),
+                                          const SizedBox(height: 20),
+                                        ],
                                       ),
-                                const SizedBox(height: 20),
+                                    )
+                                  ],
+                                ),
                                 HtmlWidget(
                                   description,
                                   onTapUrl: (url) =>
@@ -139,7 +148,57 @@ class Entry extends StatelessWidget {
                                             ),
                                           ),
                                   ],
-                                )
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 32.0),
+                                  child: Container(
+                                    height: 1,
+                                    color: Colors.grey[300],
+                                  ),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    profilePictureUrl == ""
+                                        ? Container()
+                                        : Image.network(
+                                            profilePictureUrl,
+                                            height: 200,
+                                          ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SelectableText(
+                                            presentator,
+                                            style: MintY.heading2,
+                                          ),
+                                          websiteOfAuthor == ""
+                                              ? Container()
+                                              : InkWell(
+                                                  child: Text(
+                                                    websiteOfAuthor,
+                                                    style: MintY.heading4,
+                                                  ),
+                                                  onTap: () {
+                                                    js.context.callMethod(
+                                                        'open',
+                                                        [websiteOfAuthor]);
+                                                  },
+                                                ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 20),
+                                SelectableText(
+                                  vita,
+                                  style: MintY.paragraph,
+                                ),
                               ],
                             ),
                           ),
@@ -151,7 +210,7 @@ class Entry extends StatelessWidget {
                                 color: MintY.currentColor,
                                 text: Text(
                                   "Schließen",
-                                  style: MintY.heading3White,
+                                  style: MintY.heading3,
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pop();
@@ -184,23 +243,25 @@ class Entry extends StatelessWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          title,
+                          height > 40 ? title : "$title - $presentator",
                           textAlign: TextAlign.center,
-                          style: MintY.paragraphWhite,
+                          style: height > 40 ? MintY.heading4 : MintY.paragraph,
                           overflow: TextOverflow.clip,
                         ),
                       ),
                     ],
                   ),
                 ),
-                Flexible(
-                  child: Text(
-                    presentator,
-                    textAlign: TextAlign.center,
-                    style: MintY.paragraphWhite,
-                    overflow: TextOverflow.clip,
-                  ),
-                ),
+                height > 40
+                    ? Flexible(
+                        child: Text(
+                          presentator,
+                          textAlign: TextAlign.center,
+                          style: MintY.paragraph,
+                          overflow: TextOverflow.clip,
+                        ),
+                      )
+                    : Container(),
               ],
             )),
       ),

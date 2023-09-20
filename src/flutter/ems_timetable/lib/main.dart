@@ -19,7 +19,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    MintY.currentColor = const Color.fromARGB(255, 47, 61, 126);
+    // MintY.currentColor = const Color.fromARGB(255, 47, 61, 126);
+    MintY.currentColor = const Color.fromARGB(255, 255, 177, 51);
     return MaterialApp(
       theme: MintY.theme(),
       home: Timetable(),
