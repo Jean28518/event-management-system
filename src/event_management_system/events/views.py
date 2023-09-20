@@ -725,7 +725,9 @@ def api_event_data(request, event_id):
         lectureData["presentator_image"] = ""
         if presentator.profile.image:
             lectureData["presentator_image"] = presentator.profile.image.url
-        lectureData["presentator_vita"] = presentator.profile.vita.replace("\r", "")
+        lectureData["presentator_vita"] = ""
+        if presentator.profile.vita:
+            lectureData["presentator_vita"] = presentator.profile.vita
         data["lectures"].append(lectureData)
     # data = serializers.serialize('json', [ lectures, ])
     return JsonResponse(data)
