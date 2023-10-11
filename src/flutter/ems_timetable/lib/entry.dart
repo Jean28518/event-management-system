@@ -49,10 +49,10 @@ class Entry extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 5),
       child: InkWell(
-        onDoubleTap: () => show_info_dialog(context),
+        // onDoubleTap: () => show_info_dialog(context),
         onTap: () => show_info_dialog(context),
-        onLongPress: () => show_info_dialog(context),
-        onSecondaryTap: () => show_info_dialog(context),
+        // onLongPress: () => show_info_dialog(context),
+        // onSecondaryTap: () => show_info_dialog(context),
         // Entry Card
         child: Container(
             // rouded corners
