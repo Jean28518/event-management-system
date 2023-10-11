@@ -38,13 +38,14 @@ class Entry extends StatelessWidget {
     this.vita = "",
     this.thumbnailUrl = "",
     this.profilePictureUrl = "",
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  }) {
     if (organisation.isNotEmpty) {
       presentator = "$presentator ($organisation)";
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     double height = length * 2 - 2;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 5),
@@ -65,7 +66,12 @@ class Entry extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Expanded(
+                          SizedBox(
+                            height: min(
+                                500 +
+                                    description.length / 10 +
+                                    vita.length / 10,
+                                MediaQuery.of(context).size.height - 200),
                             child: ListView(
                               children: [
                                 Row(
@@ -208,7 +214,7 @@ class Entry extends StatelessWidget {
                             children: [
                               MintYButton(
                                 color: MintY.currentColor,
-                                text: Text(
+                                text: const Text(
                                   "Schließen",
                                   style: MintY.heading3,
                                 ),
