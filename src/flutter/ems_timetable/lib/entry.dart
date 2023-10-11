@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:ems_timetable/mintY.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'dart:js' as js;
 import 'package:intl/intl.dart';
 
@@ -132,6 +131,7 @@ class Entry extends StatelessWidget {
                                     ),
                               Expanded(
                                 child: Column(
+                                  mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     SelectableText(
@@ -146,10 +146,9 @@ class Entry extends StatelessWidget {
                               )
                             ],
                           ),
-                          HtmlWidget(
+                          SelectableText(
                             description,
-                            onTapUrl: (url) =>
-                                js.context.callMethod('open', [url]),
+                            style: MintY.paragraph,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
