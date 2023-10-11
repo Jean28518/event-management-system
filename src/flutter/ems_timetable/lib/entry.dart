@@ -87,6 +87,8 @@ class Entry extends StatelessWidget {
                                           ),
                                     Expanded(
                                       child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           SelectableText(
                                             title,
@@ -205,6 +207,7 @@ class Entry extends StatelessWidget {
                                   vita,
                                   style: MintY.paragraph,
                                 ),
+                                Expanded(child: Container())
                               ],
                             ),
                           ),
