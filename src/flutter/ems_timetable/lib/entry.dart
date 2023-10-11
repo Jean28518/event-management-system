@@ -118,7 +118,6 @@ class Entry extends StatelessWidget {
                       child: ListView(
                         children: [
                           Row(
-                            mainAxisSize: MainAxisSize.min,
                             children: [
                               thumbnailUrl == ""
                                   ? Container()
@@ -131,8 +130,6 @@ class Entry extends StatelessWidget {
                                     ),
                               Expanded(
                                 child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     SelectableText(
                                       title,
@@ -247,7 +244,6 @@ class Entry extends StatelessWidget {
                             vita,
                             style: MintY.paragraph,
                           ),
-                          Expanded(child: Container())
                         ],
                       ),
                     ),
