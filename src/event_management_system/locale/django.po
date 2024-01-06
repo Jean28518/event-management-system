@@ -1,0 +1,696 @@
+# ITALIAN TRANSLATION.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# ALBANO BATTISTELLA <ALBANOBATTISTELLA@GMAIL.COM>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-10 19:53+0000\n"
+"PO-Revision-Date: 2024-01-06 17:19+0100\n"
+"Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
+"Language-Team: Italian\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#: emails/forms.py:7 events/forms.py:11 events/forms.py:20
+msgid "Name"
+msgstr "Nome"
+
+#: emails/forms.py:8
+msgid "Subject"
+msgstr "Soggetto"
+
+#: emails/forms.py:10
+msgid "Body"
+msgstr "Corpo"
+
+#: emails/forms.py:13 emails/forms.py:16 events/forms.py:33 users/forms.py:14
+#: users/forms.py:25 users/forms.py:34 users/forms.py:38 users/forms.py:46
+#: users/templates/users/overview.html:17
+msgid "Email"
+msgstr "Email"
+
+#: emails/forms.py:17
+msgid "Mail Receivers"
+msgstr "Ricevitori di posta"
+
+#: emails/templates/emails/create.html:8
+msgid "Create email"
+msgstr "Crea email"
+
+#: emails/templates/emails/create.html:12 emails/templates/emails/edit.html:12
+#: emails/templates/emails/overview.html:42
+#: events/templates/events/event/create.html:10
+#: events/templates/events/event/edit.html:14
+#: events/templates/events/event/overview.html:51
+#: events/templates/events/lecture/contact/edit.html:23
+#: events/templates/events/lecture/contact/overview.html:44
+#: events/templates/events/lecture/edit.html:61
+#: events/templates/events/lecture/overview.html:66
+#: events/templates/events/room/create.html:11
+#: events/templates/events/room/edit.html:10
+#: events/templates/events/room/overview.html:44
+#: users/templates/users/create.html:23 users/templates/users/edit.html:18
+#: users/templates/users/edit_profile.html:18
+#: users/templates/users/overview.html:53
+msgid "Cancel"
+msgstr "Annulla"
+
+#: emails/templates/emails/create.html:13
+#: emails/templates/emails/overview.html:6
+#: events/templates/events/event/create.html:11
+#: events/templates/events/event/overview.html:6
+#: events/templates/events/lecture/overview.html:11
+#: events/templates/events/room/create.html:12
+#: events/templates/events/room/overview.html:6
+#: users/templates/users/overview.html:6
+msgid "Create"
+msgstr "Crea"
+
+#: emails/templates/emails/create.html:17 emails/templates/emails/edit.html:17
+msgid "Legend of variables:"
+msgstr "Legenda delle variabili:"
+
+#: emails/templates/emails/create.html:24 emails/templates/emails/edit.html:24
+msgid "User"
+msgstr "Utente"
+
+#: emails/templates/emails/create.html:42 emails/templates/emails/edit.html:42
+#: events/templates/events/lecture/contact/overview.html:12
+#: events/templates/events/lecture/overview.html:33
+msgid "Lecture"
+msgstr "Lezione"
+
+#: emails/templates/emails/create.html:60 emails/templates/emails/edit.html:60
+#: events/forms.py:58 users/forms.py:7
+msgid "Attendant"
+msgstr ""Assistente
+
+#: emails/templates/emails/create.html:78 emails/templates/emails/edit.html:78
+#: events/forms.py:56 events/templates/events/event/overview.html:15
+#: events/templates/events/lecture/contact/overview.html:13
+#: events/templates/events/lecture/contact/select_event_for_submit.html:8
+msgid "Event"
+msgstr "Evento"
+
+#: emails/templates/emails/create.html:96 emails/templates/emails/edit.html:96
+#: events/templates/events/room/overview.html:13
+msgid "Room"
+msgstr "Stanza"
+
+#: emails/templates/emails/edit.html:8
+#: events/templates/events/event/edit.html:4
+#: events/templates/events/lecture/edit.html:16
+#: events/templates/events/room/edit.html:6 users/templates/users/edit.html:6
+#: users/templates/users/edit_profile.html:6
+msgid "Edit.heading"
+msgstr "Modifica"
+
+#: emails/templates/emails/edit.html:13
+#: events/templates/events/event/edit.html:15
+#: events/templates/events/lecture/contact/edit.html:24
+#: events/templates/events/lecture/edit.html:62
+#: events/templates/events/room/edit.html:11
+msgid "Save"
+msgstr "Salva"
+
+#: emails/templates/emails/overview.html:4
+#: emails/templates/emails/overview.html:13
+#: event_management_system/templates/global/navbar.html:27
+msgid "Emails"
+msgstr "Email"
+
+#: emails/templates/emails/overview.html:23
+#: events/templates/events/event/overview.html:31
+#: events/templates/events/lecture/contact/overview.html:25
+#: events/templates/events/lecture/overview.html:47
+#: events/templates/events/room/overview.html:23
+#: users/templates/users/overview.html:34
+msgid "Edit"
+msgstr "Modifica"
+
+#: emails/templates/emails/overview.html:27
+#: emails/templates/emails/overview.html:43
+#: events/templates/events/event/custom_fields.html:22
+#: events/templates/events/event/overview.html:36
+#: events/templates/events/event/overview.html:52
+#: events/templates/events/event/timeslot.html:20
+#: events/templates/events/lecture/contact/overview.html:29
+#: events/templates/events/lecture/contact/overview.html:45
+#: events/templates/events/lecture/overview.html:51
+#: events/templates/events/lecture/overview.html:67
+#: events/templates/events/room/overview.html:29
+#: events/templates/events/room/overview.html:45
+#: users/templates/users/overview.html:38
+#: users/templates/users/overview.html:54
+msgid "Delete"
+msgstr "Cancella"
+
+#: emails/templates/emails/overview.html:35
+#: events/templates/events/event/overview.html:44
+#: events/templates/events/lecture/contact/overview.html:37
+#: events/templates/events/lecture/overview.html:59
+#: events/templates/events/room/overview.html:37
+#: users/templates/users/overview.html:46
+msgid "Delete.heading"
+msgstr "Cancella"
+
+#: emails/templates/emails/overview.html:39
+#: events/templates/events/event/overview.html:48
+#: events/templates/events/lecture/contact/overview.html:41
+#: events/templates/events/lecture/overview.html:63
+#: events/templates/events/room/overview.html:41
+#: users/templates/users/overview.html:50
+msgid "delete.question.part1"
+msgstr "Vuoi davvero eliminare"
+
+#: emails/templates/emails/overview.html:39
+#: events/templates/events/event/overview.html:48
+#: events/templates/events/lecture/contact/overview.html:41
+#: events/templates/events/lecture/overview.html:63
+#: events/templates/events/room/overview.html:41
+#: users/templates/users/overview.html:50
+msgid "delete.question.part2"
+msgstr "?"
+
+#: emails/templates/emails/send_mass_lecture.html:4
+msgid "Send mass emails depending at lectures"
+msgstr "Invia e-mail di massa a seconda delle lezioni"
+
+#: emails/templates/emails/send_mass_lecture.html:6
+#: emails/templates/emails/send_mass_user.html:6
+msgid "Select all"
+msgstr "Seleziona tutto"
+
+#: emails/templates/emails/send_mass_lecture.html:7
+#: emails/templates/emails/send_mass_user.html:7
+msgid "Deselect all"
+msgstr "Deselezione tutto"
+
+#: emails/templates/emails/send_mass_lecture.html:23
+#: emails/templates/emails/send_mass_user.html:23
+msgid "Send Mails"
+msgstr "Invia email"
+
+#: emails/templates/emails/send_mass_user.html:4
+msgid "Send mass emails depending at users"
+msgstr "Invia e-mail di massa a seconda degli utenti"
+
+#: event_management_system/settings.py:129
+msgid "language.en"
+msgstr "Inglese"
+
+#: event_management_system/settings.py:130
+msgid "language.de"
+msgstr "Tedesco"
+
+#: event_management_system/templates/global/base.html:7
+msgid "Event Management System"
+msgstr "Sistema di gestione degli eventi"
+
+#: event_management_system/templates/global/navbar.html:12
+#: users/templates/users/overview.html:4
+msgid "Users"
+msgstr "Utenti"
+
+#: event_management_system/templates/global/navbar.html:17
+#: events/templates/events/event/overview.html:4
+msgid "Events"
+msgstr "Eventi"
+
+#: event_management_system/templates/global/navbar.html:22
+#: events/templates/events/room/overview.html:4
+msgid "Rooms"
+msgstr "Stanze"
+
+#: event_management_system/templates/global/navbar.html:38
+msgid "Edit Profile"
+msgstr "Modifica profilo"
+
+#: event_management_system/templates/global/navbar.html:39
+#: users/templates/users/change_password.html:4
+#: users/templates/users/change_password.html:34
+msgid "Change Password"
+msgstr "cambia password"
+
+#: event_management_system/templates/global/navbar.html:41
+msgid "Logout"
+msgstr "Disconnettersi"
+
+#: events/forms.py:12 events/templates/events/event/overview.html:16
+msgid "Year"
+msgstr "Anno"
+
+#: events/forms.py:14 events/forms.py:22
+#: events/templates/events/event/overview.html:17
+#: events/templates/events/lecture/public/lecture_content.html:25
+#: events/templates/events/lecture/public/lecture_content.html:35
+#: users/forms.py:18 users/forms.py:29 users/forms.py:49
+msgid "Website"
+msgstr "Sito web"
+
+#: events/forms.py:27
+msgid "Coordinates"
+msgstr "Coordinate"
+
+#: events/forms.py:35 users/forms.py:17 users/forms.py:28 users/forms.py:35
+msgid "Password"
+msgstr "Password"
+
+#: events/forms.py:41 events/forms.py:59
+#: events/templates/events/lecture/public/timetable.html:32
+msgid "Title"
+msgstr "TItolo"
+
+#: events/forms.py:42 events/forms.py:60
+msgid "Description (max. 2048 signs)"
+msgstr "Descrizione (max. 2048 caratteri)"
+
+#: events/forms.py:43 events/forms.py:61
+msgid "Target Group"
+msgstr Obbiettivo del gruppo"
+
+#: events/forms.py:44 events/forms.py:62
+msgid "I am qualified for the presentation because..."
+msgstr "Sono qualificato per la presentazione perché..."
+
+#: events/forms.py:45 events/forms.py:63
+msgid "Preferred presentation style"
+msgstr "Stile di presentazione preferito"
+
+#: events/forms.py:46 events/forms.py:64
+msgid "Should questions during lectures been asked?"
+msgstr "Dovrebbero essere poste domande durante le lezioni?"
+
+#: events/forms.py:47 events/forms.py:65
+msgid "Should questions after lectures been asked?"
+msgstr "Dovrebbero essere poste domande dopo le lezioni?"
+
+#: events/forms.py:48 events/forms.py:66
+msgid "Minimal Lecture Length (in minutes)"
+msgstr "Durata minima della lezione (in minuti)"
+
+#: events/forms.py:49 events/forms.py:67
+msgid "Maximal Lecture Length (in minutes)"
+msgstr "Durata massima della lezione (in minuti)"
+
+#: events/forms.py:50 events/forms.py:68
+msgid "Additional information (max. 2048 signs)"
+msgstr "Informazioni aggiuntive (max. 2048 caratteri)"
+
+#: events/forms.py:51 events/forms.py:69
+msgid "Lecture related Website"
+msgstr "Sito web relativo alla lezione"
+
+#: events/forms.py:57 events/templates/events/lecture/overview.html:34
+msgid "Presentator"
+msgstr "Presentatore"
+
+#: events/forms.py:70
+msgid "Scheduled in Room"
+msgstr "Programmato in stanza"
+
+#: events/forms.py:71
+msgid "Scheduled Time Format: YYYY-MM-DD HH:MM"
+msgstr "Formato dell'ora pianificata: AAAA-MM-GG HH:MM"
+
+#: events/forms.py:72
+msgid "Scheduled Length (in minutes)"
+msgstr "Durata pianificata (in minuti)"
+
+#: events/forms.py:73
+msgid "Scheduled presentation style"
+msgstr "Stile di presentazione pianificato"
+
+#: events/forms.py:74
+msgid ""
+"Further private information (max. 2048 signs) (Presentator can't see this)"
+msgstr ""
+"Ulteriori informazioni private (max. 2048 caratteri) (il presentatore non può vederle)"
+
+#: events/forms.py:75
+msgid "Link to Material"
+msgstr "Link al materiale"
+
+#: events/forms.py:76
+msgid "Link to Recording"
+msgstr "Link alla registrazione"
+
+#: events/models.py:6
+msgid "Beginner"
+msgstr "Principiante"
+
+#: events/models.py:7
+msgid "Intermediate"
+msgstr "Intermedio"
+
+#: events/models.py:8
+msgid "Professional"
+msgstr "Professionale"
+
+#: events/models.py:12
+msgid "Recorded"
+msgstr "Registrata"
+
+#: events/models.py:13
+msgid "Live"
+msgstr "Dal vivo"
+
+#: events/templates/events/event/create.html:6
+msgid "Create event"
+msgstr "Crea evento"
+
+#: events/templates/events/event/custom_fields.html:4
+msgid "Custom fields for"
+msgstr "Campi personalizzati per"
+
+#: events/templates/events/event/custom_fields.html:12
+#: events/templates/events/event/custom_fields.html:32
+msgid "Type"
+msgstr "Tipo"
+
+#: events/templates/events/event/custom_fields.html:13
+msgid "Question"
+msgstr "Domanda"
+
+#: events/templates/events/event/custom_fields.html:20
+#: events/templates/events/event/custom_fields.html:34
+msgid "Text"
+msgstr "Testo"
+
+#: events/templates/events/event/custom_fields.html:20
+#: events/templates/events/event/custom_fields.html:35
+msgid "Checkbox"
+msgstr "Casella di spunta"
+
+#: events/templates/events/event/custom_fields.html:38
+msgid "New question"
+msgstr "Nuova domanda"
+
+#: events/templates/events/event/custom_fields.html:41
+#: events/templates/events/event/timeslot.html:33
+#: events/templates/events/lecture/contact/view.html:23
+#: events/templates/events/lecture/overview.html:77
+#: events/templates/events/lecture/view.html:25
+#: users/templates/users/view.html:18
+msgid "Back"
+msgstr "Indietro"
+
+#: events/templates/events/event/custom_fields.html:42
+msgid "Add new question"
+msgstr "Aggiungi nuova domanda"
+
+#: events/templates/events/event/edit.html:5
+msgid "Timeslots"
+msgstr "Fasce orarie"
+
+#: events/templates/events/event/edit.html:6
+msgid "Custom questions"
+msgstr "Domande personalizzate"
+
+#: events/templates/events/event/edit.html:7
+msgid "Question activation"
+msgstr "Attivazione delle domande"
+
+#: events/templates/events/event/field_activation.html:4
+msgid "Field activation for"
+msgstr "Attivazione sul campo per"
+
+#: events/templates/events/event/field_activation.html:5
+msgid "If a field is checked, then it will be active."
+msgstr "Se un campo è selezionato, sarà attivo."
+
+#: events/templates/events/event/field_activation.html:19
+msgid "Save current field selection"
+msgstr "Salva la selezione del campo corrente"
+
+#: events/templates/events/event/overview.html:7
+#: users/templates/users/overview.html:8
+msgid "Export csv"
+msgstr "Esporta csv"
+
+#: events/templates/events/event/overview.html:30
+msgid "Lectures"
+msgstr "Lezioni"
+
+#: events/templates/events/event/timeslot.html:4
+msgid "Timeslots for"
+msgstr "Fasce orarie per"
+
+#: events/templates/events/event/timeslot.html:30
+msgid "New timeslot"
+msgstr "Nuova fascia oraria"
+
+#: events/templates/events/event/timeslot.html:34
+msgid "Add new timeslot"
+msgstr "Aggiungi una nuova fascia oraria"
+
+#: events/templates/events/lecture/contact/edit.html:6
+msgid "Edit Lecture"
+msgstr "Modifica lezione"
+
+#: events/templates/events/lecture/contact/overview.html:4
+msgid "My Lectures"
+msgstr "Le mie lezioni"
+
+#: events/templates/events/lecture/contact/overview.html:6
+#: events/templates/events/lecture/public/create.html:25
+msgid "Submit"
+msgstr "Invia"
+
+#: events/templates/events/lecture/contact/overview.html:24
+#: events/templates/events/lecture/overview.html:46
+#: users/templates/users/overview.html:33
+msgid "View"
+msgstr "Visualizza"
+
+#: events/templates/events/lecture/contact/select_event_for_submit.html:4
+msgid "Select Event"
+msgstr "Seleziona Evento"
+
+#: events/templates/events/lecture/contact/select_event_for_submit.html:16
+msgid "Select"
+msgstr "Seleziona"
+
+#: events/templates/events/lecture/create.html:16
+msgid "Create Lecture"
+msgstr "Crea lezione"
+
+#: events/templates/events/lecture/overview.html:4
+msgid "Lectures from"
+msgstr "Lezione da"
+
+#: events/templates/events/lecture/overview.html:14
+#: events/templates/events/lecture/overview.html:16
+msgid "Mass Mail Lectures"
+msgstr "Lezioni per posta di massa"
+
+#: events/templates/events/lecture/overview.html:21
+#: events/templates/events/lecture/overview.html:23
+msgid "Call For Papers:"
+msgstr "Invito a presentare documenti:"
+
+#: events/templates/events/lecture/overview.html:21
+msgid "Disabled"
+msgstr "Disabilitato"
+
+#: events/templates/events/lecture/overview.html:23
+msgid "Enabled"
+msgstr "Abilitato"
+
+#: events/templates/events/lecture/overview.html:24
+msgid "Call For Paper Link"
+msgstr "Link per invio dei documenti"
+
+#: events/templates/events/lecture/overview.html:26
+msgid "Timetable (Public)"
+msgstr "Orario (pubblico)"
+
+#: events/templates/events/lecture/public/create.html:6
+#: events/templates/events/lecture/public/create_entry.html:4
+msgid "Submit Lecture"
+msgstr "Invia lezione"
+
+#: events/templates/events/lecture/public/create_entry.html:5
+#: users/templates/users/login.html:10
+msgid ""
+"Welcome! If you already have a user account, please login. Otherwise please "
+"register first."
+msgstr ""
+"Benvenuto! Se hai già un account utente effettua il login. Altrimenti "
+"registrati prima."
+
+#: events/templates/events/lecture/public/create_entry.html:6
+#: users/templates/users/create_public.html:6
+#: users/templates/users/create_public.html:19
+#: users/templates/users/login.html:47
+msgid "Register"
+msgstr "Registrati"
+
+#: events/templates/events/lecture/public/create_entry.html:10
+#: users/templates/users/login.html:14
+msgid "Login failed! Try again."
+msgstr "Accesso non riuscito! Riprova."
+
+#: events/templates/events/lecture/public/create_entry.html:18
+#: users/templates/users/login.html:46
+#: users/templates/users/reset_password.html:4
+#: users/templates/users/reset_password.html:15
+msgid "Reset Password"
+msgstr "Resetta la password"
+
+#: events/templates/events/lecture/public/create_entry.html:19
+#: users/templates/users/login.html:9
+msgid "Login"
+msgstr "Login"
+
+#: events/templates/events/lecture/public/create_successful.html:5
+msgid "Submitting Lecture successful!"
+msgstr "Invio della lezione riuscito!"
+
+#: events/templates/events/lecture/public/create_successful.html:8
+msgid "Submit another lecture"
+msgstr "Invia un'altra lezione"
+
+#: events/templates/events/lecture/public/create_successful.html:11
+msgid "Go to overview"
+msgstr "Vai alla panoramica"
+
+#: events/templates/events/lecture/public/current_running.html:6
+msgid "Current running:"
+msgstr "Attualmente in corso:"
+
+#: events/templates/events/lecture/public/lecture_content.html:40
+msgid "Material"
+msgstr "Materiale"
+
+#: events/templates/events/lecture/public/lecture_content.html:45
+msgid "Recording"
+msgstr "Registrazione"
+
+#: events/templates/events/lecture/public/timetable.html:10
+#: events/templates/events/lecture/public/timetable.html:94
+msgid "Back to website"
+msgstr "Torna al sito web"
+
+#: events/templates/events/lecture/public/timetable.html:31
+msgid "Time"
+msgstr "Orario"
+
+#: events/templates/events/lecture/public/timetable.html:38
+msgid "timetable.time.appendix"
+msgstr " "
+
+#: events/templates/events/lecture/public/timetable.html:64
+msgid "Close"
+msgstr "Chiudi"
+
+#: events/templates/events/modules/timeslot_module.html:3
+msgid "I am available at these timeslots:"
+msgstr "Sono disponibile in queste fasce orarie:"
+
+#: events/templates/events/room/create.html:6
+msgid "Create room"
+msgstr "Crea stanza"
+
+#: users/forms.py:6
+msgid "Contact"
+msgstr "Contatto"
+
+#: users/forms.py:8
+msgid "Organisator"
+msgstr "Organizzatore"
+
+#: users/forms.py:9
+msgid "Administrator"
+msgstr "Amministratore"
+
+#: users/forms.py:13 users/templates/users/overview.html:18
+msgid "Role"
+msgstr "Ruolo"
+
+#: users/forms.py:15 users/forms.py:26 users/forms.py:47
+msgid "First name"
+msgstr "Nome"
+
+#: users/forms.py:16 users/forms.py:27 users/forms.py:48
+msgid "Last name"
+msgstr "Cognome"
+
+#: users/forms.py:19 users/forms.py:30 users/forms.py:50
+msgid "Company"
+msgstr "Azienda"
+
+#: users/forms.py:20 users/forms.py:31 users/forms.py:51
+msgid "Over 18"
+msgstr "Più di 18 anni"
+
+#: users/forms.py:21 users/forms.py:52
+msgid "Private Pin"
+msgstr "Pin privato"
+
+#: users/forms.py:41
+msgid "Old Password"
+msgstr "Vecchia password"
+
+#: users/forms.py:42
+msgid "New Password"
+msgstr "Nuova password"
+
+#: users/forms.py:43
+msgid "New Password (repeated)"
+msgstr "Nuova password (ripetuta)"
+
+#: users/templates/users/change_password.html:9
+msgid "Your old password is wrong!"
+msgstr "La tua vecchia password è sbagliata!"
+
+#: users/templates/users/change_password.html:15
+msgid "Your new passwords differ!"
+msgstr "Le tue nuove password sono diverse!"
+
+#: users/templates/users/change_password.html:21
+msgid "Your password must be at least 8 characters long!"
+msgstr "La tua password deve essere lunga almeno 8 caratteri!"
+
+#: users/templates/users/change_password.html:27
+msgid "Password successfully changed!"
+msgstr "Password cambiata con successo!"
+
+#: users/templates/users/create.html:6
+msgid "Create user"
+msgstr "Crea utente"
+
+#: users/templates/users/create.html:10
+#: users/templates/users/create_public.html:10
+msgid "E-Mail already exists!"
+msgstr "Email già esistente!"
+
+#: users/templates/users/edit_profile.html:6
+msgid "Profile"
+msgstr "Profilo"
+
+#: users/templates/users/overview.html:7
+msgid "Mass Mail Users"
+msgstr "Utenti di posta di massa"
+
+#: users/templates/users/overview.html:15
+msgid "First.name"
+msgstr "Primo"
+
+#: users/templates/users/overview.html:16
+msgid "Last.name"
+msgstr "Ultimo"
+
+#: src/event_management_system/users/templates/users/reset_password.html:8
+msgid ""
+"If this mail is registered at this instance, a mail with a new password was "
+"sent."
+msgstr ""
+"Se questa e-mail è registrata in questa istanza, è stata inviata un'e-mail con una nuova password"
