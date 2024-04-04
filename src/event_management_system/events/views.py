@@ -18,6 +18,7 @@ from django.views.decorators.cache import cache_page
 from django.http import JsonResponse
 from django.core import serializers
 from django.core.files.storage import FileSystemStorage
+from django.urls import reverse
 
 
 
@@ -188,12 +189,12 @@ def room_delete(request, room_id):
 # @permission_required("events.add_lecture")
 def lecture_public_create_entry(request, event_id):
     if request.user.is_authenticated:
-        return HttpResponseRedirect(f"/events/{event_id}/lecture/contact/create/?email={request.user.username}")
+        return HttpResponseRedirect(reverse("lecture_public_create", args=[event_id]))
     if request.method == 'POST':
         user = authenticate(username=request.POST['email'], password=request.POST['password'])
         if user.is_authenticated:
             login(request, user)
-            return HttpResponseRedirect(f"/events/{event_id}/lecture/contact/create/?email={user.username}")
+            return HttpResponseRedirect(reverse("lecture_public_create", args=[event_id]))
         else:
             form = LoginForm()
             return render(request, 'events/lecture/public/create_entry.html', {'request_user': request.user, 'form': form, 'login_failed': True, 'event_id': event_id})
