@@ -1,8 +1,12 @@
 {% comment %} The title is not included with this template {% endcomment %}
 {% load i18n %}
+
+{% if lecture.thumbnail %} <img src="{{lecture.thumbnail.url}}" class="img-fluid" style="padding: 5%;" alt="{{lecture.title}}"> {% endif %}
+
+
 <h4>{% if lecture.presentator.first_name != "" %} {{lecture.presentator.first_name|make_list|first}}. {% endif %} 
     
-    {{lecture.presentator.last_name}} 
+    {{lecture.presentator.last_name}}
     
     {% comment %} Company and Link {% endcomment %}
 
@@ -22,9 +26,7 @@
     
     {% endif %} </h4>
 {{lecture.description|safe}}
-<br>
-<br>
-<div class="container text-center">
+<div class="container text-center" style="padding: 5%;">
     <div class="row">
         {% if lecture.related_website != "" %}
             <div class="col">
@@ -44,3 +46,46 @@
 
     </div>
 </div>
+
+<div style="padding: 5%;">
+
+{% comment %} 2 Columns (Bootstrap) {% endcomment %}
+<div class="container">
+    <div class="row">
+        {% if lecture.presentator.profile.image.url %}
+        <div class="col-4">
+            <img src="{{lecture.presentator.profile.image.url}}" class="img-fluid" alt="{{lecture.presentator.last_name}}" style="width: 80%;">
+        </div>
+        {% endif %}
+        <div class="col" {% if lecture.presentator.profile.image.url %} style="text-align: left;" {%endif%}>
+
+            <h4  {% if lecture.presentator.profile.image.url %} style="text-align: left;" {%endif%}>
+                Über {% if lecture.presentator.first_name != "" %} {{lecture.presentator.first_name|make_list|first}}. {% endif %} 
+    
+                {{lecture.presentator.last_name}}
+                
+                {% comment %} Company and Link {% endcomment %}
+            
+                {% comment %} Company without link {% endcomment %}
+                {% if lecture.presentator.profile.company  != "" and lecture.presentator.profile.website == ""%} 
+                ({{lecture.presentator.profile.company}})
+            
+            
+                {% comment %} Company with link {% endcomment %}:
+                {% elif lecture.presentator.profile.company != "" and lecture.presentator.profile.website != "" %}
+                (<a href="{{lecture.presentator.profile.website}}" target = "_blank">{{lecture.presentator.profile.company}}</a>)
+                
+                {% comment %} No company but website {% endcomment %}
+                {% elif lecture.presentator.profile.company == "" and lecture.presentator.profile.website != "" %}
+                (<a href="{{lecture.presentator.profile.website}}" target = "_blank">{% trans "Website" %}</a>)
+            
+                
+                {% endif %}</h4>
+
+
+
+
+            {{lecture.presentator.profile.vita|safe}}
+        </div>
+    </div>
+<div>

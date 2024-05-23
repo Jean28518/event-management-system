@@ -580,6 +580,8 @@ def lecture_export_csv(request):
 @cache_page(10) # Hold view in cache for 10 seconds
 @xframe_options_exempt
 def timetable(request, event_id):
+    display_html = request.GET.get("display_html", None)
+
     event = Event.objects.filter(id=event_id)
     if not event.exists():
         return HttpResponseBadRequest()
@@ -617,8 +619,12 @@ def timetable(request, event_id):
                 lecture.nice_time = _date(lecture.scheduled_presentation_time, "H:i")
                 found_room["lectures"].append(lecture)
                 found_room["lectures"].sort(key=lambda d: str(d.scheduled_presentation_time))
+    if display_html:
+        return render(request, 'events/lecture/public/html_timetable.html',
+                    {'request_user': request.user, 'event': event, 'days': days})
+
     return render(request, 'events/lecture/public/timetable.html',
-                      {'request_user': request.user, 'event': event, 'days': days})
+                    {'request_user': request.user, 'event': event, 'days': days})
 
 def event_custom_questions(request, event_id):
     event = Event.objects.filter(id=event_id)

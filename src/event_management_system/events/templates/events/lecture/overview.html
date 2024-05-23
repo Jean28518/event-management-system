@@ -24,6 +24,7 @@
   <a href="{% url 'lecture_public_create_entry' event.id %}">{% trans "Call For Paper Link" %}</a>
   {% endif %}
 <a href="{% url 'timetable' event.id %}"><button type="button" class="btn btn-outline-secondary">{% trans "Timetable (Public)" %}</button></a>
+<a href="{% url 'timetable' event.id %}?display_html=1"><button type="button" class="btn btn-outline-secondary">{% trans "Timetable (Public)" %} (HTML)</button></a>
 <a href="{% url 'event_scheduler' event.id %}"><button type="button" class="btn btn-outline-secondary">{% trans "Scheduler" %}</button></a>
 <br>
 <br>
