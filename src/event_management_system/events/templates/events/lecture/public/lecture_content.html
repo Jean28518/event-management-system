@@ -52,14 +52,14 @@
 {% comment %} 2 Columns (Bootstrap) {% endcomment %}
 <div class="container">
     <div class="row">
-        {% if lecture.presentator.profile.image.url %}
+        {% if lecture.presentator.profile.image %}
         <div class="col-4">
             <img src="{{lecture.presentator.profile.image.url}}" class="img-fluid" alt="{{lecture.presentator.last_name}}" style="width: 80%;">
         </div>
         {% endif %}
-        <div class="col" {% if lecture.presentator.profile.image.url %} style="text-align: left;" {%endif%}>
+        <div class="col" {% if lecture.presentator.profile.image %} style="text-align: left;" {%endif%}>
 
-            <h4  {% if lecture.presentator.profile.image.url %} style="text-align: left;" {%endif%}>
+            <h4  {% if lecture.presentator.profile.image %} style="text-align: left;" {%endif%}>
                 Über {% if lecture.presentator.first_name != "" %} {{lecture.presentator.first_name|make_list|first}}. {% endif %} 
     
                 {{lecture.presentator.last_name}}
