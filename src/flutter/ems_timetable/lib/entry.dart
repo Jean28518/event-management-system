@@ -145,7 +145,7 @@ class Entry extends StatelessWidget {
                           ),
                           SelectableText(
                             description,
-                            style: MintY.paragraph,
+                            style: MintY.paragraphWhite,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
