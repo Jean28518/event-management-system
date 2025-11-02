@@ -16,7 +16,7 @@ class HourLabel extends StatelessWidget {
           Container(
             height: 1,
             width: 100,
-            color: Colors.black,
+            color: Colors.white,
           ),
           const SizedBox(
             height: 2,

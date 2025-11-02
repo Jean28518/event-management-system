@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
     // MintY.currentColor = const Color.fromARGB(255, 47, 61, 126);
     MintY.currentColor = const Color.fromARGB(255, 255, 177, 51);
     return MaterialApp(
-      theme: MintY.theme(),
+      theme: MintY.themeDark(),
       home: Timetable(),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

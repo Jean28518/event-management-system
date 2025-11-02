@@ -128,13 +128,13 @@ class MintY {
   static ThemeData theme() => ThemeData(
       primaryColor: currentColor,
       brightness: Brightness.light,
-      backgroundColor: Colors.white70,
+      scaffoldBackgroundColor: Colors.white70,
       textTheme: const TextTheme(
-        headline1: heading1,
-        headline2: heading2,
-        headline3: heading3,
-        headline4: heading4,
-        bodyText1: paragraph,
+        headlineLarge: heading1,
+        headlineMedium: heading2,
+        headlineSmall: heading3,
+        bodyLarge: heading4,
+        bodySmall: paragraph,
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
@@ -152,15 +152,15 @@ class MintY {
       primaryColor: currentColor,
       canvasColor: const Color.fromARGB(255, 31, 31, 31),
       brightness: Brightness.dark,
-      backgroundColor: const Color.fromARGB(255, 31, 31, 31),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 31, 31, 31),
       cardColor: const Color.fromARGB(255, 45, 45, 45),
       highlightColor: _white,
       textTheme: const TextTheme(
-        headline1: heading1White,
-        headline2: heading2White,
-        headline3: heading3White,
-        headline4: heading4White,
-        bodyText1: paragraphWhite,
+        headlineLarge: heading1White,
+        headlineMedium: heading2White,
+        headlineSmall: heading3White,
+        bodyLarge: heading4White,
+        bodySmall: paragraphWhite,
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
@@ -429,7 +429,7 @@ class _MintYSelectableCardWithIconState
                 height: 30,
               ),
               Text(widget.title,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.center),
               SizedBox(
                 height: 30,
@@ -437,7 +437,7 @@ class _MintYSelectableCardWithIconState
               Text(
                 widget.text,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyMedium,
               )
             ]),
           ),
@@ -507,14 +507,14 @@ class _MintYSelectableEntryWithIconHorizontalState
                       ),
                       Text(
                         widget.title,
-                        style: Theme.of(context).textTheme.headline3,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       Text(
                         widget.text,
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyMedium,
                         maxLines: 100,
                       )
                     ],
@@ -585,13 +585,13 @@ class MintYButtonBigWithIcon extends StatelessWidget {
               icon,
               SizedBox(height: 20),
               Text(title,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.center),
               SizedBox(height: 20),
               Text(
                 text,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyMedium,
               )
             ],
           ),
@@ -645,12 +645,12 @@ class MintYCardWithIconAndAction extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: Theme.of(context).textTheme.headline2,
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         SizedBox(height: 8),
                         Text(
                           text,
-                          style: Theme.of(context).textTheme.bodyText1,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
                     ),
@@ -745,13 +745,13 @@ class MintYFeature extends StatelessWidget {
             children: [
               Text(
                 heading,
-                style: Theme.of(context).textTheme.headline3,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
                 child: Text(
                   description,
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
             ],
@@ -794,8 +794,8 @@ class MintYTable extends StatelessWidget {
             child: Text(
               data[i][j].toString(),
               style: i == 0
-                  ? Theme.of(context).textTheme.headline4
-                  : Theme.of(context).textTheme.bodyText1,
+                  ? Theme.of(context).textTheme.headlineSmall
+                  : Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
           ),

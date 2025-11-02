@@ -14,14 +14,14 @@ class APIService {
   /// A timetable is divided in tracks.
   static Future<Map<DateTime, Map<int, List<Entry>>>> getTimetableData() async {
     // For production:
-    String id = Uri.base.queryParameters["id"]!;
-    http.Response response = await http
-        .get(Uri.parse('/events/api/$id/'))
-        .timeout(const Duration(seconds: 5));
-    Map<String, dynamic> dataJson = jsonDecode(response.body);
+    // String id = Uri.base.queryParameters["id"]!;
+    // http.Response response = await http
+    //     .get(Uri.parse('/events/api/$id/'))
+    //     .timeout(const Duration(seconds: 5));
+    // Map<String, dynamic> dataJson = jsonDecode(response.body);
 
     // For testing and running without backend:
-    // Map<String, dynamic> dataJson = jsonDecode(testData);
+    Map<String, dynamic> dataJson = jsonDecode(testData);
 
     Map<DateTime, Map<int, List<Entry>>> returnValue = {};
     for (Map<String, dynamic> entryJson in dataJson["lectures"]) {

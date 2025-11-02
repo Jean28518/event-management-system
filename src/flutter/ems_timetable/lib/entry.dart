@@ -133,7 +133,7 @@ class Entry extends StatelessWidget {
                                   children: [
                                     SelectableText(
                                       title,
-                                      style: MintY.heading1,
+                                      style: MintY.heading1White,
                                     ),
                                     SelectableText(
                                         "Beginn: ${DateFormat('kk:mm').format(start)} Uhr\t\tLänge: $length Minuten"),
@@ -157,7 +157,7 @@ class Entry extends StatelessWidget {
                                       child: MintYButton(
                                         text: const Text(
                                           "Webseite",
-                                          style: MintY.heading3,
+                                          style: MintY.heading3White,
                                         ),
                                         onPressed: () {
                                           js.context.callMethod(
@@ -172,7 +172,7 @@ class Entry extends StatelessWidget {
                                       child: MintYButton(
                                         text: const Text(
                                           "Material",
-                                          style: MintY.heading3,
+                                          style: MintY.heading3White,
                                         ),
                                         onPressed: () {
                                           js.context.callMethod(
@@ -187,7 +187,7 @@ class Entry extends StatelessWidget {
                                       child: MintYButton(
                                         text: const Text(
                                           "Aufzeichnung",
-                                          style: MintY.heading3,
+                                          style: MintY.heading3White,
                                         ),
                                         onPressed: () {
                                           js.context.callMethod(
@@ -220,14 +220,14 @@ class Entry extends StatelessWidget {
                                   children: [
                                     SelectableText(
                                       presentator,
-                                      style: MintY.heading2,
+                                      style: MintY.heading2White,
                                     ),
                                     websiteOfAuthor == ""
                                         ? Container()
                                         : InkWell(
                                             child: Text(
                                               websiteOfAuthor,
-                                              style: MintY.heading4,
+                                              style: MintY.heading4White,
                                             ),
                                             onTap: () {
                                               js.context.callMethod(
@@ -242,7 +242,7 @@ class Entry extends StatelessWidget {
                           const SizedBox(height: 20),
                           SelectableText(
                             vita,
-                            style: MintY.paragraph,
+                            style: MintY.paragraphWhite,
                           ),
                         ],
                       ),
@@ -255,7 +255,7 @@ class Entry extends StatelessWidget {
                           color: MintY.currentColor,
                           text: const Text(
                             "Schließen",
-                            style: MintY.heading3,
+                            style: MintY.heading3White,
                           ),
                           onPressed: () {
                             Navigator.of(context).pop();

@@ -30,7 +30,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   http: ^1.1.0
-  intl: ^0.18.0
+  intl: ^0.20.2
   flutter:
     sdk: flutter
 

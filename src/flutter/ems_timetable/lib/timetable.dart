@@ -22,7 +22,7 @@ class Timetable extends StatelessWidget {
             Map<int, List<Entry>> timetable = snapshot.data![day]!;
             contentElements.add(Text(
               DateFormat('EEEE, d. MMMM yyyy', 'de_DE').format(day),
-              style: MintY.heading1,
+              style: MintY.heading1White,
               textAlign: TextAlign.center,
             ));
             contentElements.add(const SizedBox(height: 20));
