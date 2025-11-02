@@ -159,6 +159,7 @@ class Entry extends StatelessWidget {
                                           "Webseite",
                                           style: MintY.heading3White,
                                         ),
+                                        color: Colors.black87,
                                         onPressed: () {
                                           js.context.callMethod(
                                               'open', [websiteOfPresentation]);
@@ -174,6 +175,7 @@ class Entry extends StatelessWidget {
                                           "Material",
                                           style: MintY.heading3White,
                                         ),
+                                        color: Colors.black87,
                                         onPressed: () {
                                           js.context.callMethod(
                                               'open', [linkToMaterial]);
@@ -189,6 +191,7 @@ class Entry extends StatelessWidget {
                                           "Aufzeichnung",
                                           style: MintY.heading3White,
                                         ),
+                                        color: Colors.black87,
                                         onPressed: () {
                                           js.context.callMethod(
                                               'open', [linkToRecording]);
