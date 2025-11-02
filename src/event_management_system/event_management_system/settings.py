@@ -155,9 +155,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+port = os.getenv("EMAIL_PORT")
+if not port:
+    port = "587"
 # Email Settings
 EMAIL_HOST = os.getenv("EMAIL_HOST")                    # <- host name [e.g. smtp.gmail.com for gmail]
-EMAIL_PORT = int(os.getenv("EMAIL_PORT"))               # <- smtp port [e.g. 587]
+EMAIL_PORT = int(port)               # <- smtp port [e.g. 587]
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")          # <- username
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # <- password
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
