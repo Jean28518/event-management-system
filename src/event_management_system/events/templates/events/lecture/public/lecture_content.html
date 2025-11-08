@@ -4,27 +4,7 @@
 {% if lecture.thumbnail %} <img src="{{lecture.thumbnail.url}}" class="img-fluid" style="padding: 5%;" alt="{{lecture.title}}"> {% endif %}
 
 
-<h4>{% if lecture.presentator.first_name != "" %} {{lecture.presentator.first_name|make_list|first}}. {% endif %} 
-    
-    {{lecture.presentator.last_name}}
-    
-    {% comment %} Company and Link {% endcomment %}
-
-    {% comment %} Company without link {% endcomment %}
-    {% if lecture.presentator.profile.company  != "" and lecture.presentator.profile.website == ""%} 
-    ({{lecture.presentator.profile.company}})
-
-
-    {% comment %} Company with link {% endcomment %}:
-    {% elif lecture.presentator.profile.company != "" and lecture.presentator.profile.website != "" %}
-    (<a href="{{lecture.presentator.profile.website}}" target = "_blank">{{lecture.presentator.profile.company}}</a>)
-    
-    {% comment %} No company but website {% endcomment %}
-    {% elif lecture.presentator.profile.company == "" and lecture.presentator.profile.website != "" %}
-    (<a href="{{lecture.presentator.profile.website}}" target = "_blank">{% trans "Website" %}</a>)
-
-    
-    {% endif %} </h4>
+<h4> {{ lecture.title }} </h4>
 {{lecture.description|safe}}
 <div class="container text-center" style="padding: 5%;">
     <div class="row">
